@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "783373530427",
+    "project_id": "base-saga-toolkit",
+    "storage_bucket": "base-saga-toolkit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783373530427:android:656af0e70e714887be331e",
+        "android_client_info": {
+          "package_name": "com.hisoft.base.sagatoolkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783373530427-hhoed3ijs979kh2d70qdkfq0rkcnenfs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hisoft.base.sagatoolkit",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "783373530427-q8u4j724qoejb67irehc1prslifcvhbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hisoft.base.sagatoolkit",
+            "certificate_hash": "4f056f54165b1221e6072d71693d8062bfe60453"
+          }
+        },
+        {
+          "client_id": "783373530427-edj0mghikcnnuiasimd3s88aveq8eun3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlRKcP4MZFjjtXRamS02ZmtHbJX0oJE5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783373530427-edj0mghikcnnuiasimd3s88aveq8eun3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "783373530427-df80d4iobikvske09da0vm5quibnede1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hisoft.base.sagatoolkit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

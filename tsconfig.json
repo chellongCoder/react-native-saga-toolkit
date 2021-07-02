@@ -32,6 +32,9 @@
         "@components/*": [
           "src/components/*"
         ],
+        "@provider/*": [
+          "src/provider/*"
+        ],
         "@i18n/*": [
           "src/i18n/*"
         ],
