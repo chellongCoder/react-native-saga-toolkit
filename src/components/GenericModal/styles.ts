@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '@theme/colors';
+import { COLORS } from '@theme/colors';
 import { fonts } from '@theme/fonts';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: palette.MIDNIGHT_BLUE,
+    backgroundColor: COLORS.MIDNIGHT_BLUE,
   },
   content: {
     flex: 1,
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   pageTitle: {
-    color: palette.ALIZARIN,
+    color: COLORS.ALIZARIN,
     fontFamily: fonts.regular,
     fontSize: 20,
     textAlign: 'center',

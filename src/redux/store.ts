@@ -3,8 +3,14 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 import createSagaMiddleware from 'redux-saga';
 import { persistedRootReducer } from '@redux/reducers';
 import rootSaga from '@redux/rootSaga';
+import { createLogger } from 'redux-logger';
 
 // Setup Middlewares
+const logger = createLogger({
+  collapsed: true,
+  timestamp: false,
+  duration: true,
+});
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [
   ...getDefaultMiddleware({
@@ -16,6 +22,7 @@ const middleware = [
     },
   }),
   sagaMiddleware,
+  logger,
 ];
 
 // Create Store

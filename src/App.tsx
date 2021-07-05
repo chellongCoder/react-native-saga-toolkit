@@ -28,7 +28,7 @@ import { ZocialIconsPack } from '@components/IconsAdapter/zocial-icons';
 import { RootStackScreen } from '@routes';
 import '@i18n';
 import theme, { globalStyle } from '@theme';
-import { palette } from '@theme/colors';
+import { COLORS } from '@theme/colors';
 import NetworkProvider from '@provider/network';
 
 enableScreens();
@@ -66,7 +66,7 @@ const App: FC = () => {
             <NetworkProvider>
               <SafeAreaProvider>
                 <NavigationContainer ref={navigationRef}>
-                  <StatusBar barStyle="dark-content" backgroundColor={palette.WHITE} />
+                  <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
 
                   <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
                     <RootStackScreen />
