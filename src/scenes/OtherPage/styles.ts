@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '@theme/colors';
+import { COLORS } from '@theme/colors';
 import { fonts } from '@theme/fonts';
 import theme from '@theme';
 
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   mainText: {
-    color: palette.CLOUDS,
+    color: COLORS.CLOUDS,
     fontFamily: fonts.regular,
     paddingVertical: 10,
   },

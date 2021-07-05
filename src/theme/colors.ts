@@ -1,4 +1,4 @@
-const palette = {
+const COLORS = {
   TORQUISE: '#1abc9c',
   EMERALD: '#2ecc71',
   GREEN_SEA: '#16a085',
@@ -23,6 +23,10 @@ const palette = {
   BLACK: '#000',
   TRANSPARENT: '#00000000',
   GREY_SHADOW_7: 'rgba(216,216,216,0.7)',
+  GREEN_GRADIENT: ['#0B554F', '#22857C'],
+  PINK_GRADIENT: ['#D1ACFF', '#74F7FF'],
+  GREEN: '#08746B',
+  DARK_GREEN: '#0D5650',
 };
 
-export { palette };
+export { COLORS };

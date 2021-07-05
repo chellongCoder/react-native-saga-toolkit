@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '@theme/colors';
+import { COLORS } from '@theme/colors';
 
 const theme = {
   spacing: {
@@ -8,13 +8,13 @@ const theme = {
     lg: 24,
   },
   colors: {
-    statusBarBackground: palette.CONCRETE,
-    headerBackground: palette.WHITE,
-    mainBackground: palette.MIDNIGHT_BLUE,
-    backButtonText: palette.BELIZE_HOLE,
-    transparent: palette.TRANSPARENT,
-    primary: palette.MIDNIGHT_BLUE,
-    cardShadow: palette.GREY_SHADOW_7,
+    statusBarBackground: COLORS.CONCRETE,
+    headerBackground: COLORS.WHITE,
+    mainBackground: COLORS.MIDNIGHT_BLUE,
+    backButtonText: COLORS.BELIZE_HOLE,
+    transparent: COLORS.TRANSPARENT,
+    primary: COLORS.MIDNIGHT_BLUE,
+    cardShadow: COLORS.GREY_SHADOW_7,
   },
   breakpoints: {},
   textVariants: {
@@ -28,20 +28,20 @@ const theme = {
     //   fontFamily: fonts.boldOS,
     //   fontSize: 34,
     //   lineHeight: 42.5,
-    //   color: palette.WET_ASPHALT,
+    //   color: COLORS.WET_ASPHALT,
     // },
     // subheader: {
     //   fontFamily: fonts.semiBoldOS,
     //   fontWeight: '600',
     //   fontSize: 28,
     //   lineHeight: 36,
-    //   color: palette.WET_ASPHALT,
+    //   color: COLORS.WET_ASPHALT,
     // },
     // body: {
     //   fontFamily: fonts.regularOS,
     //   fontSize: 16,
     //   lineHeight: 24,
-    //   color: palette.WET_ASPHALT,
+    //   color: COLORS.WET_ASPHALT,
     // },
   },
 };
