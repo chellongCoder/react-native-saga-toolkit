@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '@theme/colors';
+import { COLORS } from '@theme/colors';
 import { fonts } from '@theme/fonts';
 import theme from '@theme';
 
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   mainText: {
-    color: palette.WHITE,
-    fontFamily: fonts.bold,
+    color: COLORS.WHITE,
+    fontFamily: fonts.fontBold,
     fontSize: 30,
     paddingBottom: 20,
     textAlign: 'center',
   },
   subText: {
-    color: palette.WHITE,
+    color: COLORS.WHITE,
     fontFamily: fonts.regular,
     fontSize: 13,
     paddingBottom: 20,
@@ -38,32 +38,32 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   navigationButton: {
-    backgroundColor: palette.SUN_FLOWER,
+    backgroundColor: COLORS.SUN_FLOWER,
     borderWidth: 0,
     justifyContent: 'center',
   },
   buttonText: {
-    color: palette.WHITE,
+    color: COLORS.WHITE,
     fontFamily: fonts.regular,
   },
   iconContent: {
-    color: palette.WHITE,
+    color: COLORS.WHITE,
     marginRight: 5,
     fontSize: 20,
   },
   headerIconContent: {
-    color: palette.PETER_RIVER,
+    color: COLORS.PETER_RIVER,
     fontSize: 35,
   },
   navigationButtonBordered: {
     alignSelf: 'center',
-    backgroundColor: palette.TRANSPARENT,
-    borderColor: palette.ALIZARIN,
+    backgroundColor: COLORS.TRANSPARENT,
+    borderColor: COLORS.ALIZARIN,
     borderWidth: 1,
     marginTop: 15,
   },
   navigationButtonBorderedText: {
-    color: palette.WHITE,
+    color: COLORS.WHITE,
     fontFamily: fonts.regular,
   },
   marginTop10: {

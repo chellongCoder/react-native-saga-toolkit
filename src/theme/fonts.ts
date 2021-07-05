@@ -12,13 +12,14 @@ const fontFamily = {
 };
 
 const fonts = {
+  fontRegular: fontFamily.latoRegular,
   thin: fontFamily.latoThin,
   thinItalic: fontFamily.latoThinItalic,
-  light: fontFamily.latoLight,
+  fontLight: fontFamily.latoLight,
   lightItalic: fontFamily.latoLightItalic,
   regular: fontFamily.latoRegular,
-  italic: fontFamily.latoItalic,
-  bold: fontFamily.latoBold,
+  fontItalic: fontFamily.latoItalic,
+  fontBold: fontFamily.latoBold,
   boldItalic: fontFamily.latoBoldItalic,
   black: fontFamily.latoBlack,
   blackItalic: fontFamily.latoBlackItalic,
