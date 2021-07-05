@@ -1,4 +1,4 @@
-package com.reactnativestarterapp; // make sure this is your package name
+package com.hisoft.sdgwallet; // make sure this is your package name
 
 import android.content.Intent;
 import android.os.Bundle;

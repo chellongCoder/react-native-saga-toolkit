@@ -29,7 +29,7 @@ import { RootStackScreen } from '@routes';
 import '@i18n';
 import theme, { globalStyle } from '@theme';
 import { palette } from '@theme/colors';
-import NetworkProvider from '@provider/network';
+import { NetworkProvider } from '@provider/network';
 
 enableScreens();
 
