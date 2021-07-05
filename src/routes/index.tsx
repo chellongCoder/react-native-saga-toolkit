@@ -7,9 +7,26 @@ import { routeOverlayOption } from './routeOptions';
 import Login from '@scenes/Login';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Platform } from '@theme/platform';
+import { StyleSheet } from 'react-native';
+import { CustomTabar } from '@components/CustomTabbar';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export const BottomTab: FC = () => {
+  return (
+    <Tab.Navigator tabBar={CustomTabar} tabBarOptions={{}}>
+      <Tab.Screen name="Asset" component={OtherPage} />
+      <Tab.Screen name="Ex" component={OtherPage} />
+      <Tab.Screen name="Home" component={Homepage} />
+      <Tab.Screen name="Market" component={OtherPage} />
+      <Tab.Screen name="SDG" component={OtherPage} />
+    </Tab.Navigator>
+  );
+};
 
 export const MainStackScreen: FC = () => {
   return (
@@ -56,8 +73,8 @@ export const RootStackScreen: FC = () => {
     <RootStack.Navigator mode="modal" screenOptions={routeOverlayOption}>
       {logged ? (
         <RootStack.Screen
-          name="Main"
-          component={MainStackScreen}
+          name="BottomTab"
+          component={BottomTab}
           options={{
             headerShown: false,
           }}

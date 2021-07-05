@@ -27,6 +27,7 @@ const COLORS = {
   PINK_GRADIENT: ['#D1ACFF', '#74F7FF'],
   GREEN: '#08746B',
   DARK_GREEN: '#0D5650',
+  MAIN_GREEN: '#13A69A',
 };
 
 export { COLORS };

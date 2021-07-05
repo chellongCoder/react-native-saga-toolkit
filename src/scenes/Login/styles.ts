@@ -12,10 +12,16 @@ const styles = StyleSheet.create({
     width: Platform.SizeScale(160.45),
     height: Platform.SizeScale(119.19),
     alignSelf: 'center',
+    marginTop: Platform.SizeScale(100),
+  },
+  input: {
+    marginTop: Platform.SizeScale(80),
+    marginHorizontal: Platform.SizeScale(30),
   },
   inputRateStyle: {
     height: Platform.SizeScale(41),
     borderRadius: Platform.SizeScale(20),
+    marginTop: Platform.SizeScale(20),
   },
   inputStyles: {
     color: COLORS.GREEN,
@@ -27,6 +33,10 @@ const styles = StyleSheet.create({
     borderRadius: Platform.SizeScale(40),
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonGroup: {
+    marginTop: Platform.SizeScale(40),
+    marginHorizontal: Platform.SizeScale(30),
   },
   finger: {
     width: Platform.SizeScale(47),
@@ -45,6 +55,15 @@ const styles = StyleSheet.create({
     padding: Platform.SizeScale(10),
     backgroundColor: '#0D5650',
     marginHorizontal: Platform.SizeScale(10),
+  },
+  lang: {
+    position: 'absolute',
+    right: Platform.SizeScale(20),
+    top: Platform.SizeScale(20),
+  },
+  funcGroup: {
+    marginTop: Platform.SizeScale(40),
+    justifyContent: 'center',
   },
 });
 
