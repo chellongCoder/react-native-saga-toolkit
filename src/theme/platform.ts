@@ -1,6 +1,6 @@
 import { Dimensions, PixelRatio, Platform as PlatformBase, TextStyle } from 'react-native';
 import { fonts } from './fonts';
-
+import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
 const { width, height } = Dimensions.get('window');
 const aspectRatio = height / width;
 
@@ -39,6 +39,11 @@ class PlBase {
       return false;
     } else {
       // Code for Ipad
+      return true;
+    }
+  };
+  isIphoneX = () => {
+    if (isIphoneX()) {
       return true;
     }
   };

@@ -8,11 +8,23 @@ const _Icon = ({
   size = 2.5,
   tintColor,
   style,
+  ml,
+  mr,
+  mb,
+  mt,
+  mh,
+  mv,
 }: {
   icon: number;
   size?: number;
   tintColor?: string;
   style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
+  ml?: number;
+  mr?: number;
+  mb?: number;
+  mt?: number;
+  mh?: number;
+  mv?: number;
 }) => {
   return (
     <Animated.View
@@ -21,6 +33,7 @@ const _Icon = ({
           width: size * 10,
           height: size * 10,
         },
+        { marginLeft: ml, marginRight: mr, marginTop: mt, marginBottom: mb, marginHorizontal: mh, marginVertical: mv },
         style,
       ]}
     >

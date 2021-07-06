@@ -11,17 +11,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Platform } from '@theme/platform';
 import { StyleSheet } from 'react-native';
 import { CustomTabar } from '@components/CustomTabbar';
+import { WalletPage } from '@scenes/Wallet';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+export const tabBar = (props: any) => <CustomTabar {...props} />;
 
 export const BottomTab: FC = () => {
   return (
-    <Tab.Navigator tabBar={CustomTabar} tabBarOptions={{}}>
+    <Tab.Navigator {...{ tabBar }} tabBarOptions={{}}>
       <Tab.Screen name="Asset" component={OtherPage} />
       <Tab.Screen name="Ex" component={OtherPage} />
-      <Tab.Screen name="Home" component={Homepage} />
+      <Tab.Screen name="Home" component={WalletPage} />
       <Tab.Screen name="Market" component={OtherPage} />
       <Tab.Screen name="SDG" component={OtherPage} />
     </Tab.Navigator>

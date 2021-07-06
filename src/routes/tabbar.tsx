@@ -9,10 +9,17 @@ type Props = SvgProps & {
 };
 
 export const TabBg: React.FC<Props> = ({ color = '#FFFFFF', ...props }) => {
-  return (
+  return Platform.isIphoneX() ? (
+    <Svg width={75} height={Platform.SizeScale(50)} viewBox="0 3.5 75 50" {...props}>
+      <Path
+        d="M75.2 0v50H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
+        fill={color}
+      />
+    </Svg>
+  ) : (
     <Svg width={75} height={Platform.SizeScale(50)} viewBox="0 0 75 50" {...props}>
       <Path
-        d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
+        d="M75.2 0v50H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
         fill={color}
       />
     </Svg>
@@ -26,7 +33,7 @@ type BottomTabBarProps = {
 
 export const TabBarAdvancedButton: React.FC<BottomTabBarProps> = ({ bgColor, ...props }) => (
   <View style={styles.container} pointerEvents="box-none">
-    <TabBg color={bgColor} style={styles.background} />
+    {/* <TabBg color={bgColor} style={styles.background} /> */}
     <TouchableOpacity style={styles.button} onPress={props.onPress}>
       <Icon name="rocket" style={styles.buttonIcon} />
     </TouchableOpacity>
@@ -35,8 +42,6 @@ export const TabBarAdvancedButton: React.FC<BottomTabBarProps> = ({ bgColor, ...
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
-    width: 75,
     alignItems: 'center',
   },
   background: {
@@ -44,7 +49,8 @@ const styles = StyleSheet.create({
     top: 0,
   },
   button: {
-    top: -22.5,
+    top: -40.5,
+    left: -4,
     justifyContent: 'center',
     alignItems: 'center',
     width: 50,
