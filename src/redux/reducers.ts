@@ -13,7 +13,7 @@ const persistConfig = {
   storage: AsyncStorage,
   // There is an issue in the source code of redux-persist (default setTimeout does not cleaning)
   timeout: undefined,
-  whitelist: ['onBoard'],
+  whitelist: ['films', 'auth'],
 };
 
 // Setup Reducers

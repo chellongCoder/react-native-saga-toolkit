@@ -19,5 +19,10 @@
   "ModalPage": {
     "PageName": "Modal Page",
     "thisIsAModal": "This is a modal!"
-  }
+  },
+  "Login": {
+    "email": "email",
+    "pass": "password",
+    "login": "Log in"
+}
 }

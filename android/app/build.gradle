@@ -133,7 +133,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hisoft.base.sagatoolkit"
+        applicationId "com.hisoft.shadowgate.wallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

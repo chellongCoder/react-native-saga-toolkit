@@ -8,10 +8,11 @@ import Login from '@scenes/Login';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Platform } from '@theme/platform';
-import { StyleSheet } from 'react-native';
 import { CustomTabar } from '@components/CustomTabbar';
 import { WalletPage } from '@scenes/Wallet';
+import { LoginPasswordScreen } from '@scenes/login-password';
+import { ROUTES } from './constants';
+import { CoinProfileScreen } from '@scenes/coin-profile';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -23,7 +24,7 @@ export const BottomTab: FC = () => {
     <Tab.Navigator {...{ tabBar }} tabBarOptions={{}}>
       <Tab.Screen name="Asset" component={OtherPage} />
       <Tab.Screen name="Ex" component={OtherPage} />
-      <Tab.Screen name="Home" component={WalletPage} />
+      <Tab.Screen name="Wallet" component={WalletPage} />
       <Tab.Screen name="Market" component={OtherPage} />
       <Tab.Screen name="SDG" component={OtherPage} />
     </Tab.Navigator>
@@ -32,7 +33,15 @@ export const BottomTab: FC = () => {
 
 export const MainStackScreen: FC = () => {
   return (
-    <MainStack.Navigator initialRouteName={'Home'}>
+    <MainStack.Navigator initialRouteName={'BottomTab'}>
+      <MainStack.Screen
+        name="BottomTab"
+        component={BottomTab}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
       <MainStack.Screen
         name="Home"
         component={Homepage}
@@ -49,6 +58,14 @@ export const MainStackScreen: FC = () => {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
+      <MainStack.Screen
+        name={ROUTES.CoinProfile}
+        component={CoinProfileScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
     </MainStack.Navigator>
   );
 };
@@ -57,8 +74,16 @@ export const AuthStackScreen: FC = () => {
   return (
     <MainStack.Navigator initialRouteName={'Home'}>
       <MainStack.Screen
-        name="Login"
+        name={ROUTES.Login}
         component={Login}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={ROUTES.LoginPassword}
+        component={LoginPasswordScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,
@@ -75,8 +100,8 @@ export const RootStackScreen: FC = () => {
     <RootStack.Navigator mode="modal" screenOptions={routeOverlayOption}>
       {logged ? (
         <RootStack.Screen
-          name="BottomTab"
-          component={BottomTab}
+          name="MainStack"
+          component={MainStackScreen}
           options={{
             headerShown: false,
           }}

@@ -30,6 +30,7 @@ import '@i18n';
 import theme, { globalStyle } from '@theme';
 import { COLORS } from '@theme/colors';
 import { NetworkProvider } from '@provider/network';
+import BlurViewProvider from '@provider/blur-view';
 
 enableScreens();
 
@@ -65,13 +66,15 @@ const App: FC = () => {
           <PersistGate loading={<Splashscreen />} persistor={persistor}>
             <NetworkProvider>
               <SafeAreaProvider>
-                <NavigationContainer ref={navigationRef}>
-                  <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
+                <BlurViewProvider>
+                  <NavigationContainer ref={navigationRef}>
+                    <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
 
-                  <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
-                    <RootStackScreen />
-                  </Layout>
-                </NavigationContainer>
+                    <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
+                      <RootStackScreen />
+                    </Layout>
+                  </NavigationContainer>
+                </BlurViewProvider>
               </SafeAreaProvider>
             </NetworkProvider>
           </PersistGate>

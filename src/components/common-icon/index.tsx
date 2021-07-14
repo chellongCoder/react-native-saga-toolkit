@@ -14,6 +14,8 @@ const _Icon = ({
   mt,
   mh,
   mv,
+  width,
+  height,
 }: {
   icon: number;
   size?: number;
@@ -25,13 +27,15 @@ const _Icon = ({
   mt?: number;
   mh?: number;
   mv?: number;
+  width?: number;
+  height?: number;
 }) => {
   return (
     <Animated.View
       style={[
         {
-          width: size * 10,
-          height: size * 10,
+          width: width ?? size * 10,
+          height: height ?? size * 10,
         },
         { marginLeft: ml, marginRight: mr, marginTop: mt, marginBottom: mb, marginHorizontal: mh, marginVertical: mv },
         style,

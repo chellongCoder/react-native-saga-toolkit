@@ -5,33 +5,30 @@ import { getAllFilmsFailed, getAllFilmsRequest, getAllFilmsSuccess } from './act
 import * as FilmsAPI from './apiCall';
 import { GetAllFilmsRequestPayload, GetAllFilmsSuccessPayload } from './types';
 
-function* getAllFilmsSaga({
-  payload,
-}: PayloadAction<GetAllFilmsRequestPayload>): Generator<
-  | CallEffect<any>
+function* getAllFilmsSaga({ payload }: PayloadAction<GetAllFilmsRequestPayload>): Generator<
+  | CallEffect
   | PutEffect<{
       payload: GetAllFilmsSuccessPayload;
       type: string;
     }>,
-  void,
-  unknown
+  void
 > {
   const { limit } = payload;
 
   try {
-    const filmsRes = yield call(FilmsAPI.getAllFilms, { limit });
+    const filmsRes: any = yield call(FilmsAPI.getAllFilms, { limit });
 
     if (!isEmpty(filmsRes)) {
       yield put(getAllFilmsSuccess(filmsRes));
     } else {
-      yield put(getAllFilmsFailed());
+      yield put(getAllFilmsFailed() as any);
     }
   } catch (err) {
-    yield put(getAllFilmsFailed());
+    yield put(getAllFilmsFailed() as any);
   }
 }
 
-function* artworkSaga(): Generator<ForkEffect<never>, void, unknown> {
+function* artworkSaga(): Generator<ForkEffect<never>, void> {
   yield takeLatest(getAllFilmsRequest.type, getAllFilmsSaga);
 }
 

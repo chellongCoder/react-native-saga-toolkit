@@ -10,6 +10,7 @@ import ICON_NEW from './../../assets/icons/icon_new.png'
 import ICON_SDG from './../../assets/icons/icon_sdg.png'
 import ICON_SEARCH from './../../assets/icons/icon_search.png'
 import ICON_SUPPORT from './../../assets/icons/icon_support.png'
+import ICON_X from './../../assets/icons/icon_x.png'
 import WALLET_ITEM from './../../assets/icons/wallet_item.png'
 export const Icons = {
 FINGERPRINT,
@@ -24,5 +25,6 @@ ICON_NEW,
 ICON_SDG,
 ICON_SEARCH,
 ICON_SUPPORT,
+ICON_X,
 WALLET_ITEM,
 }

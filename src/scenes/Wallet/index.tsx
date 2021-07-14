@@ -2,18 +2,52 @@ import { BreadCrumb } from '@components/bread-crumb';
 import { Icon } from '@components/common-icon';
 import { CommonButton } from '@components/CommonButton';
 import { Text } from '@components/text';
+import { Touchable } from '@components/touchable';
+import { useBlurView } from '@hook/use-blur-view';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '@routes/constants';
+import { navigate } from '@routes/navigationUtils';
 import { COLORS } from '@theme/colors';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Images } from '@theme/images';
 import { Platform } from '@theme/platform';
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Image } from 'react-native';
 import { ScrollView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { menus } from './__mocks__/data';
 
 const _WalletPage = () => {
+  const blurView = useBlurView();
+  const navigation = useNavigation();
+  const onShowMenu = useCallback(() => {
+    blurView.onShow(
+      <LinearGradient style={styles.category} colors={COLORS.GREEN_TRANSPARENT_GRADIENT} useAngle angle={162.63}>
+        <ScrollView>
+          {menus.map((value, index) => {
+            return (
+              <View style={styles.itemCategory}>
+                <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(16)}>
+                  {value.content}
+                </Text>
+              </View>
+            );
+          })}
+        </ScrollView>
+      </LinearGradient>,
+      {
+        right: Platform.SizeScale(10),
+        top: Platform.SizeScale(50),
+      },
+    );
+  }, [blurView]);
+
+  const onSend = useCallback(() => {
+    navigation.navigate(ROUTES.CoinProfile, {});
+  }, [navigation]);
+
   return (
     <LinearGradient useAngle angle={108.66} colors={COLORS.HEADER_GRADIENT} style={{ flex: 1 }}>
       <View style={[commonStyles.row, commonStyles.spaceBetween, styles.header]}>
@@ -25,7 +59,9 @@ const _WalletPage = () => {
         </View>
         <View style={commonStyles.row}>
           <Icon ml={Platform.SizeScale(10)} icon={Icons.ICON_SEARCH} size={2} />
-          <Icon ml={Platform.SizeScale(20)} icon={Icons.ICON_MENU} size={2} />
+          <Touchable onPress={onShowMenu}>
+            <Icon ml={Platform.SizeScale(20)} icon={Icons.ICON_MENU} size={2} />
+          </Touchable>
         </View>
       </View>
       <ScrollView style={styles.body}>
@@ -56,7 +92,7 @@ const _WalletPage = () => {
         />
         <View>
           <View style={[commonStyles.row, commonStyles.spaceBetween, styles.buttonGroup]}>
-            <CommonButton text="Send" type="gradient" />
+            <CommonButton onPress={onSend} text="Send" type="gradient" />
             <CommonButton text="Receive" type="gradient" />
             <CommonButton text="Buy" type="gradient" />
           </View>
@@ -120,5 +156,14 @@ const styles = StyleSheet.create({
   },
   walletItem: {
     paddingTop: Platform.SizeScale(30),
+  },
+  category: {
+    width: Platform.SizeScale(269),
+    height: Platform.SizeScale(459),
+    alignItems: 'center',
+    borderRadius: Platform.SizeScale(20),
+  },
+  itemCategory: {
+    paddingVertical: Platform.SizeScale(20),
   },
 });

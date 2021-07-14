@@ -9,16 +9,19 @@ import LinearGradient from 'react-native-linear-gradient';
 type Props = {
   text: string;
   type: 'gradient' | 'border';
+  onPress?: () => void;
 };
-const _CommonButton = ({ text, type }: Props) => {
+const _CommonButton = ({ text, type, onPress }: Props) => {
   return type === 'gradient' ? (
-    <LinearGradient useAngle angle={137.31} colors={COLORS.BUTTON_GRADIENT} style={styles.container}>
-      <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(15)}>
-        {text}
-      </Text>
-    </LinearGradient>
+    <Touchable {...{ onPress }}>
+      <LinearGradient useAngle angle={137.31} colors={COLORS.BUTTON_GRADIENT} style={styles.container}>
+        <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(15)}>
+          {text}
+        </Text>
+      </LinearGradient>
+    </Touchable>
   ) : (
-    <Touchable style={styles.container1}>
+    <Touchable {...{ onPress }} style={styles.container1}>
       <Text fontSize={Platform.SizeScale(15)} color={COLORS.GREEN}>
         {text}
       </Text>
