@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>783373530427-df80d4iobikvske09da0vm5quibnede1.apps.googleusercontent.com</string>
+	<string>460694115124-n3oqtlftm5flvtlqthr0528v233avt5f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.783373530427-df80d4iobikvske09da0vm5quibnede1</string>
+	<string>com.googleusercontent.apps.460694115124-n3oqtlftm5flvtlqthr0528v233avt5f</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDQ7gfMw_aWWACaKz04_S6S1HJMB3pbTeY</string>
+	<string>AIzaSyCfGl7xtRWRjhgYhqZ_HcuS6vRInhjF1io</string>
 	<key>GCM_SENDER_ID</key>
-	<string>783373530427</string>
+	<string>460694115124</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.hisoft.base.sagatoolkit</string>
+	<string>com.hisoft.shadowgate.wallet</string>
 	<key>PROJECT_ID</key>
-	<string>base-saga-toolkit</string>
+	<string>wallet-shadowgate</string>
 	<key>STORAGE_BUCKET</key>
-	<string>base-saga-toolkit.appspot.com</string>
+	<string>wallet-shadowgate.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:783373530427:ios:a907031ebf47f965be331e</string>
+	<string>1:460694115124:ios:ab0f0aa87f1954aed90b61</string>
 </dict>
 </plist>
