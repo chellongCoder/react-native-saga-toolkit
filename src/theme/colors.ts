@@ -3,7 +3,7 @@ const COLORS = {
   EMERALD: '#2ecc71',
   GREEN_SEA: '#16a085',
   NEPHRITIS: '#27ae60',
-  SUN_FLOWER: '#f1c40f',
+  SUN_FLOWER: '#FDFF85',
   ORANGE: '#f39c12',
   CARROT: '#e67e22',
   PUMPKIN: '#d35400',
@@ -34,6 +34,8 @@ const COLORS = {
   MAIN_GREEN: '#13A69A',
   BACKGROUND: '#F4F5F7',
   LIGHT_GREEN: '#75F0E6',
+  TOOL_BACKGROUND: 'rgba(9,62,57,0.8)',
+  _8EFFD0: '#8EFFD0',
 };
 
 export { COLORS };

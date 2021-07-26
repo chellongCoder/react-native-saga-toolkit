@@ -12,16 +12,18 @@ import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Images } from '@theme/images';
 import { Platform } from '@theme/platform';
-import React, { memo, useCallback } from 'react';
-import { Image } from 'react-native';
+import React, { memo, useCallback, useRef } from 'react';
+import { Animated, Image } from 'react-native';
 import { ScrollView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { Menu } from './Menu';
 import { menus } from './__mocks__/data';
 
 const _WalletPage = () => {
   const blurView = useBlurView();
   const navigation = useNavigation();
+
   const onShowMenu = useCallback(() => {
     blurView.onShow(
       <LinearGradient style={styles.category} colors={COLORS.GREEN_TRANSPARENT_GRADIENT} useAngle angle={162.63}>
@@ -50,9 +52,13 @@ const _WalletPage = () => {
 
   return (
     <LinearGradient useAngle angle={108.66} colors={COLORS.HEADER_GRADIENT} style={{ flex: 1 }}>
+      <Menu />
+
       <View style={[commonStyles.row, commonStyles.spaceBetween, styles.header]}>
         <View style={commonStyles.row}>
-          <Icon mr={Platform.SizeScale(10)} icon={Icons.ICON_AVATAR} size={4} />
+          <Touchable>
+            <Icon mr={Platform.SizeScale(10)} icon={Icons.ICON_AVATAR} size={4} />
+          </Touchable>
           <View style={styles.logo}>
             <Image resizeMode="contain" style={commonStyles.image} source={Images.TEXT_LOGO} />
           </View>

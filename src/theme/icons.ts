@@ -10,6 +10,8 @@ import ICON_NEW from './../../assets/icons/icon_new.png'
 import ICON_SDG from './../../assets/icons/icon_sdg.png'
 import ICON_SEARCH from './../../assets/icons/icon_search.png'
 import ICON_SUPPORT from './../../assets/icons/icon_support.png'
+import ICON_USER from './../../assets/icons/icon_user.png'
+import ICON_WALLET from './../../assets/icons/icon_wallet.png'
 import ICON_X from './../../assets/icons/icon_x.png'
 import WALLET_ITEM from './../../assets/icons/wallet_item.png'
 export const Icons = {
@@ -25,6 +27,8 @@ ICON_NEW,
 ICON_SDG,
 ICON_SEARCH,
 ICON_SUPPORT,
+ICON_USER,
+ICON_WALLET,
 ICON_X,
 WALLET_ITEM,
 }

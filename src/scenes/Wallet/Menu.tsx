@@ -1,0 +1,179 @@
+import { Icon } from '@components/common-icon';
+import { Touchable } from '@components/touchable';
+import { COLORS } from '@theme/colors';
+import { Icons } from '@theme/icons';
+import { Platform } from '@theme/platform';
+import React, { memo, useRef } from 'react';
+import { Animated, StyleSheet, View } from 'react-native';
+import { BlurView as Blur } from '@react-native-community/blur';
+import commonStyles from '@theme/commonStyles';
+import { Text } from '@components/text';
+
+const _Menu = () => {
+  const animation = useRef(new Animated.Value(0)).current;
+  let _open = false;
+  const onPressAvatar = () => {
+    const toValue = _open ? 0 : 1;
+    Animated.timing(animation, {
+      toValue,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+    _open = !_open;
+  };
+  const firstItemStyle = {
+    transform: [
+      { scale: animation },
+      {
+        translateY: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [20, 130],
+        }),
+      },
+    ],
+  };
+  const secondItemStyle = {
+    transform: [
+      { scale: animation },
+      {
+        translateX: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 120],
+        }),
+      },
+    ],
+  };
+
+  const scaleInterpolate = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 30],
+  });
+  const bgStyle = {
+    transform: [
+      {
+        scale: scaleInterpolate,
+      },
+    ],
+  };
+  const labelPositionInterpolate = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 0],
+  });
+  const opacityInterpolate = animation.interpolate({
+    inputRange: [0, 0.8, 1],
+    outputRange: [0, 0, 1],
+  });
+  const labelStyle = {
+    opacity: opacityInterpolate,
+    transform: [
+      {
+        translateX: labelPositionInterpolate,
+      },
+    ],
+  };
+  const blurStyle = {
+    opacity: opacityInterpolate,
+    transform: [
+      {
+        scale: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 1],
+        }),
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Animated.View style={[commonStyles.absolute, blurStyle]}>
+        <Blur
+          style={[commonStyles.absolute]}
+          blurType="light"
+          blurAmount={2}
+          blurRadius={20}
+          downsampleFactor={0.5}
+          overlayColor="transparent"
+        />
+      </Animated.View>
+
+      <Animated.View style={[styles.background, bgStyle]} />
+
+      <Animated.View style={[styles.iconMenu, labelStyle]}>
+        <Touchable onPress={onPressAvatar}>
+          <Icon size={4} icon={Icons.ICON_X} tintColor={COLORS.WHITE} />
+        </Touchable>
+      </Animated.View>
+      <>
+        <Animated.View style={[styles.button, styles.account, secondItemStyle]}>
+          <Touchable style={styles.iconSubMenu1}>
+            <Icon size={3} icon={Icons.ICON_USER} tintColor={COLORS.DARK_GREEN} />
+          </Touchable>
+          <Text style={[styles.labelAccount]}>{`Account`.toLocaleUpperCase()}</Text>
+        </Animated.View>
+      </>
+      <Animated.View style={[styles.button, styles.wallet, firstItemStyle]}>
+        <Touchable style={styles.iconSubMenu2}>
+          <Icon size={3} icon={Icons.ICON_WALLET} tintColor={COLORS.DARK_GREEN} />
+        </Touchable>
+        <Text style={[styles.labelWallet]}>{`Wallet`.toLocaleUpperCase()}</Text>
+      </Animated.View>
+    </>
+  );
+};
+
+export const Menu = memo(_Menu);
+
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: COLORS.TOOL_BACKGROUND,
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    top: 20,
+    left: 0,
+    borderRadius: 30,
+    zIndex: 998,
+  },
+  iconMenu: {
+    position: 'absolute',
+    backgroundColor: 'transparent',
+    zIndex: 999,
+    top: Platform.SizeScale(52),
+    left: Platform.SizeScale(30),
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#333',
+    borderRadius: Platform.SizeScale(30),
+    zIndex: 999,
+  },
+  labelAccount: {
+    color: COLORS.WHITE,
+    fontSize: Platform.SizeScale(15),
+  },
+  labelWallet: {
+    color: COLORS.WHITE,
+    fontSize: Platform.SizeScale(15),
+  },
+  account: {
+    position: 'absolute',
+    top: Platform.SizeScale(40),
+    left: Platform.SizeScale(20),
+  },
+  wallet: {
+    position: 'absolute',
+    top: Platform.SizeScale(20),
+    left: Platform.SizeScale(20),
+  },
+  iconSubMenu1: {
+    backgroundColor: COLORS.SUN_FLOWER,
+    borderRadius: Platform.SizeScale(30),
+    padding: Platform.SizeScale(10),
+  },
+  iconSubMenu2: {
+    backgroundColor: COLORS._8EFFD0,
+    borderRadius: Platform.SizeScale(30),
+    padding: Platform.SizeScale(10),
+  },
+});

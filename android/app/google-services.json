@@ -1,56 +1,48 @@
 {
   "project_info": {
-    "project_number": "783373530427",
-    "project_id": "base-saga-toolkit",
-    "storage_bucket": "base-saga-toolkit.appspot.com"
+    "project_number": "460694115124",
+    "project_id": "wallet-shadowgate",
+    "storage_bucket": "wallet-shadowgate.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:783373530427:android:656af0e70e714887be331e",
+        "mobilesdk_app_id": "1:460694115124:android:1e879f2222d3c31fd90b61",
         "android_client_info": {
-          "package_name": "com.hisoft.base.sagatoolkit"
+          "package_name": "com.hisoft.shadowgate.wallet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "783373530427-hhoed3ijs979kh2d70qdkfq0rkcnenfs.apps.googleusercontent.com",
+          "client_id": "460694115124-aq6gjibcg8kq9b2iet4ikl15u5adp5eg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.hisoft.base.sagatoolkit",
+            "package_name": "com.hisoft.shadowgate.wallet",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
-          "client_id": "783373530427-q8u4j724qoejb67irehc1prslifcvhbs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.hisoft.base.sagatoolkit",
-            "certificate_hash": "4f056f54165b1221e6072d71693d8062bfe60453"
-          }
-        },
-        {
-          "client_id": "783373530427-edj0mghikcnnuiasimd3s88aveq8eun3.apps.googleusercontent.com",
+          "client_id": "460694115124-mtoe3l0ps32ci70b91oo27fb9f41r7er.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBlRKcP4MZFjjtXRamS02ZmtHbJX0oJE5k"
+          "current_key": "AIzaSyDk9M-GGAh1rNwasVw13lVnRPuIvR10J1A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "783373530427-edj0mghikcnnuiasimd3s88aveq8eun3.apps.googleusercontent.com",
+              "client_id": "460694115124-mtoe3l0ps32ci70b91oo27fb9f41r7er.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "783373530427-df80d4iobikvske09da0vm5quibnede1.apps.googleusercontent.com",
+              "client_id": "460694115124-n3oqtlftm5flvtlqthr0528v233avt5f.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.hisoft.base.sagatoolkit"
+                "bundle_id": "com.hisoft.shadowgate.wallet"
               }
             }
           ]

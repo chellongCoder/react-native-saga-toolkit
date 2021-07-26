@@ -13,6 +13,7 @@ import { WalletPage } from '@scenes/Wallet';
 import { LoginPasswordScreen } from '@scenes/login-password';
 import { ROUTES } from './constants';
 import { CoinProfileScreen } from '@scenes/coin-profile';
+import { HomeScreen } from '@scenes/home';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -22,7 +23,7 @@ export const tabBar = (props: any) => <CustomTabar {...props} />;
 export const BottomTab: FC = () => {
   return (
     <Tab.Navigator {...{ tabBar }} tabBarOptions={{}}>
-      <Tab.Screen name="Asset" component={OtherPage} />
+      <Tab.Screen name="Asset" component={HomeScreen} />
       <Tab.Screen name="Ex" component={OtherPage} />
       <Tab.Screen name="Wallet" component={WalletPage} />
       <Tab.Screen name="Market" component={OtherPage} />
