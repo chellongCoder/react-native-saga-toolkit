@@ -38,7 +38,11 @@
     "postinstall": "husky install",
     "import-image": "cd assets && ./bashImportImage.sh && cd .. && cd ..",
     "import-icon": "cd assets && ./bashImportIcon.sh && cd .. && cd ..",
-    "generate": "plop"
+    "generate": "plop",
+    "deploy-init:ios": "cd ios && fastlane init && cd .. && cd ..",
+    "deploy-init:android": "cd android && fastlane init && cd .. && cd ..",
+    "deploy:ios": "cd ios && fastlane ios distribution && cd ..",
+    "deploy:android": "cd android && fastlane android distribution && cd .."
   },
   "dependencies": {
     "@eva-design/eva": "^2.1.0",
