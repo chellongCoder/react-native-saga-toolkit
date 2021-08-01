@@ -1,9 +1,10 @@
+import { Icon } from '@components/common-icon';
 import { COLORS } from '@theme/colors';
+import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Svg, { Path, SvgProps } from 'react-native-svg';
-import Icon from 'react-native-vector-icons/FontAwesome';
 type Props = SvgProps & {
   color?: string;
 };
@@ -35,7 +36,7 @@ export const TabBarAdvancedButton: React.FC<BottomTabBarProps> = ({ bgColor, ...
   <View style={styles.container} pointerEvents="box-none">
     {/* <TabBg color={bgColor} style={styles.background} /> */}
     <TouchableOpacity style={styles.button} onPress={props.onPress}>
-      <Icon name="rocket" style={styles.buttonIcon} />
+      <Icon icon={Icons.ICON_BROSWER} tintColor={COLORS.WHITE} size={2} />
     </TouchableOpacity>
   </View>
 );

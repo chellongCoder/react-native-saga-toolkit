@@ -1,12 +1,13 @@
 import { BreadCrumb } from '@components/bread-crumb';
+import { CommonHeader } from '@components/common-header';
 import { Icon } from '@components/common-icon';
+import { CommonMenu } from '@components/common-menu';
 import { CommonButton } from '@components/CommonButton';
 import { Text } from '@components/text';
 import { Touchable } from '@components/touchable';
 import { useBlurView } from '@hook/use-blur-view';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '@routes/constants';
-import { navigate } from '@routes/navigationUtils';
 import { COLORS } from '@theme/colors';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
@@ -18,32 +19,18 @@ import { ScrollView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Menu } from './Menu';
-import { menus } from './__mocks__/data';
+import { useStyleWallet } from './styles';
 
 const _WalletPage = () => {
   const blurView = useBlurView();
   const navigation = useNavigation();
+  const styles = useStyleWallet();
 
   const onShowMenu = useCallback(() => {
-    blurView.onShow(
-      <LinearGradient style={styles.category} colors={COLORS.GREEN_TRANSPARENT_GRADIENT} useAngle angle={162.63}>
-        <ScrollView>
-          {menus.map((value, index) => {
-            return (
-              <View style={styles.itemCategory}>
-                <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(16)}>
-                  {value.content}
-                </Text>
-              </View>
-            );
-          })}
-        </ScrollView>
-      </LinearGradient>,
-      {
-        right: Platform.SizeScale(10),
-        top: Platform.SizeScale(50),
-      },
-    );
+    blurView.onShow(<CommonMenu />, {
+      right: Platform.SizeScale(10),
+      top: Platform.SizeScale(50),
+    });
   }, [blurView]);
 
   const onSend = useCallback(() => {
@@ -54,22 +41,7 @@ const _WalletPage = () => {
     <LinearGradient useAngle angle={108.66} colors={COLORS.HEADER_GRADIENT} style={{ flex: 1 }}>
       <Menu />
 
-      <View style={[commonStyles.row, commonStyles.spaceBetween, styles.header]}>
-        <View style={commonStyles.row}>
-          <Touchable>
-            <Icon mr={Platform.SizeScale(10)} icon={Icons.ICON_AVATAR} size={4} />
-          </Touchable>
-          <View style={styles.logo}>
-            <Image resizeMode="contain" style={commonStyles.image} source={Images.TEXT_LOGO} />
-          </View>
-        </View>
-        <View style={commonStyles.row}>
-          <Icon ml={Platform.SizeScale(10)} icon={Icons.ICON_SEARCH} size={2} />
-          <Touchable onPress={onShowMenu}>
-            <Icon ml={Platform.SizeScale(20)} icon={Icons.ICON_MENU} size={2} />
-          </Touchable>
-        </View>
-      </View>
+      <CommonHeader />
       <ScrollView style={styles.body}>
         <Text
           color={'#085A51'}
@@ -122,54 +94,3 @@ const _WalletPage = () => {
 };
 
 export const WalletPage = memo(_WalletPage);
-
-const styles = StyleSheet.create({
-  logo: {
-    width: Platform.SizeScale(131),
-    height: Platform.SizeScale(15),
-  },
-  header: {
-    paddingHorizontal: Platform.SizeScale(30),
-    paddingTop: Platform.SizeScale(50),
-    paddingBottom: Platform.SizeScale(20),
-  },
-  leftBread: {
-    alignItems: 'baseline',
-  },
-  rightBread: {
-    backgroundColor: COLORS.GREEN,
-    paddingVertical: Platform.SizeScale(5),
-    paddingHorizontal: Platform.SizeScale(10),
-    borderRadius: Platform.SizeScale(20),
-  },
-  txtRightBread: {
-    fontSize: Platform.SizeScale(12),
-    color: COLORS.WHITE,
-    marginRight: Platform.SizeScale(5),
-  },
-  txtPrice: {
-    fontSize: Platform.SizeScale(30),
-    marginRight: Platform.SizeScale(10),
-  },
-  body: {
-    backgroundColor: COLORS.BACKGROUND,
-    paddingHorizontal: Platform.SizeScale(20),
-    borderTopRightRadius: Platform.SizeScale(30),
-    borderTopLeftRadius: Platform.SizeScale(30),
-  },
-  buttonGroup: {
-    marginTop: Platform.SizeScale(20),
-  },
-  walletItem: {
-    paddingTop: Platform.SizeScale(30),
-  },
-  category: {
-    width: Platform.SizeScale(269),
-    height: Platform.SizeScale(459),
-    alignItems: 'center',
-    borderRadius: Platform.SizeScale(20),
-  },
-  itemCategory: {
-    paddingVertical: Platform.SizeScale(20),
-  },
-});
