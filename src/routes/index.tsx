@@ -14,10 +14,14 @@ import { LoginPasswordScreen } from '@scenes/login-password';
 import { ROUTES } from './constants';
 import { CoinProfileScreen } from '@scenes/coin-profile';
 import { HomeScreen } from '@scenes/home';
+import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentOptions } from '@react-navigation/drawer';
+import { Drawer } from '@components/drawer';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const DrawerStack = createDrawerNavigator();
+
 export const tabBar = (props: any) => <CustomTabar {...props} />;
 
 export const BottomTab: FC = () => {
@@ -32,12 +36,23 @@ export const BottomTab: FC = () => {
   );
 };
 
+export const DrawerNavigator: FC = () => {
+  const renderContent = (props: DrawerContentComponentProps) => {
+    return <Drawer {...props} />;
+  };
+  return (
+    <DrawerStack.Navigator statusBarAnimation="slide" drawerType="front" drawerContent={renderContent}>
+      <DrawerStack.Screen options={{ swipeEnabled: true }} name={ROUTES.BottomTab} component={BottomTab} />
+    </DrawerStack.Navigator>
+  );
+};
+
 export const MainStackScreen: FC = () => {
   return (
-    <MainStack.Navigator initialRouteName={'BottomTab'}>
+    <MainStack.Navigator initialRouteName={ROUTES.Drawer}>
       <MainStack.Screen
-        name="BottomTab"
-        component={BottomTab}
+        name={ROUTES.Drawer}
+        component={DrawerNavigator}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

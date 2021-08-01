@@ -1,3 +1,5 @@
+import { COLORS } from '@theme/colors';
+import { Platform } from '@theme/platform';
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -7,41 +9,44 @@ export const useHomeStyle = () => {
   return useMemo(
     () =>
       StyleSheet.create({
-        container: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'white' },
-        text: { color: 'white' },
-        background: {
-          backgroundColor: 'rgba(0,0,0,.2)',
-          position: 'absolute',
-          width: 60,
-          height: 60,
-          bottom: 20,
-          right: 20,
-          borderRadius: 30,
+        container: { flex: 1 },
+        body: {
+          backgroundColor: COLORS.BACKGROUND,
+          paddingHorizontal: Platform.SizeScale(20),
+          borderTopRightRadius: Platform.SizeScale(30),
+          borderTopLeftRadius: Platform.SizeScale(30),
+          flex: 1,
         },
-        button: {
-          width: 60,
-          height: 60,
-          alignItems: 'center',
-          justifyContent: 'center',
-          shadowColor: '#333',
-          shadowOpacity: 0.1,
-          shadowOffset: { width: 2, height: 0 },
-          shadowRadius: 2,
-          borderRadius: 30,
-          position: 'absolute',
-          bottom: 80,
-          right: 20,
+        action: {
+          borderRadius: Platform.SizeScale(25),
+          padding: Platform.SizeScale(10),
         },
-        other: {
-          backgroundColor: '#FFF',
+        tabs: {
+          // borderBottomWidth: 1,
+          // backgroundColor: COLORS.WHITE,
+          height: Platform.SizeScale(60),
+          borderTopLeftRadius: Platform.SizeScale(38),
+          borderTopRightRadius: Platform.SizeScale(38),
+          paddingHorizontal: Platform.SizeScale(20),
         },
-        pay: {},
-        label: {
-          color: '#FFF',
-          position: 'absolute',
-          fontSize: 14,
-          fontWeight: 'bold',
-          backgroundColor: 'transparent',
+        tablist: {
+          borderTopLeftRadius: Platform.SizeScale(38),
+          borderTopRightRadius: Platform.SizeScale(38),
+          backgroundColor: COLORS.WHITE,
+        },
+        tab: {
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: COLORS._26BBA9,
+          paddingHorizontal: Platform.SizeScale(10),
+        },
+        list: {
+          // backgroundColor: COLORS.WHITE,
+          height: Platform.isIphoneX() ? Platform.SizeScale(450) : Platform.SizeScale(300),
+        },
+        item: {
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          paddingVertical: Platform.SizeScale(10),
+          borderBottomColor: COLORS._939393,
         },
       }),
     [],

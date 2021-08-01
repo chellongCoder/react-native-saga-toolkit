@@ -7,11 +7,13 @@ const BlurViewProvider = ({ children }: BlurViewProps) => {
   const [isShow, setIsShow] = useState(false);
   const [child, setChild] = useState<React.ReactNode>();
   const [position, setPosition] = useState();
+  const [type, setType] = useState('zoom');
 
-  const onShow = useCallback((c: React.ReactNode, p: any) => {
+  const onShow = useCallback((c: React.ReactNode, p: any, t: 'bottom' | 'zoom') => {
     setChild(c);
     setIsShow(true);
     setPosition(p);
+    setType(t);
   }, []);
 
   const onHide = useCallback(() => {
@@ -28,7 +30,7 @@ const BlurViewProvider = ({ children }: BlurViewProps) => {
   return (
     <>
       <BlurViewContext.Provider value={contextValue}>{children}</BlurViewContext.Provider>
-      {isShow && <BlurView {...{ child, onHide, position }} />}
+      {isShow && <BlurView {...{ child, onHide, position, type }} />}
     </>
   );
 };

@@ -13,6 +13,21 @@ import Svg, { Path } from 'react-native-svg';
 
 const CustomTabar: FC = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const styles = style();
+  const tabFocus = [
+    <Icon size={2} icon={Icons.ICON_WALLET} />,
+    <Icon size={2} icon={Icons.ICON_MK} />,
+    null,
+    <Icon size={2} icon={Icons.ICON_DEX} />,
+    <Icon size={2} icon={Icons.ICON_SETTING} />,
+  ];
+  const tabUnFocus = [
+    <Icon size={2} icon={Icons.ICON_WALLET_UNFOCUS} />,
+    <Icon size={2} icon={Icons.ICON_MK_UNFOCUS} />,
+    null,
+    <Icon size={2} icon={Icons.ICON_DEX_UNFCUS} />,
+    <Icon size={2} icon={Icons.ICON_SETTING_UNFOCUS} />,
+  ];
+
   const routes = state.routes.map((route, index) => {
     const isFocused = state.index === index;
     const onPress = () => {
@@ -48,17 +63,6 @@ const CustomTabar: FC = ({ state, descriptors, navigation }: BottomTabBarProps) 
       }
     };
 
-    const icon = () => {
-      if (index === 0) {
-        return <Icon size={2} icon={Icons.ICON_ASSET} />;
-      } else if (index === 1) {
-        return <Icon size={2} icon={Icons.ICON_EX} />;
-      } else if (index === 3) {
-        return <Icon size={2} icon={Icons.ICON_MARKET} />;
-      } else if (index === 4) {
-        return <Icon size={2} icon={Icons.ICON_SDG} />;
-      }
-    };
     return (
       <Touchable activeOpacity={1} {...{ onPress }} style={[styles.tabBar, createBorder()]}>
         <View
@@ -71,12 +75,7 @@ const CustomTabar: FC = ({ state, descriptors, navigation }: BottomTabBarProps) 
             },
           ]}
         >
-          {icon()}
-          {isFocused && (
-            <Text color={COLORS.MAIN_GREEN} ml={Platform.SizeScale(10)} fontSize={Platform.SizeScale(10)}>
-              {route.name}
-            </Text>
-          )}
+          {isFocused ? tabFocus[index] : tabUnFocus[index]}
         </View>
       </Touchable>
     );
@@ -122,7 +121,7 @@ export const style = () => {
       alignSelf: 'center',
       alignItems: 'center',
       justifyContent: 'center',
-      left: Platform.SizeScale(10),
+      // left: Platform.SizeScale(100),
     },
     content: {
       flexDirection: 'row',

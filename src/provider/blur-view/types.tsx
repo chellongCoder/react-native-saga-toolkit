@@ -5,6 +5,10 @@ export interface BlurViewProps {
 }
 
 export interface BlurViewContextValue {
-  onShow: (child: React.ReactNode, position?: { top?: number; right?: number; bottom?: number; left?: number }) => void;
+  onShow: (
+    child: React.ReactNode,
+    position?: { top?: number; right?: number; bottom?: number; left?: number },
+    type?: 'bottom' | 'zoom',
+  ) => void;
   onHide: () => void;
 }
