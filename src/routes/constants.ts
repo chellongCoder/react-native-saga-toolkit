@@ -4,4 +4,6 @@ export enum ROUTES {
   CoinProfile = 'CoinProfile',
   BottomTab = 'BottomTab',
   Drawer = 'Drawer',
+  AddWallet = 'AddWallet',
+  CreateNewWallet = 'CreateNewWallet',
 }

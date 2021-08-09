@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SDGWalletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SDGWalletTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		13B07FBD1A68108700A75B9A /* (null) in Resources */ = {isa = PBXBuildFile; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		22C0ED508F664C29A722E4AF /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 351AD53139B04D48A492DCC9 /* Lato-Bold.ttf */; };
@@ -21,6 +21,11 @@
 		4FAAC9AA4B0947AE8117D6B5 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9E578FF46F04016A9FEA731 /* Lato-Italic.ttf */; };
 		8FFDD27FE0E111D8E34219F6 /* libPods-SDGWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C386AADC3F00814E98BF636 /* libPods-SDGWallet.a */; };
 		90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68E5EF259E8E4558AB107594 /* Lato-Black.ttf */; };
+		A885557326C0274200D68783 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A885557226C0274200D68783 /* CounterView.swift */; };
+		A8E4CDA826BE6D3E008844C7 /* MyCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDA726BE6D3E008844C7 /* MyCustomView.swift */; };
+		A8E4CDAD26BE6DB8008844C7 /* MyCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDAC26BE6DB8008844C7 /* MyCustomView.m */; };
+		A8E4CDBC26BEA1A2008844C7 /* CounterViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDBB26BEA1A2008844C7 /* CounterViewManager.swift */; };
+		A8E4CDC026BEA26A008844C7 /* CounterViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDBF26BEA26A008844C7 /* CounterViewManager.m */; };
 		A8F3A6382674C9DD000637D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8F3A6372674C9DD000637D2 /* GoogleService-Info.plist */; };
 		BF5B626091A94AA5B6977CA8 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF69C08483504C9AB6BA50EB /* Lato-ThinItalic.ttf */; };
 		C8342581F70D47B98C3CEDB4 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF4036C513F840B19AF034A2 /* Lato-Light.ttf */; };
@@ -79,6 +84,12 @@
 		9A24869C88D743A5A01D67B0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9B58E33039ED4B5A83C5FE58 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		A2C8F480800B4B1C91CE2F11 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		A885557226C0274200D68783 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		A8E4CDA626BE6D3E008844C7 /* SDGWallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDGWallet-Bridging-Header.h"; sourceTree = "<group>"; };
+		A8E4CDA726BE6D3E008844C7 /* MyCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomView.swift; sourceTree = "<group>"; };
+		A8E4CDAC26BE6DB8008844C7 /* MyCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCustomView.m; sourceTree = "<group>"; };
+		A8E4CDBB26BEA1A2008844C7 /* CounterViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewManager.swift; sourceTree = "<group>"; };
+		A8E4CDBF26BEA26A008844C7 /* CounterViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CounterViewManager.m; sourceTree = "<group>"; };
 		A8F3A6322674C735000637D2 /* SDGWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SDGWallet.entitlements; path = SDGWallet/SDGWallet.entitlements; sourceTree = "<group>"; };
 		A8F3A6372674C9DD000637D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SDGWallet/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA155FC0E3FC47A56CBDE614 /* libPods-SDGWallet-SDGWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SDGWallet-SDGWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +147,9 @@
 		13B07FAE1A68108700A75B9A /* SDGWallet */ = {
 			isa = PBXGroup;
 			children = (
+				A8E4CDA626BE6D3E008844C7 /* SDGWallet-Bridging-Header.h */,
+				A8E4CDB226BEA091008844C7 /* Counter */,
+				A8E4CDA126BE6D0D008844C7 /* SwiftComponent */,
 				A8F3A6322674C735000637D2 /* SDGWallet.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -227,6 +241,25 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		A8E4CDA126BE6D0D008844C7 /* SwiftComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A8E4CDA726BE6D3E008844C7 /* MyCustomView.swift */,
+				A8E4CDAC26BE6DB8008844C7 /* MyCustomView.m */,
+			);
+			name = SwiftComponent;
+			sourceTree = "<group>";
+		};
+		A8E4CDB226BEA091008844C7 /* Counter */ = {
+			isa = PBXGroup;
+			children = (
+				A8E4CDBB26BEA1A2008844C7 /* CounterViewManager.swift */,
+				A8E4CDBF26BEA26A008844C7 /* CounterViewManager.m */,
+				A885557226C0274200D68783 /* CounterView.swift */,
+			);
+			name = Counter;
+			sourceTree = "<group>";
+		};
 		A957892C321B4A5850B954E3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,7 +337,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -340,7 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* BuildFile in Resources */,
+				13B07FBD1A68108700A75B9A /* (null) in Resources */,
 				90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */,
 				3AFC7D7205A3428596AB4954 /* Lato-BlackItalic.ttf in Resources */,
 				22C0ED508F664C29A722E4AF /* Lato-Bold.ttf in Resources */,
@@ -533,7 +566,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				A8E4CDAD26BE6DB8008844C7 /* MyCustomView.m in Sources */,
+				A8E4CDA826BE6D3E008844C7 /* MyCustomView.swift in Sources */,
+				A885557326C0274200D68783 /* CounterView.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				A8E4CDBC26BEA1A2008844C7 /* CounterViewManager.swift in Sources */,
+				A8E4CDC026BEA26A008844C7 /* CounterViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0CB77AE88548B69296AA568D /* Pods-SDGWallet-SDGWalletTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 44DZTJZ28X;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -580,6 +619,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93DF87D1A45954192A4C560D /* Pods-SDGWallet-SDGWalletTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 44DZTJZ28X;
@@ -608,8 +648,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SDGWallet/SDGWallet.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44DZTJZ28X;
+				DEVELOPMENT_TEAM = 7U475Q8699;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = SDGWallet/Info.plist;
@@ -623,8 +665,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hisoft.base.sagatoolkit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hisoft.sdg.wallet;
 				PRODUCT_NAME = SDGWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDGWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -638,7 +682,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SDGWallet/SDGWallet.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7U475Q8699;
 				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = SDGWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -652,8 +699,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hisoft.base.sagatoolkit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hisoft.sdg.wallet;
 				PRODUCT_NAME = SDGWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDGWallet-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

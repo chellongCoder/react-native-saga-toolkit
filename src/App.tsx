@@ -31,6 +31,7 @@ import theme, { globalStyle } from '@theme';
 import { COLORS } from '@theme/colors';
 import { NetworkProvider } from '@provider/network';
 import BlurViewProvider from '@provider/blur-view';
+import CopiedProvider from '@provider/copied';
 
 enableScreens();
 
@@ -65,17 +66,19 @@ const App: FC = () => {
         <Provider store={store}>
           <PersistGate loading={<Splashscreen />} persistor={persistor}>
             <NetworkProvider>
-              <SafeAreaProvider>
+              <CopiedProvider>
                 <BlurViewProvider>
-                  <NavigationContainer ref={navigationRef}>
-                    <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
+                  <SafeAreaProvider>
+                    <NavigationContainer ref={navigationRef}>
+                      <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
 
-                    <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
-                      <RootStackScreen />
-                    </Layout>
-                  </NavigationContainer>
+                      <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
+                        <RootStackScreen />
+                      </Layout>
+                    </NavigationContainer>
+                  </SafeAreaProvider>
                 </BlurViewProvider>
-              </SafeAreaProvider>
+              </CopiedProvider>
             </NetworkProvider>
           </PersistGate>
         </Provider>

@@ -102,7 +102,7 @@ module.exports = plop => {
       },
       {
         type: 'add',
-        path: 'src/hooks/use-{{kebabCase name}}.tsx',
+        path: 'src/hook/use-{{kebabCase name}}.tsx',
         templateFile: 'plop-templates/hook/use-hook.js.hbs',
       },
     ],

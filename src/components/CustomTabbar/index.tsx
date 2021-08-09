@@ -11,7 +11,7 @@ import { Text } from '@components/text';
 import commonStyles from '@theme/commonStyles';
 import Svg, { Path } from 'react-native-svg';
 
-const CustomTabar: FC = ({ state, descriptors, navigation }: BottomTabBarProps) => {
+const CustomTabar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const styles = style();
   const tabFocus = [
     <Icon size={2} icon={Icons.ICON_WALLET} />,

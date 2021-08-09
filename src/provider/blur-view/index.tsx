@@ -7,9 +7,9 @@ const BlurViewProvider = ({ children }: BlurViewProps) => {
   const [isShow, setIsShow] = useState(false);
   const [child, setChild] = useState<React.ReactNode>();
   const [position, setPosition] = useState();
-  const [type, setType] = useState('zoom');
+  const [type, setType] = useState<any>('zoom');
 
-  const onShow = useCallback((c: React.ReactNode, p: any, t: 'bottom' | 'zoom') => {
+  const onShow = useCallback((c: React.ReactNode, p: any, t?: 'bottom' | 'zoom') => {
     setChild(c);
     setIsShow(true);
     setPosition(p);

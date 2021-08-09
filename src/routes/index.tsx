@@ -16,10 +16,13 @@ import { CoinProfileScreen } from '@scenes/coin-profile';
 import { HomeScreen } from '@scenes/home';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentOptions } from '@react-navigation/drawer';
 import { Drawer } from '@components/drawer';
+import { AddWalletScreen } from '@scenes/add-wallet';
+import { CreateNewWalletScreen } from '@scenes/create-new-wallet';
+import { BottomTabT, MainStackT, RootStackT } from './types';
 
-const RootStack = createStackNavigator();
-const MainStack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const RootStack = createStackNavigator<RootStackT>();
+const MainStack = createStackNavigator<MainStackT>();
+const Tab = createBottomTabNavigator<BottomTabT>();
 const DrawerStack = createDrawerNavigator();
 
 export const tabBar = (props: any) => <CustomTabar {...props} />;
@@ -77,6 +80,22 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={ROUTES.CoinProfile}
         component={CoinProfileScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={ROUTES.AddWallet}
+        component={AddWalletScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={ROUTES.CreateNewWallet}
+        component={CreateNewWalletScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,
