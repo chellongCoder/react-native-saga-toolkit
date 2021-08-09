@@ -12,8 +12,29 @@ interface Props {
   mr?: number;
   flex?: number;
   alignItems?: FlexAlignType;
+  position?: 'absolute' | 'relative' | undefined;
+  left?: number;
+  right?: number;
+  top?: number;
+  bottom?: number;
 }
-const _View = ({ children, style, mt, mb, mv, mh, ml, mr, flex, alignItems }: Props) => {
+const _View = ({
+  children,
+  style,
+  mt,
+  mb,
+  mv,
+  mh,
+  ml,
+  mr,
+  flex,
+  alignItems,
+  position,
+  top,
+  right,
+  bottom,
+  left,
+}: Props) => {
   const styles = [
     {
       marginTop: mt,
@@ -27,6 +48,9 @@ const _View = ({ children, style, mt, mb, mv, mh, ml, mr, flex, alignItems }: Pr
     },
     style,
   ];
+  if (position) {
+    styles.push({ position, top, right, bottom, left });
+  }
   return <RNView style={styles}>{children}</RNView>;
 };
 

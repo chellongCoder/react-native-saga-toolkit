@@ -11,9 +11,16 @@ import { Text } from '@components/text';
 import { Platform } from '@theme/platform';
 import { ListFullOption } from '@components/list';
 import { profiles } from './__mocks__/data';
+import { Touchable } from '@components/touchable';
+import { ROUTES } from '@routes/constants';
 
 const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
   const styles = useDrawerStyle();
+
+  const onAddWallet = useCallback(() => {
+    navigation.navigate(ROUTES.AddWallet);
+  }, [navigation]);
+
   const renderItemContent = useCallback(
     item => {
       const backgroundColor = item.isSelected ? COLORS._04322C : COLORS._26BBA9;
@@ -49,7 +56,7 @@ const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
         <Text fontSize={Platform.SizeScale(20)} color={COLORS.WHITE}>
           Wallet
         </Text>
-        <Icon icon={Icons.ICON_AVATAR} size={2} />
+        <Icon icon={Icons.ICON_AVATAR} size={3} />
       </View>
 
       <View
@@ -60,6 +67,19 @@ const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
         <Icon tintColor={COLORS.WHITE} icon={Icons.ICON_FILTER} size={2} />
         <Icon tintColor={COLORS.WHITE} icon={Icons.ICON_PLUS} size={2} />
       </View>
+
+      <Touchable onPress={onAddWallet}>
+        <View style={[commonStyles.row, commonStyles.center, styles.buttonAdd]}>
+          <View style={styles.iconButtonAdd}>
+            <Icon icon={Icons.ICON_PLUS} size={2} tintColor={COLORS.WHITE} />
+          </View>
+          <View>
+            <Text fontSize={Platform.SizeScale(16)} color={COLORS.WHITE}>
+              Add Wallet
+            </Text>
+          </View>
+        </View>
+      </Touchable>
 
       <View flex={1} mh={Platform.SizeScale(10)}>
         <ListFullOption

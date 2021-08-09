@@ -16,6 +16,9 @@ const commonStyles = StyleSheet.create({
   spaceBetween: {
     justifyContent: 'space-between',
   },
+  center: {
+    justifyContent: 'center',
+  },
   absolute: {
     position: 'absolute',
     top: 0,
@@ -23,6 +26,17 @@ const commonStyles = StyleSheet.create({
     bottom: 0,
     right: 0,
     zIndex: 1,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
 });
 
