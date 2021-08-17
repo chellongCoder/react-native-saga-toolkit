@@ -19,9 +19,11 @@ import { ListFullOption } from '@components/list';
 import { assets } from './__mocks__/data';
 import { useBlurView } from '@hook/use-blur-view';
 import { Sorting } from './Sorting';
+import { ScreenRouteT } from '@routes/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const _HomeScreen = ({}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
   const styles = useHomeStyle();
   const [tabIndex, setTabIndex] = useState(1);
   const blurView = useBlurView();
@@ -44,6 +46,10 @@ const _HomeScreen = ({}) => {
   const onChangeTab2 = useCallback(() => {
     setTabIndex(2);
   }, []);
+
+  const onSend = useCallback(() => {
+    navigation.navigate('Send');
+  }, [navigation]);
 
   const renderItemContent = useCallback(() => {
     return (
@@ -111,12 +117,12 @@ const _HomeScreen = ({}) => {
           mh={Platform.SizeScale(20)}
           style={[commonStyles.row, commonStyles.spaceBetween]}
         >
-          <View style={[commonStyles.column]}>
+          <Touchable onPress={onSend} style={[commonStyles.column]}>
             <Icon icon={Icons.ICON_SEND} size={5} style={[{ backgroundColor: COLORS._10C9F1 }, styles.action]} />
             <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
               send
             </Text>
-          </View>
+          </Touchable>
           <View style={[commonStyles.column]}>
             <Icon icon={Icons.ICON_RECEIVE} size={5} style={[{ backgroundColor: COLORS._42EF91 }, styles.action]} />
             <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
@@ -176,7 +182,7 @@ const _HomeScreen = ({}) => {
 
           <View style={styles.list}>
             <ListFullOption
-              listFooterComponent={<View style={{ height: Platform.SizeScale(100) }} />}
+              listFooterComponent={<View style={{ height: Platform.SizeScale(150) }} />}
               data={assets}
               renderSubItem={renderItemContent}
               showsVerticalScrollIndicator={false}

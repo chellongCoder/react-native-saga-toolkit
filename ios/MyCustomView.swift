@@ -58,8 +58,18 @@ class RCTMyCustomViewManager: RCTViewManager {
     return true
   }
  
+  @objc func clickMe(sender:UIButton!) {
+    print("Button Clicked")
+  }
+
   override func view() -> UIView! {
-    return MyCustomView()
+    let btn = UIButton(type: .custom) as UIButton
+    btn.backgroundColor = .blue
+    btn.setTitle("Button", for: .normal)
+    btn.frame = CGRect(x: 100, y: 100, width: 200, height: 100)
+    btn.addTarget(self, action: #selector(clickMe), for: .touchUpInside)
+
+    return btn
   }
  
 }

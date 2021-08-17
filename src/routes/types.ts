@@ -12,6 +12,11 @@ export type RootStackT = {
   MyModal?: undefined;
 };
 
+export type CurrencyStackT = {
+  ChoiceCurrency: undefined;
+  SearchCurrency: undefined;
+};
+
 export type MainStackT = {
   Drawer: undefined;
   Home: undefined;
@@ -21,6 +26,8 @@ export type MainStackT = {
   OtherPage: undefined;
   Login: undefined;
   LoginPassword: undefined;
+  Send: undefined;
+  CurrencyStack: undefined;
 };
 export type ScreenKeyT = keyof (BottomTabT & RootStackT & MainStackT);
-export type ScreenRouteT = BottomTabT & RootStackT & MainStackT;
+export type ScreenRouteT = BottomTabT & RootStackT & MainStackT & CurrencyStackT;

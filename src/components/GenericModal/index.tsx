@@ -9,9 +9,10 @@ import styles from './styles';
 interface IModalPage {
   children: ReactNode;
   pageTitle: string;
+  scrollEnabled?: boolean;
 }
 
-const ModalPage: FC<IModalPage> = ({ children, pageTitle }) => {
+const ModalPage: FC<IModalPage> = ({ children, pageTitle, scrollEnabled = true }) => {
   const navigation = useNavigation();
   const popAction = useCallback(() => StackActions.pop(), []);
 
@@ -29,7 +30,7 @@ const ModalPage: FC<IModalPage> = ({ children, pageTitle }) => {
           </TouchableOpacity>
         }
       />
-      <ScrollView contentContainerStyle={styles.content} style={styles.container}>
+      <ScrollView scrollEnabled={scrollEnabled} contentContainerStyle={styles.content} style={styles.container}>
         {children}
       </ScrollView>
     </NHCSafeAreaView>

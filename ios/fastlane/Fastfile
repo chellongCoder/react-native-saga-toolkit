@@ -29,11 +29,11 @@ platform :ios do
              include_bitcode: true,
              export_method: "development")
              
-     firebase_app_distribution(
-             app: "1:460694115124:ios:ab0f0aa87f1954aed90b61",
-             firebase_cli_token: "1//0ex-nnISU4UKICgYIARAAGA4SNwF-L9IrSJs71tjM_GvFjQk93DsJhWnS73s6USVxttkkxChCVWMjsZZcErwDwu3UuICTI1q1a3w",
-             testers: "longnn17.developer@gmail.com",
-             release_notes: "Lots of amazing new features to test out!")
+#      firebase_app_distribution(
+#              app: "1:460694115124:ios:ab0f0aa87f1954aed90b61",
+#              firebase_cli_token: "1//0ex-nnISU4UKICgYIARAAGA4SNwF-L9IrSJs71tjM_GvFjQk93DsJhWnS73s6USVxttkkxChCVWMjsZZcErwDwu3UuICTI1q1a3w",
+#              testers: "longnn17.developer@gmail.com",
+#              release_notes: "Lots of amazing new features to test out!")
         upload_to_testflight(
                 username: 'business@shadowgate.io',
                 app_identifier: 'com.hisoft.sdg.wallet'

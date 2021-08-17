@@ -67,17 +67,16 @@ const App: FC = () => {
           <PersistGate loading={<Splashscreen />} persistor={persistor}>
             <NetworkProvider>
               <CopiedProvider>
-                <BlurViewProvider>
-                  <SafeAreaProvider>
+                <SafeAreaProvider>
+                  <BlurViewProvider>
                     <NavigationContainer ref={navigationRef}>
                       <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
-
                       <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
                         <RootStackScreen />
                       </Layout>
                     </NavigationContainer>
-                  </SafeAreaProvider>
-                </BlurViewProvider>
+                  </BlurViewProvider>
+                </SafeAreaProvider>
               </CopiedProvider>
             </NetworkProvider>
           </PersistGate>
