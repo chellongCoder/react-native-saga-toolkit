@@ -10,7 +10,6 @@ import commonStyles from '@theme/commonStyles';
 import { Text } from '@components/text';
 import { COLORS } from '@theme/colors';
 import { Touchable } from '@components/touchable';
-import { ROUTES } from '@routes/constants';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ScreenKeyT, ScreenRouteT } from '@routes/types';
 
