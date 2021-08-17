@@ -8,15 +8,15 @@ const MainStack = createStackNavigator<CurrencyStackT>();
 
 export const CurrencyStack: React.FC = () => {
   return (
-    <MainStack.Navigator initialRouteName={'ChoiceCurrency'}>
-      <MainStack.Screen
+    <MainStack.Navigator initialRouteName={'SearchCurrency'}>
+      {/* <MainStack.Screen
         name={'ChoiceCurrency'}
         component={ChoiceCurrencyScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,
         }}
-      />
+      /> */}
       <MainStack.Screen
         name={'SearchCurrency'}
         component={SearchCurrencyScreen}

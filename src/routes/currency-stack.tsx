@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { CurrencyStackT } from './types';
 import { ChoiceCurrencyScreen } from '@scenes/choice-currency';
+import { SearchCurrencyScreen } from '@scenes/search-currency';
 
 const MainStack = createStackNavigator<CurrencyStackT>();
 
@@ -16,14 +17,14 @@ export const CurrencyStack: React.FC = () => {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
-      {/* <MainStack.Screen
+      <MainStack.Screen
         name={'SearchCurrency'}
-        component={LoginPasswordScreen}
+        component={SearchCurrencyScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,
         }}
-      /> */}
+      />
     </MainStack.Navigator>
   );
 };

@@ -12,19 +12,29 @@ import { Platform } from '@theme/platform';
 import { COLORS } from '@theme/colors';
 import { ListFullOption } from '@components/list';
 import { currencies } from './__mocks__/data';
+import { Touchable } from '@components/touchable';
+import { ScreenRouteT } from '@routes/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { CommonButton } from '@components/CommonButton';
 
 const _ChoiceCurrencyScreen = ({}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'ChoiceCurrency'>>();
   const styles = useChoiceCurrencyStyle();
 
   const renderItemMenu = useCallback((item, index, isFavorite, onPress) => {
     return <Item {...{ item, index, isFavorite, onPress }} />;
   }, []);
 
+  const onSearch = useCallback(() => {
+    navigation.navigate('SearchCurrency');
+  }, [navigation]);
+
   return (
     <GenericModal scrollEnabled={false} pageTitle={'choice a currency'}>
       <View mv={Platform.SizeScale(20)} style={styles.search}>
-        <Icon tintColor={COLORS._07594F} icon={Icons.ICON_SEARCH} size={2} />
+        <Touchable onPress={onSearch}>
+          <Icon tintColor={COLORS._07594F} icon={Icons.ICON_SEARCH} size={2} />
+        </Touchable>
       </View>
       <ListFullOption
         showsVerticalScrollIndicator={false}
@@ -32,6 +42,9 @@ const _ChoiceCurrencyScreen = ({}) => {
         data={currencies}
         renderSubItem={renderItemMenu}
       />
+      <View mv={Platform.SizeScale(20)}>
+        <CommonButton width={Platform.SizeScale(343)} type="full" text={'OK'} />
+      </View>
     </GenericModal>
   );
 };
