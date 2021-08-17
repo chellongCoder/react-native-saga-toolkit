@@ -22,6 +22,9 @@
 		8FFDD27FE0E111D8E34219F6 /* libPods-SDGWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C386AADC3F00814E98BF636 /* libPods-SDGWallet.a */; };
 		90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68E5EF259E8E4558AB107594 /* Lato-Black.ttf */; };
 		A885557326C0274200D68783 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A885557226C0274200D68783 /* CounterView.swift */; };
+		A8B207C726C79F25008E0F0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B207C526C79F24008E0F0D /* ViewController.swift */; };
+		A8B207C826C79F25008E0F0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B207C626C79F24008E0F0D /* ViewController.m */; };
+		A8B207CE26C7A264008E0F0D /* ViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B207CD26C7A264008E0F0D /* ViewControllerManager.swift */; };
 		A8E4CDA826BE6D3E008844C7 /* MyCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDA726BE6D3E008844C7 /* MyCustomView.swift */; };
 		A8E4CDAD26BE6DB8008844C7 /* MyCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDAC26BE6DB8008844C7 /* MyCustomView.m */; };
 		A8E4CDBC26BEA1A2008844C7 /* CounterViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDBB26BEA1A2008844C7 /* CounterViewManager.swift */; };
@@ -85,6 +88,9 @@
 		9B58E33039ED4B5A83C5FE58 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		A2C8F480800B4B1C91CE2F11 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		A885557226C0274200D68783 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		A8B207C526C79F24008E0F0D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8B207C626C79F24008E0F0D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A8B207CD26C7A264008E0F0D /* ViewControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerManager.swift; sourceTree = "<group>"; };
 		A8E4CDA626BE6D3E008844C7 /* SDGWallet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDGWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8E4CDA726BE6D3E008844C7 /* MyCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomView.swift; sourceTree = "<group>"; };
 		A8E4CDAC26BE6DB8008844C7 /* MyCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCustomView.m; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E4CDA626BE6D3E008844C7 /* SDGWallet-Bridging-Header.h */,
+				A8B207C426C79F14008E0F0D /* LoginAnimation */,
 				A8E4CDB226BEA091008844C7 /* Counter */,
 				A8E4CDA126BE6D0D008844C7 /* SwiftComponent */,
 				A8F3A6322674C735000637D2 /* SDGWallet.entitlements */,
@@ -239,6 +246,16 @@
 				A2C8F480800B4B1C91CE2F11 /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		A8B207C426C79F14008E0F0D /* LoginAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				A8B207C626C79F24008E0F0D /* ViewController.m */,
+				A8B207C526C79F24008E0F0D /* ViewController.swift */,
+				A8B207CD26C7A264008E0F0D /* ViewControllerManager.swift */,
+			);
+			name = LoginAnimation;
 			sourceTree = "<group>";
 		};
 		A8E4CDA126BE6D0D008844C7 /* SwiftComponent */ = {
@@ -565,12 +582,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8B207CE26C7A264008E0F0D /* ViewControllerManager.swift in Sources */,
+				A8B207C826C79F25008E0F0D /* ViewController.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				A8E4CDAD26BE6DB8008844C7 /* MyCustomView.m in Sources */,
 				A8E4CDA826BE6D3E008844C7 /* MyCustomView.swift in Sources */,
 				A885557326C0274200D68783 /* CounterView.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				A8E4CDBC26BEA1A2008844C7 /* CounterViewManager.swift in Sources */,
+				A8B207C726C79F25008E0F0D /* ViewController.swift in Sources */,
 				A8E4CDC026BEA26A008844C7 /* CounterViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,7 +670,7 @@
 				CODE_SIGN_ENTITLEMENTS = SDGWallet/SDGWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 7U475Q8699;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SDGWallet/Info.plist;
@@ -683,7 +703,7 @@
 				CODE_SIGN_ENTITLEMENTS = SDGWallet/SDGWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 7U475Q8699;
 				INFOPLIST_FILE = SDGWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

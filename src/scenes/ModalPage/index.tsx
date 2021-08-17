@@ -1,11 +1,11 @@
 import React, { FC, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, UIManager, findNodeHandle } from 'react-native';
+import { View, Text, TouchableOpacity, UIManager, findNodeHandle, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import GenericModal from '@components/GenericModal';
 import styles from './styles';
 import { requireNativeComponent } from 'react-native';
 import { Platform } from '@theme/platform';
-// const RCTCustomView = requireNativeComponent('RCTMyCustomView');
+const MyCustomView = requireNativeComponent('RCTMyCustomView');
 const CounterViewUI = requireNativeComponent('CounterView');
 
 const ModalPage: FC = props => {
@@ -37,20 +37,42 @@ const ModalPage: FC = props => {
 
   return (
     <GenericModal pageTitle={t('ModalPage:PageName')}>
-      <View>
-        <Text style={styles.mainText}>{t('ModalPage:thisIsAModal')}</Text>
-      </View>
-      <TouchableOpacity style={[styles.wrapper, styles.border]} onPress={increment}>
-        <Text style={styles.button}>{count}</Text>
-      </TouchableOpacity>
-      <View style={styles.container}>
-        <CounterViewUI
-          ref={counterRef}
-          onUpdate={update}
-          count={count}
-          style={{ width: Platform.deviceWidth, height: 200, backgroundColor: 'white' }}
-        />
-      </View>
+      <ScrollView>
+        <View>
+          <Text style={styles.mainText}>{t('ModalPage:thisIsAModal')}</Text>
+        </View>
+        <TouchableOpacity style={[styles.wrapper, styles.border]} onPress={increment}>
+          <Text style={styles.button}>{count}</Text>
+        </TouchableOpacity>
+        <View style={styles.container}>
+          <CounterViewUI
+            ref={counterRef}
+            onUpdate={update}
+            count={count}
+            style={{ width: Platform.deviceWidth, height: 200, backgroundColor: 'white' }}
+          />
+        </View>
+        <View style={styles.container}>
+          <CounterViewUI
+            ref={counterRef}
+            onUpdate={update}
+            count={count}
+            style={{ width: Platform.deviceWidth, height: 200, backgroundColor: 'white' }}
+          />
+        </View>
+        <View style={styles.container}>
+          <CounterViewUI
+            ref={counterRef}
+            onUpdate={update}
+            count={count}
+            style={{ width: Platform.deviceWidth, height: 200, backgroundColor: 'white' }}
+          />
+        </View>
+        <View style={styles.container}>
+          <MyCustomView style={{ width: Platform.deviceWidth, height: 200 }} />
+        </View>
+        <View style={styles.container} />
+      </ScrollView>
     </GenericModal>
   );
 };

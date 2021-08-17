@@ -19,6 +19,8 @@ import { Drawer } from '@components/drawer';
 import { AddWalletScreen } from '@scenes/add-wallet';
 import { CreateNewWalletScreen } from '@scenes/create-new-wallet';
 import { BottomTabT, MainStackT, RootStackT } from './types';
+import { SendScreen } from '@scenes/send';
+import { CurrencyStack } from './currency-stack';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -99,6 +101,22 @@ export const MainStackScreen: FC = () => {
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'Send'}
+        component={SendScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'CurrencyStack'}
+        component={CurrencyStack}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.ModalPresentationIOS,
         }}
       />
     </MainStack.Navigator>

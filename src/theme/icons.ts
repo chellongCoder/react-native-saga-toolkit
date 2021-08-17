@@ -1,3 +1,4 @@
+import ICON_ARROW_RIGHT from './../../assets/icons/icon_arrow_right.png'
 import ICON_ASSET from './../../assets/icons/icon_asset.png'
 import ICON_AVATAR from './../../assets/icons/icon_avatar.png'
 import ICON_BACK from './../../assets/icons/icon_back.png'
@@ -39,6 +40,7 @@ import ICON_WALLET_UNFOCUS from './../../assets/icons/icon_wallet_unfocus.png'
 import ICON_X from './../../assets/icons/icon_x.png'
 import WALLET_ITEM from './../../assets/icons/wallet_item.png'
 export const Icons = {
+ICON_ARROW_RIGHT,
 ICON_ASSET,
 ICON_AVATAR,
 ICON_BACK,

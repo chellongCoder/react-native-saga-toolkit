@@ -4,19 +4,19 @@ import { fonts } from '@theme/fonts';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.MIDNIGHT_BLUE,
+    backgroundColor: COLORS.WHITE,
   },
   content: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   headerIconContent: {
     fontSize: 24,
     marginRight: 10,
   },
   pageTitle: {
-    color: COLORS.ALIZARIN,
+    color: COLORS.BLACK,
     fontFamily: fonts.regular,
     fontSize: 20,
     textAlign: 'center',
