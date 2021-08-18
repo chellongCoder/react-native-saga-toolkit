@@ -51,6 +51,10 @@ const _HomeScreen = ({}) => {
     navigation.navigate('Send');
   }, [navigation]);
 
+  const onReceive = useCallback(() => {
+    setTest(undefined);
+  }, []);
+
   const renderItemContent = useCallback(() => {
     return (
       <View mh={Platform.SizeScale(20)} style={[commonStyles.row, styles.item]}>
@@ -123,12 +127,12 @@ const _HomeScreen = ({}) => {
               send
             </Text>
           </Touchable>
-          <View style={[commonStyles.column]}>
+          <Touchable onPress={onReceive} style={[commonStyles.column]}>
             <Icon icon={Icons.ICON_RECEIVE} size={5} style={[{ backgroundColor: COLORS._42EF91 }, styles.action]} />
             <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
               receive
             </Text>
-          </View>
+          </Touchable>
           <View style={[commonStyles.column]}>
             <Icon icon={Icons.ICON_BUYCOIN} size={5} style={[{ backgroundColor: COLORS._9977FC }, styles.action]} />
             <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
