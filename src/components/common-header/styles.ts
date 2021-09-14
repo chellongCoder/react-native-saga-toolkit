@@ -14,7 +14,7 @@ export const useCommonHeaderStyle = () => {
         },
         header: {
           paddingHorizontal: Platform.SizeScale(30),
-          paddingTop: insets.top,
+          paddingTop: Platform.OS === 'android' ? Platform.SizeScale(10) : insets.top,
           paddingBottom: Platform.SizeScale(10),
         },
       }),

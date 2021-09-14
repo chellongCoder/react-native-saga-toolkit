@@ -20,6 +20,9 @@
 		4FAAC9AA4B0947AE8117D6B5 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9E578FF46F04016A9FEA731 /* Lato-Italic.ttf */; };
 		8FFDD27FE0E111D8E34219F6 /* libPods-SDGWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C386AADC3F00814E98BF636 /* libPods-SDGWallet.a */; };
 		90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68E5EF259E8E4558AB107594 /* Lato-Black.ttf */; };
+		A824A74626E34EE700A156E6 /* ClickViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A824A74526E34EE700A156E6 /* ClickViewManager.m */; };
+		A824A74926E34EFF00A156E6 /* ClickViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824A74826E34EFF00A156E6 /* ClickViewManager.swift */; };
+		A824A74C26E3524C00A156E6 /* ClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824A74B26E3524C00A156E6 /* ClickView.swift */; };
 		A885557326C0274200D68783 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A885557226C0274200D68783 /* CounterView.swift */; };
 		A8B207C726C79F25008E0F0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B207C526C79F24008E0F0D /* ViewController.swift */; };
 		A8B207C826C79F25008E0F0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B207C626C79F24008E0F0D /* ViewController.m */; };
@@ -74,6 +77,9 @@
 		9A24869C88D743A5A01D67B0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9B58E33039ED4B5A83C5FE58 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		A2C8F480800B4B1C91CE2F11 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		A824A74526E34EE700A156E6 /* ClickViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickViewManager.m; sourceTree = "<group>"; };
+		A824A74826E34EFF00A156E6 /* ClickViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickViewManager.swift; sourceTree = "<group>"; };
+		A824A74B26E3524C00A156E6 /* ClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickView.swift; sourceTree = "<group>"; };
 		A885557226C0274200D68783 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		A8B207C526C79F24008E0F0D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A8B207C626C79F24008E0F0D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E4CDA626BE6D3E008844C7 /* SDGWallet-Bridging-Header.h */,
+				A824A74426E34EC700A156E6 /* ClickView */,
 				A8B207C426C79F14008E0F0D /* LoginAnimation */,
 				A8E4CDB226BEA091008844C7 /* Counter */,
 				A8E4CDA126BE6D0D008844C7 /* SwiftComponent */,
@@ -226,6 +233,16 @@
 				A2C8F480800B4B1C91CE2F11 /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		A824A74426E34EC700A156E6 /* ClickView */ = {
+			isa = PBXGroup;
+			children = (
+				A824A74B26E3524C00A156E6 /* ClickView.swift */,
+				A824A74826E34EFF00A156E6 /* ClickViewManager.swift */,
+				A824A74526E34EE700A156E6 /* ClickViewManager.m */,
+			);
+			path = ClickView;
 			sourceTree = "<group>";
 		};
 		A8B207C426C79F14008E0F0D /* LoginAnimation */ = {
@@ -485,9 +502,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B207CE26C7A264008E0F0D /* ViewControllerManager.swift in Sources */,
+				A824A74926E34EFF00A156E6 /* ClickViewManager.swift in Sources */,
 				A8B207C826C79F25008E0F0D /* ViewController.m in Sources */,
+				A824A74626E34EE700A156E6 /* ClickViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				A8E4CDAD26BE6DB8008844C7 /* MyCustomView.m in Sources */,
+				A824A74C26E3524C00A156E6 /* ClickView.swift in Sources */,
 				A8E4CDA826BE6D3E008844C7 /* MyCustomView.swift in Sources */,
 				A885557326C0274200D68783 /* CounterView.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,

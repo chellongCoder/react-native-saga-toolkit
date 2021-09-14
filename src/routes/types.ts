@@ -1,9 +1,9 @@
 export type BottomTabT = {
-  Asset: undefined;
-  Ex: undefined;
   Wallet: undefined;
   Market: undefined;
-  SDG: undefined;
+  Home: undefined;
+  Exchange: undefined;
+  Setting: undefined;
 };
 
 export type RootStackT = {
@@ -28,6 +28,7 @@ export type MainStackT = {
   LoginPassword: undefined;
   Send: undefined;
   CurrencyStack: undefined;
+  FeePerByte: undefined;
 };
 export type ScreenKeyT = keyof (BottomTabT & RootStackT & MainStackT);
 export type ScreenRouteT = BottomTabT & RootStackT & MainStackT & CurrencyStackT;

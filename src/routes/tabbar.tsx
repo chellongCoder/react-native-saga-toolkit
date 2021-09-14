@@ -44,20 +44,22 @@ export const TabBarAdvancedButton: React.FC<BottomTabBarProps> = ({ bgColor, ...
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    // backgroundColor: 'red',
   },
   background: {
     position: 'absolute',
     top: 0,
   },
   button: {
-    top: -40.5,
-    left: -4,
+    top: -20.5,
+    left: 0,
     justifyContent: 'center',
     alignItems: 'center',
     width: 50,
     height: 50,
     borderRadius: 27,
     backgroundColor: COLORS.MAIN_GREEN,
+    zIndex: 999,
   },
   buttonIcon: {
     fontSize: 16,

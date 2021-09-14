@@ -1,11 +1,10 @@
 import { Icon } from '@components/common-icon';
 import { CommonButton } from '@components/CommonButton';
 import { ListFullOption } from '@components/list';
+import { SelectionItem } from '@components/selection-item';
 import { Text } from '@components/text';
-import { Touchable } from '@components/touchable';
 import { View } from '@components/view';
 import { COLORS } from '@theme/colors';
-import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import React, { FC, memo, useCallback, useMemo } from 'react';
@@ -38,26 +37,30 @@ const _Sorting = () => {
 };
 
 const Item = ({ item, index, isFavorite, onPress }) => {
-  const backgroundColor = useMemo(() => {
-    return isFavorite ? COLORS._EEFFF3 : COLORS.BACKGROUND;
-  }, [isFavorite]);
-  return (
-    <Touchable {...{ onPress }} style={[commonStyles.row, styles.itemContainer, { backgroundColor }]}>
-      <View style={[commonStyles.row]} flex={1}>
+  const renderLeftAccessory = useCallback(() => {
+    return (
+      <>
         {isFavorite ? <Icon icon={Icons.ICON_CHECKBOX} size={3} /> : <Icon icon={Icons.ICON_UNCHECKBOX} size={3} />}
         <Text color={COLORS._085A51} fontSize={Platform.SizeScale(15)}>
           {item.name}
         </Text>
-      </View>
-      <View alignItems="flex-end" flex={1}>
+      </>
+    );
+  }, [isFavorite, item.name]);
+
+  const renderRightAccessory = useCallback(() => {
+    return (
+      <>
         <View style={styles.itemNote}>
           <Text color={COLORS._13A6D4} fontSize={Platform.SizeScale(12)}>
             {item.note}
           </Text>
         </View>
-      </View>
-    </Touchable>
-  );
+      </>
+    );
+  }, [item.note]);
+
+  return <SelectionItem {...{ item, index, isFavorite, onPress, renderLeftAccessory, renderRightAccessory }} />;
 };
 
 export const Sorting = memo(_Sorting);

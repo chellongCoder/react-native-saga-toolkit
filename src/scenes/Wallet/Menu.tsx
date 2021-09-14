@@ -3,14 +3,17 @@ import { Touchable } from '@components/touchable';
 import { COLORS } from '@theme/colors';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
-import React, { memo, useMemo, useRef } from 'react';
+import React, { forwardRef, memo, Ref, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import { BlurView as Blur } from '@react-native-community/blur';
 import commonStyles from '@theme/commonStyles';
 import { Text } from '@components/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const _Menu = () => {
+export type MenuHandle = {
+  onPressAvatar?: () => void;
+};
+const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
   const animation = useRef(new Animated.Value(0)).current;
   const styles = useStyleMenu();
 
@@ -86,9 +89,13 @@ const _Menu = () => {
     ],
   };
 
+  useImperativeHandle(ref, () => ({
+    onPressAvatar,
+  }));
+
   return (
     <>
-      <Animated.View style={[commonStyles.absolute, blurStyle]}>
+      <Animated.View style={[commonStyles.absolute, blurStyle, { zIndex: 1 }]}>
         <Blur
           style={[commonStyles.absolute]}
           blurType="light"
@@ -122,7 +129,7 @@ const _Menu = () => {
       </Animated.View>
     </>
   );
-};
+});
 
 export const Menu = memo(_Menu);
 
@@ -145,7 +152,7 @@ const useStyleMenu = () => {
         position: 'absolute',
         backgroundColor: 'transparent',
         zIndex: 999,
-        top: insets.top,
+        top: Platform.OS === 'android' ? Platform.SizeScale(10) : insets.top,
         left: Platform.SizeScale(30),
       },
       button: {

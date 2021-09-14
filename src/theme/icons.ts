@@ -1,3 +1,4 @@
+import ICON_ACTIVE_STAR from './../../assets/icons/icon_active_star.png'
 import ICON_ARROW_RIGHT from './../../assets/icons/icon_arrow_right.png'
 import ICON_ASSET from './../../assets/icons/icon_asset.png'
 import ICON_AVATAR from './../../assets/icons/icon_avatar.png'
@@ -31,15 +32,19 @@ import ICON_SEND from './../../assets/icons/icon_send.png'
 import ICON_SETTING from './../../assets/icons/icon_setting.png'
 import ICON_SETTING_UNFOCUS from './../../assets/icons/icon_setting_unfocus.png'
 import ICON_SUPPORT from './../../assets/icons/icon_support.png'
+import ICON_THREE_DOT_GREEN from './../../assets/icons/icon_three_dot_green.png'
 import ICON_THREEDOT from './../../assets/icons/icon_threedot.png'
 import ICON_TICK from './../../assets/icons/icon_tick.png'
+import ICON_UNACTIVE_STAR from './../../assets/icons/icon_unactive_star.png'
 import ICON_UNCHECKBOX from './../../assets/icons/icon_uncheckbox.png'
 import ICON_USER from './../../assets/icons/icon_user.png'
 import ICON_WALLET from './../../assets/icons/icon_wallet.png'
 import ICON_WALLET_UNFOCUS from './../../assets/icons/icon_wallet_unfocus.png'
 import ICON_X from './../../assets/icons/icon_x.png'
+import ICON_X_GREEN from './../../assets/icons/icon_x_green.png'
 import WALLET_ITEM from './../../assets/icons/wallet_item.png'
 export const Icons = {
+ICON_ACTIVE_STAR,
 ICON_ARROW_RIGHT,
 ICON_ASSET,
 ICON_AVATAR,
@@ -73,12 +78,15 @@ ICON_SEND,
 ICON_SETTING,
 ICON_SETTING_UNFOCUS,
 ICON_SUPPORT,
+ICON_THREE_DOT_GREEN,
 ICON_THREEDOT,
 ICON_TICK,
+ICON_UNACTIVE_STAR,
 ICON_UNCHECKBOX,
 ICON_USER,
 ICON_WALLET,
 ICON_WALLET_UNFOCUS,
 ICON_X,
+ICON_X_GREEN,
 WALLET_ITEM,
 }

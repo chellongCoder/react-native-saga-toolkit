@@ -17,6 +17,8 @@ interface Props {
   right?: number;
   top?: number;
   bottom?: number;
+  backgroundColor?: string;
+  borderRadius?: any;
 }
 const _View = ({
   children,
@@ -34,6 +36,8 @@ const _View = ({
   right,
   bottom,
   left,
+  backgroundColor,
+  borderRadius,
 }: Props) => {
   const styles = [
     {
@@ -45,6 +49,8 @@ const _View = ({
       marginRight: mr,
       flex,
       alignItems,
+      backgroundColor,
+      borderRadius,
     },
     style,
   ];
