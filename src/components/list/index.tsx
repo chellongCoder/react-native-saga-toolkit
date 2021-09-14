@@ -146,19 +146,16 @@ export const ListFullOption = forwardRef(
       [isMultiSelect, favorites, renderSubItem],
     );
 
-    const onMomentumScrollEnd = useCallback(
-      _.debounce(
-        async ({ nativeEvent }) => {
-          if (!loadMore) return;
-          if (isCloseToBottom(nativeEvent)) {
-            console.log('reach to end list');
-            onLoadMore && (await onLoadMore());
-          }
-        },
-        2000,
-        { leading: true, trailing: false },
-      ),
-      [loadMore, onLoadMore],
+    const onMomentumScrollEnd = _.debounce(
+      async ({ nativeEvent }) => {
+        if (!loadMore) return;
+        if (isCloseToBottom(nativeEvent)) {
+          console.log('reach to end list');
+          onLoadMore && (await onLoadMore());
+        }
+      },
+      2000,
+      { leading: true, trailing: false },
     );
 
     const renderListFooterComponent = useCallback(

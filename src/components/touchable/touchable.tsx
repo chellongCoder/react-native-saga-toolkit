@@ -1,9 +1,13 @@
-import React, { forwardRef, Ref } from 'react';
-import { Platform, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
+import React, { forwardRef, Ref, useImperativeHandle } from 'react';
+import { Platform, TouchableNativeFeedback, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import { TouchableProps } from './types';
 
 export const Touchable = forwardRef(
-  ({ children, style, handleSubmit, onPress, ...props }: TouchableProps, ref?: Ref<TouchableOpacity>) => {
+  ({ children, style, handleSubmit, onPress, ...props }: TouchableProps, ref?: Ref<TouchableOpacityProps>) => {
+    useImperativeHandle(ref, () => ({
+      onPress,
+    }));
+
     if (Platform.OS === 'android') {
       const canUseForground = TouchableNativeFeedback.canUseNativeForeground();
 

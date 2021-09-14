@@ -92,3 +92,5 @@ src/env.js
 
 deps-graph.svg
 .eslintcache
+# react-native-config codegen
+ios/tmp.xcconfig

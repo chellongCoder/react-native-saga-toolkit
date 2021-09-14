@@ -20,7 +20,9 @@ import { AddWalletScreen } from '@scenes/add-wallet';
 import { CreateNewWalletScreen } from '@scenes/create-new-wallet';
 import { BottomTabT, MainStackT, RootStackT } from './types';
 import { SendScreen } from '@scenes/send';
-import { CurrencyStack } from './currency-stack';
+import { FeePerByteScreen } from '@scenes/fee-per-byte';
+import { CurrencyStack } from './CurrencyStack';
+import { MarketScreen } from '@scenes/market';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -32,11 +34,11 @@ export const tabBar = (props: any) => <CustomTabar {...props} />;
 export const BottomTab: FC = () => {
   return (
     <Tab.Navigator {...{ tabBar }} tabBarOptions={{}}>
-      <Tab.Screen name="Asset" component={HomeScreen} />
-      <Tab.Screen name="Ex" component={OtherPage} />
-      <Tab.Screen name="Wallet" component={WalletPage} />
-      <Tab.Screen name="Market" component={OtherPage} />
-      <Tab.Screen name="SDG" component={OtherPage} />
+      <Tab.Screen name="Wallet" component={HomeScreen} />
+      <Tab.Screen name="Market" component={MarketScreen} />
+      <Tab.Screen name="Home" component={WalletPage} />
+      <Tab.Screen name="Exchange" component={OtherPage} />
+      <Tab.Screen name="Setting" component={OtherPage} />
     </Tab.Navigator>
   );
 };
@@ -114,6 +116,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'CurrencyStack'}
         component={CurrencyStack}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.ModalPresentationIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'FeePerByte'}
+        component={FeePerByteScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.ModalPresentationIOS,

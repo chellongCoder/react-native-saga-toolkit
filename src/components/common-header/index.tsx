@@ -10,7 +10,10 @@ import React, { memo, useCallback } from 'react';
 import { View, Text, Image } from 'react-native';
 import { useCommonHeaderStyle } from './styles';
 
-const _CommonHeader = ({}) => {
+export interface ICommonHeader {
+  _onPressAvatar?: () => void;
+}
+const _CommonHeader = ({ _onPressAvatar }: ICommonHeader) => {
   const styles = useCommonHeaderStyle();
   const blurView = useBlurView();
 
@@ -25,10 +28,14 @@ const _CommonHeader = ({}) => {
     );
   }, [blurView]);
 
+  const onPressAvatar = useCallback(() => {
+    _onPressAvatar?.();
+  }, [_onPressAvatar]);
+
   return (
     <View style={[commonStyles.row, commonStyles.spaceBetween, styles.header]}>
       <View style={commonStyles.row}>
-        <Touchable>
+        <Touchable onPress={onPressAvatar}>
           <Icon mr={Platform.SizeScale(10)} icon={Icons.ICON_AVATAR} size={4} />
         </Touchable>
         <View style={styles.logo}>

@@ -84,15 +84,21 @@ const CustomTabar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }: 
   return (
     <View style={[styles.container]}>
       {Platform.isIphoneX() ? (
-        <Svg width={406} height={94} viewBox="0 0 406 94">
+        <Svg
+          style={{
+            ...commonStyles.shadow,
+          }}
+          width={406}
+          height={94}
+          viewBox="10 20 406 94"
+        >
           <Path
             d="M199 38.0001C210.913 38.0001 221.257 31.28 226.447 21.4239C230.307 14.0938 236.716 7.00006 245 7.00006H361C377.569 7.00006 391 20.4315 391 37.0001V49.0001C391 65.5686 377.569 79.0001 361 79.0001H37C20.4315 79.0001 7 65.5686 7 49.0001V37.0001C7 20.4315 20.4315 7.00006 37 7.00006H153C161.284 7.00006 167.693 14.0938 171.553 21.4239C176.743 31.28 187.087 38.0001 199 38.0001Z"
             fill="white"
-            // fill={color}
           />
         </Svg>
       ) : (
-        <Svg width={362} height={Platform.SizeScale(94)} viewBox="0 -10 362 94">
+        <Svg width={362} height={Platform.SizeScale(94)} viewBox="-4 -10 362 94">
           <Path
             d="M177 32.6083C186.522 32.6083 194.912 28.1479 199.835 21.3747C204.705 14.6733 211.164 7.36087 219.448 7.36087H320.438C335.108 7.36087 347 18.2999 347 31.7939V41.5671C347 55.061 335.108 66.0001 320.438 66.0001H33.5625C18.8924 66.0001 7 55.061 7 41.5671V31.7939C7 18.2999 18.8924 7.36087 33.5625 7.36087H134.552C142.836 7.36087 149.295 14.6733 154.165 21.3747C159.088 28.1479 167.478 32.6083 177 32.6083Z"
             fill="white"
@@ -121,21 +127,23 @@ export const style = () => {
       alignSelf: 'center',
       alignItems: 'center',
       justifyContent: 'center',
-      // left: Platform.SizeScale(100),
     },
     content: {
       flexDirection: 'row',
       position: 'absolute',
-      width: Platform.SizeScale(310),
+      width: Platform.SizeScale(350),
       alignItems: 'center',
       justifyContent: 'center',
       alignSelf: 'center',
+      paddingVertical: Platform.SizeScale(4),
+      borderRadius: Platform.SizeScale(30),
     },
     tabBar: {
       flex: 1,
       backgroundColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
+      zIndex: 999,
     },
   });
 };

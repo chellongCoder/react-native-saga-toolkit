@@ -13,9 +13,10 @@ import { useTopbarStyle } from './styles';
 
 interface Props {
   children: React.ReactNode;
-  title: string;
+  title?: string;
+  renderHeader?: () => React.ReactChild;
 }
-const _Topbar = ({ children, title }: Props) => {
+const _Topbar = ({ children, title, renderHeader }: Props) => {
   const styles = useTopbarStyle();
   const navigation = useNavigation();
 
@@ -32,12 +33,18 @@ const _Topbar = ({ children, title }: Props) => {
           mt={Platform.SizeScale(20)}
           style={[commonStyles.row, commonStyles.center]}
         >
-          <Touchable onPress={onBack} style={styles.iconBack}>
-            <Icon tintColor={COLORS._085A51} icon={Icons.ICON_BACK} size={2} />
-          </Touchable>
-          <Text color={COLORS._085A51} fontSize={Platform.SizeScale(18)}>
-            {title}
-          </Text>
+          {!title ? (
+            renderHeader?.()
+          ) : (
+            <>
+              <Touchable onPress={onBack} style={styles.iconBack}>
+                <Icon tintColor={COLORS._085A51} icon={Icons.ICON_BACK} size={2} />
+              </Touchable>
+              <Text color={COLORS._085A51} fontSize={Platform.SizeScale(18)}>
+                {title}
+              </Text>
+            </>
+          )}
         </View>
         {children}
       </View>
