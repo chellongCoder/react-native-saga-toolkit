@@ -1,22 +1,19 @@
 import React, { memo, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useMarketStyle } from './styles';
+import { useMarketCoinProfileStyle } from './styles';
 import { Topbar } from '@components/topbar';
+import { View } from '@components/view';
 import commonStyles from '@theme/commonStyles';
-import { Header } from './header';
 import { Icon } from '@components/common-icon';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
-import { View } from '@components/view';
-import { Tabs } from './tab';
-import { Filters } from './filter';
-import { List } from './list';
-import { Touchable } from '@components/touchable';
-// const ClickViewUI: any = requireNativeComponent('ClickView');
+import { Text } from '@components/text';
+import { COLORS } from '@theme/colors';
+import { ButtonGroup } from './buttonGroup';
 
-const _MarketScreen = ({}) => {
+const _MarketCoinProfileScreen = ({}) => {
   const navigation = useNavigation();
-  const styles = useMarketStyle();
+  const styles = useMarketCoinProfileStyle();
 
   const onBack = useCallback(() => {
     navigation.goBack();
@@ -27,31 +24,31 @@ const _MarketScreen = ({}) => {
       <View style={{ flex: 1 }}>
         <View style={[commonStyles.row, commonStyles.spaceBetween]}>
           <View>
-            <Header />
+            <Icon tintColor={COLORS._085A51} icon={Icons.ICON_BACK} />
           </View>
           <View style={[commonStyles.row]}>
-            <View mr={Platform.SizeScale(20)}>
-              <Icon icon={Icons.ICON_THREE_DOT_GREEN} size={3.5} />
-            </View>
-            <Touchable onPress={onBack}>
-              <Icon icon={Icons.ICON_X_GREEN} size={3.5} />
-            </Touchable>
+            <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={COLORS._085A51}>
+              BTC / USDT
+            </Text>
+          </View>
+          <View style={[commonStyles.row]}>
+            <Icon icon={Icons.ICON_ACTIVE_STAR} />
           </View>
         </View>
+
+        <ButtonGroup />
       </View>
     );
-  }, [onBack]);
+  }, []);
 
   return (
     <View>
       <Topbar renderHeader={renderHeader}>
-        <Tabs />
-        <Filters />
-        <List />
+        <Text>s</Text>
       </Topbar>
       {/* <ClickViewUI /> */}
     </View>
   );
 };
 
-export const MarketScreen = memo(_MarketScreen);
+export const MarketCoinProfileScreen = memo(_MarketCoinProfileScreen);

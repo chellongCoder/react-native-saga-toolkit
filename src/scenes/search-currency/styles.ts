@@ -39,6 +39,6 @@ export const useSearchCurrencyStyle = () => {
           justifyContent: 'center',
         },
       }),
-    [insets],
+    [],
   );
 };
