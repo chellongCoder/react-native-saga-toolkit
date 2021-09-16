@@ -1,14 +1,14 @@
 const fontFamily = {
   latoThin: 'Lato-Thin',
   latoThinItalic: 'Lato-ThinItalic',
-  latoLight: 'Lato-Light',
-  latoLightItalic: 'Lato-LightItalic',
-  latoRegular: 'Lato-Regular',
-  latoItalic: 'Lato-Italic',
-  latoBold: 'Lato-Bold',
-  latoBoldItalic: 'Lato-BoldItalic',
-  latoBlack: 'Lato-Black',
-  latoBlackItalic: 'Lato-BlackItalic',
+  latoLight: 'Mulish-Light',
+  latoLightItalic: 'Mulish-LightItalic',
+  latoRegular: 'Mulish-Regular',
+  latoItalic: 'Mulish-Italic',
+  latoBold: 'Mulish-Bold',
+  latoBoldItalic: 'Mulish-BoldItalic',
+  latoBlack: 'Mulish-Black',
+  latoBlackItalic: 'Mulish-BlackItalic',
 };
 
 const fonts = {

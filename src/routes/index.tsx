@@ -23,6 +23,7 @@ import { SendScreen } from '@scenes/send';
 import { FeePerByteScreen } from '@scenes/fee-per-byte';
 import { CurrencyStack } from './CurrencyStack';
 import { MarketScreen } from '@scenes/market';
+import { MarketStack } from './MarketStack';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -127,6 +128,14 @@ export const MainStackScreen: FC = () => {
         options={{
           headerShown: false,
           ...TransitionPresets.ModalPresentationIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'MarketStack'}
+        component={MarketStack}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
         }}
       />
     </MainStack.Navigator>

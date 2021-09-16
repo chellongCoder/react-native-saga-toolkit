@@ -3,6 +3,9 @@ import { ListFullOption } from '@components/list';
 import { Text } from '@components/text';
 import { Touchable } from '@components/touchable';
 import { View } from '@components/view';
+import { useNavigation } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ScreenRouteT } from '@routes/types';
 import { COLORS } from '@theme/colors';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
@@ -14,6 +17,7 @@ import { tabs } from '../__mocks__/data';
 
 const _Tabs = () => {
   const touchableRef = useRef<any>();
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Market'>>();
 
   const renderItemContent = useCallback(
     (item, index, isFavorite, onPress) => {
@@ -43,6 +47,12 @@ const _Tabs = () => {
     [touchableRef],
   );
 
+  const onSearch = useCallback(() => {
+    navigation.navigate('MarketStack', {
+      screen: 'SearchMarket',
+    });
+  }, [navigation]);
+
   useEffect(() => {
     setTimeout(() => {
       touchableRef?.current?.onPress?.({});
@@ -61,7 +71,9 @@ const _Tabs = () => {
           noRefresh
         />
         <View mh={Platform.SizeScale(20)}>
-          <Icon tintColor={COLORS._085A51} icon={Icons.ICON_SEARCH} size={2} />
+          <Touchable onPress={onSearch}>
+            <Icon tintColor={COLORS._085A51} icon={Icons.ICON_SEARCH} size={2} />
+          </Touchable>
         </View>
       </View>
     </View>

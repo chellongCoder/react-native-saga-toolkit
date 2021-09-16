@@ -1,22 +1,20 @@
 import React, { memo, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useMarketStyle } from './styles';
+import { useMarketSearchStyle } from './styles';
 import { Topbar } from '@components/topbar';
 import commonStyles from '@theme/commonStyles';
-import { Header } from './header';
-import { Icon } from '@components/common-icon';
-import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
+import { Icons } from '@theme/icons';
+import { Header } from '@scenes/market/header';
+import { Icon } from '@components/common-icon';
 import { View } from '@components/view';
-import { Tabs } from './tab';
-import { Filters } from './filter';
-import { List } from './list';
+import { Search } from './search';
+import { ListHistory } from './listHistory';
 import { Touchable } from '@components/touchable';
-// const ClickViewUI: any = requireNativeComponent('ClickView');
 
-const _MarketScreen = ({}) => {
+const _MarketSearchScreen = ({}) => {
   const navigation = useNavigation();
-  const styles = useMarketStyle();
+  const styles = useMarketSearchStyle();
 
   const onBack = useCallback(() => {
     navigation.goBack();
@@ -41,17 +39,15 @@ const _MarketScreen = ({}) => {
       </View>
     );
   }, [onBack]);
-
   return (
     <View>
       <Topbar renderHeader={renderHeader}>
-        <Tabs />
-        <Filters />
-        <List />
+        <Search />
+        <ListHistory />
       </Topbar>
       {/* <ClickViewUI /> */}
     </View>
   );
 };
 
-export const MarketScreen = memo(_MarketScreen);
+export const MarketSearchScreen = memo(_MarketSearchScreen);
