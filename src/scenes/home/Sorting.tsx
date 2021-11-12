@@ -23,12 +23,7 @@ const _Sorting = () => {
           Sorting Rules
         </Text>
       </View>
-      <ListFullOption
-        showsVerticalScrollIndicator={false}
-        style={{ height: Platform.SizeScale(300) }}
-        data={sorts}
-        renderSubItem={renderItemMenu}
-      />
+      <ListFullOption showsVerticalScrollIndicator={false} style={{}} data={sorts} renderSubItem={renderItemMenu} />
       <View mv={Platform.SizeScale(20)}>
         <CommonButton width={Platform.SizeScale(343)} type="full" text={'Sort'} />
       </View>
@@ -67,7 +62,7 @@ export const Sorting = memo(_Sorting);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: Platform.deviceHeight / 2,
     backgroundColor: COLORS.WHITE,
     width: Platform.deviceWidth - Platform.SizeScale(20),
     paddingHorizontal: Platform.SizeScale(10),
