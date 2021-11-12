@@ -24,6 +24,7 @@ import { FeePerByteScreen } from '@scenes/fee-per-byte';
 import { CurrencyStack } from './CurrencyStack';
 import { MarketScreen } from '@scenes/market';
 import { MarketStack } from './MarketStack';
+import { SwapScreen } from '@scenes/swap';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -38,7 +39,7 @@ export const BottomTab: FC = () => {
       <Tab.Screen name="Wallet" component={HomeScreen} />
       <Tab.Screen name="Market" component={MarketScreen} />
       <Tab.Screen name="Home" component={WalletPage} />
-      <Tab.Screen name="Exchange" component={OtherPage} />
+      <Tab.Screen name="Exchange" component={SwapScreen} />
       <Tab.Screen name="Setting" component={OtherPage} />
     </Tab.Navigator>
   );

@@ -21,6 +21,7 @@ import { useBlurView } from '@hook/use-blur-view';
 import { Sorting } from './Sorting';
 import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { BottomSheetCustom } from '@components/bottom-sheet';
 
 const _HomeScreen = ({}) => {
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
@@ -28,17 +29,11 @@ const _HomeScreen = ({}) => {
   const [tabIndex, setTabIndex] = useState(1);
   const blurView = useBlurView();
   const refMenu = React.useRef<MenuHandle>(null); // assign null makes it compatible with elements.
+  const bottomSheet = useRef<{ open: (index: number) => void }>();
 
   const onShowMenu = useCallback(() => {
-    blurView.onShow(
-      <Sorting />,
-      {
-        right: Platform.SizeScale(10),
-        bottom: Platform.SizeScale(0),
-      },
-      'bottom',
-    );
-  }, [blurView]);
+    bottomSheet.current?.open(1);
+  }, []);
 
   const onChangeTab1 = useCallback(() => {
     setTabIndex(1);
@@ -53,7 +48,7 @@ const _HomeScreen = ({}) => {
   }, [navigation]);
 
   const onReceive = useCallback(() => {
-    setTest(undefined);
+    bottomSheet.current?.open(1);
   }, []);
 
   const onPressAvatar = useCallback(() => {
@@ -199,6 +194,7 @@ const _HomeScreen = ({}) => {
             </View>
           </View>
         </ScrollView>
+        <BottomSheetCustom header={<></>} body={<Sorting />} ref={bottomSheet} />
       </LinearGradient>
     </View>
   );

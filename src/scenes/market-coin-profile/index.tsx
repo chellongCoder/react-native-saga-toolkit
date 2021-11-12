@@ -10,6 +10,10 @@ import { Platform } from '@theme/platform';
 import { Text } from '@components/text';
 import { COLORS } from '@theme/colors';
 import { ButtonGroup } from './buttonGroup';
+import { ScrollView } from 'react-native';
+import { DropdownSelection } from '@components/dropdown-selection';
+import { Touchable } from '@components/touchable';
+import { Chart } from './Chart';
 
 const _MarketCoinProfileScreen = ({}) => {
   const navigation = useNavigation();
@@ -23,9 +27,9 @@ const _MarketCoinProfileScreen = ({}) => {
     return (
       <View style={{ flex: 1 }}>
         <View style={[commonStyles.row, commonStyles.spaceBetween]}>
-          <View>
+          <Touchable onPress={onBack}>
             <Icon tintColor={COLORS._085A51} icon={Icons.ICON_BACK} />
-          </View>
+          </Touchable>
           <View style={[commonStyles.row]}>
             <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={COLORS._085A51}>
               BTC / USDT
@@ -35,16 +39,73 @@ const _MarketCoinProfileScreen = ({}) => {
             <Icon icon={Icons.ICON_ACTIVE_STAR} />
           </View>
         </View>
-
-        <ButtonGroup />
       </View>
     );
-  }, []);
+  }, [onBack]);
 
   return (
     <View>
       <Topbar renderHeader={renderHeader}>
-        <Text>s</Text>
+        <View flex={1}>
+          <View style={[commonStyles.row, commonStyles.spaceBetween]}>
+            <View mh={Platform.SizeScale(20)} flex={1}>
+              <View style={[commonStyles.row, commonStyles.spaceBetween]}>
+                <Text fontSize={Platform.SizeScale(20)} fontType="fontBold">
+                  32,968.65
+                </Text>
+                <Icon icon={Icons.ICON_INCREASE} size={2} />
+              </View>
+              <View mv={Platform.SizeScale(10)} style={[commonStyles.row, commonStyles.spaceBetween]}>
+                <Text fontSize={Platform.SizeScale(12)} color={COLORS._282828}>
+                  $ 32,968.65
+                </Text>
+                <Text color={COLORS._03CA3B} fontSize={Platform.SizeScale(12)}>
+                  32 %
+                </Text>
+              </View>
+              <View style={[commonStyles.row, commonStyles.spaceBetween]}>
+                <DropdownSelection />
+                <DropdownSelection width={Platform.SizeScale(100)} />
+              </View>
+            </View>
+            <View borderRadius={Platform.SizeScale(20)} backgroundColor={COLORS.WHITE} flex={1}>
+              <View
+                mt={Platform.SizeScale(10)}
+                mh={Platform.SizeScale(20)}
+                style={[commonStyles.row, commonStyles.spaceBetween]}
+              >
+                <Text color={COLORS._282828} fontSize={Platform.SizeScale(10)}>
+                  24h VOL
+                </Text>
+                <Text fontSize={Platform.SizeScale(10)}>1,764,868,339</Text>
+              </View>
+              <View
+                mh={Platform.SizeScale(20)}
+                mv={Platform.SizeScale(10)}
+                style={[commonStyles.row, commonStyles.spaceBetween]}
+              >
+                <Text color={COLORS._282828} fontSize={Platform.SizeScale(10)}>
+                  24h VOL
+                </Text>
+                <Text fontSize={Platform.SizeScale(10)}>1,764,868,339</Text>
+              </View>
+              <View
+                mb={Platform.SizeScale(10)}
+                mh={Platform.SizeScale(20)}
+                style={[commonStyles.row, commonStyles.spaceBetween]}
+              >
+                <Text color={COLORS._282828} fontSize={Platform.SizeScale(10)}>
+                  24h VOL
+                </Text>
+                <Text fontSize={Platform.SizeScale(10)}>1,764,868,339</Text>
+              </View>
+            </View>
+          </View>
+
+          <Chart />
+
+          <ButtonGroup />
+        </View>
       </Topbar>
       {/* <ClickViewUI /> */}
     </View>

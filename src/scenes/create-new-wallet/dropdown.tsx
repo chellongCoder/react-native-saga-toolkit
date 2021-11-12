@@ -1,4 +1,5 @@
 import { Icon } from '@components/common-icon';
+import { DropdownSelection } from '@components/dropdown-selection';
 import { Text } from '@components/text';
 import { Touchable } from '@components/touchable';
 import { View } from '@components/view';
@@ -15,31 +16,7 @@ const _Dropdown = () => {
     setIsShow(!isShow);
   }, [isShow]);
 
-  return (
-    <View>
-      <Touchable onPress={onShowPopup} style={[commonStyles.row, commonStyles.center, styles.choice]}>
-        <Text color={COLORS._085A51} fontSize={Platform.SizeScale(11)}>
-          12
-        </Text>
-        <View position="absolute" right={Platform.SizeScale(5)}>
-          <Icon size={0.8} icon={Icons.ICON_DROPDOWN} />
-        </View>
-      </Touchable>
-
-      {isShow ? (
-        <View style={styles.options}>
-          <Text mv={Platform.SizeScale(5)} color={COLORS.WHITE} fontSize={Platform.SizeScale(11)}>
-            12
-          </Text>
-          <Text mv={Platform.SizeScale(5)} color={COLORS.WHITE} fontSize={Platform.SizeScale(11)}>
-            24
-          </Text>
-        </View>
-      ) : (
-        <></>
-      )}
-    </View>
-  );
+  return <DropdownSelection />;
 };
 
 export const Dropdown = memo(_Dropdown);
