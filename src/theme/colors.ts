@@ -64,6 +64,7 @@ const COLORS = {
   _F42C2C: '#F42C2C',
   _06DE68: '#06DE68',
   _F21515: '#F21515',
+  _1AC1AD: '#1AC1AD',
 };
 
 export { COLORS };

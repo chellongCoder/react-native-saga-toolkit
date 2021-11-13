@@ -15,6 +15,8 @@ import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import { Text } from '@components/text';
 import { Icon } from '@components/common-icon';
+import { langs } from '@scenes/Login/__mocks__/data';
+import { Dropdown } from '@scenes/create-new-wallet/dropdown';
 
 const _LoginPasswordScreen = ({}) => {
   const navigation = useNavigation();
@@ -44,12 +46,9 @@ const _LoginPasswordScreen = ({}) => {
 
   return (
     <LinearGradient useAngle angle={180} colors={COLORS.GREEN_GRADIENT} style={{ flex: 1 }}>
-      <Touchable onPress={lang === 'en' ? switchLocaleToVi : switchLocaleToEn} style={[styles.lang, commonStyles.row]}>
-        <Text color={COLORS.WHITE} mr={Platform.SizeScale(10)}>
-          {lang === 'en' ? 'En' : 'Vi'}
-        </Text>
-        <Icon width={Platform.SizeScale(25)} height={Platform.SizeScale(10)} icon={Icons.ICON_DROP_DOWN} size={2} />
-      </Touchable>
+      <View style={[styles.lang, commonStyles.row]}>
+        <Dropdown data={langs} />
+      </View>
       <View style={styles.logo}>
         <Image resizeMode="contain" style={commonStyles.image} source={Images.LOGO} />
       </View>
@@ -94,7 +93,7 @@ const _LoginPasswordScreen = ({}) => {
           </Touchable>
         )}
         <LinearGradient useAngle angle={93.32} colors={COLORS.PINK_GRADIENT} style={styles.finger}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Icons.FINGERPRINT} />
+          <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_FINGER} />
         </LinearGradient>
       </View>
       <View style={[commonStyles.row, styles.funcGroup]}>

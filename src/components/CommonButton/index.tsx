@@ -3,21 +3,39 @@ import { Touchable } from '@components/touchable';
 import { COLORS } from '@theme/colors';
 import { Platform } from '@theme/platform';
 import React, { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { pickBy, identity } from 'lodash';
 
 type Props = {
   text: string;
-  type: 'gradient' | 'border' | 'full';
+  type: 'gradient' | 'border' | 'full' | 'normal';
   onPress?: () => void;
   width?: number;
+  height?: number;
+  style?: StyleProp<ViewStyle>;
 };
-const _CommonButton = ({ text, type, onPress, width }: Props) => {
+const _CommonButton = ({ text, type, onPress, width, height, style }: Props) => {
   switch (type) {
+    case 'normal':
+      return (
+        <Touchable {...{ onPress }}>
+          <View style={[styles.container, style, pickBy({ width, height }, identity)]}>
+            <Text color={COLORS._1AC1AD} fontSize={Platform.SizeScale(15)}>
+              {text}
+            </Text>
+          </View>
+        </Touchable>
+      );
     case 'gradient':
       return (
         <Touchable {...{ onPress }}>
-          <LinearGradient useAngle angle={137.31} colors={COLORS.BUTTON_GRADIENT} style={styles.container}>
+          <LinearGradient
+            useAngle
+            angle={137.31}
+            colors={COLORS.BUTTON_GRADIENT}
+            style={[styles.container, style, pickBy({ width, height }, identity)]}
+          >
             <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(15)}>
               {text}
             </Text>
@@ -27,7 +45,7 @@ const _CommonButton = ({ text, type, onPress, width }: Props) => {
 
     case 'border':
       return (
-        <Touchable {...{ onPress }} style={styles.container1}>
+        <Touchable {...{ onPress }} style={[styles.container1, style, pickBy({ width, height }, identity)]}>
           <Text fontSize={Platform.SizeScale(15)} color={COLORS.GREEN}>
             {text}
           </Text>
@@ -35,7 +53,7 @@ const _CommonButton = ({ text, type, onPress, width }: Props) => {
       );
     default:
       return (
-        <Touchable {...{ onPress }} style={[styles.container2, { width }]}>
+        <Touchable {...{ onPress }} style={[styles.container2, style, pickBy({ width, height }, identity)]}>
           <Text fontType="fontBold" fontSize={Platform.SizeScale(15)} color={COLORS.WHITE}>
             {text}
           </Text>
@@ -50,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     width: Platform.SizeScale(91),
     height: Platform.SizeScale(37),
-    borderRadius: Platform.SizeScale(20),
+    borderRadius: Platform.SizeScale(30),
     alignItems: 'center',
     justifyContent: 'center',
   },

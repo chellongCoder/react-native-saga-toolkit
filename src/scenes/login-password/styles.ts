@@ -64,7 +64,7 @@ export const useLoginPasswordStyle = () => {
         lang: {
           position: 'absolute',
           right: Platform.SizeScale(20),
-          top: Platform.SizeScale(20),
+          top: Platform.SizeScale(30),
         },
         funcGroup: {
           marginTop: Platform.SizeScale(40),

@@ -13,8 +13,6 @@ export const useAddWalletStyle = () => {
           flex: 1,
         },
         iconButtonAdd: {
-          position: 'absolute',
-          left: Platform.SizeScale(10),
           backgroundColor: COLORS._0F7D70,
           borderRadius: Platform.SizeScale(15),
           padding: Platform.SizeScale(5),
@@ -25,7 +23,11 @@ export const useAddWalletStyle = () => {
           borderRadius: Platform.SizeScale(30),
           marginHorizontal: Platform.SizeScale(10),
         },
+        button: {
+          backgroundColor: COLORS.WHITE,
+          alignSelf: 'center',
+        },
       }),
-    [insets],
+    [],
   );
 };
