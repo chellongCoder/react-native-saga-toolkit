@@ -8,13 +8,15 @@ import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import React, { memo, useCallback, useState } from 'react';
 import { useDropdownSelectionStyle } from './styles';
-import { data } from './__mocks__/data';
 
 export type DropdownSelectionProps = {
   width?: number;
+  data: {
+    name: string;
+  }[];
 };
 
-const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width }) => {
+const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width, data }) => {
   const [isShow, setIsShow] = useState(false);
   const [choosenData, setChoosenData] = useState(data[0].name);
 
@@ -51,12 +53,6 @@ const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width }) => {
               </Touchable>
             );
           })}
-          <Text mv={Platform.SizeScale(5)} color={COLORS.WHITE} fontSize={Platform.SizeScale(11)}>
-            12
-          </Text>
-          <Text mv={Platform.SizeScale(5)} color={COLORS.WHITE} fontSize={Platform.SizeScale(11)}>
-            24
-          </Text>
         </View>
       ) : (
         <></>

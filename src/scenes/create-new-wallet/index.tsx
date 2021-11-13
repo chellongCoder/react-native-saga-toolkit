@@ -15,6 +15,7 @@ import { Icons } from '@theme/icons';
 import { useCopied } from '@hook/use-copied';
 import { Touchable } from '@components/touchable';
 import { ScrollView } from 'react-native';
+import { data } from '@components/dropdown-selection/__mocks__/data';
 
 const _CreateNewWalletScreen = ({}) => {
   const navigation = useNavigation();
@@ -60,7 +61,7 @@ const _CreateNewWalletScreen = ({}) => {
             >
               Passphase *
             </Text>
-            <Dropdown />
+            <Dropdown data={data} />
           </View>
 
           <ParsephaseTable />

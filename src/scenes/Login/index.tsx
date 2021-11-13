@@ -3,7 +3,6 @@ import { View, ScrollView, Image } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import { loginRequest } from '@redux/actions';
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from '@theme/colors';
 import { Images } from '@theme/images';
@@ -14,9 +13,10 @@ import { Touchable } from '@components/touchable';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import { Text } from '@components/text';
-import { Icon } from '@components/common-icon';
 import { navigate } from '@routes/navigationUtils';
 import { ROUTES } from '@routes/constants';
+import { Dropdown } from '@scenes/create-new-wallet/dropdown';
+import { langs } from './__mocks__/data';
 
 const LoginScreen: FC = () => {
   const [t, i18n] = useTranslation();
@@ -45,12 +45,10 @@ const LoginScreen: FC = () => {
 
   return (
     <LinearGradient useAngle angle={180} colors={COLORS.GREEN_GRADIENT} style={{ flex: 1 }}>
-      <Touchable onPress={lang === 'en' ? switchLocaleToVi : switchLocaleToEn} style={[styles.lang, commonStyles.row]}>
-        <Text color={COLORS.WHITE} mr={Platform.SizeScale(10)}>
-          {lang === 'en' ? 'En' : 'Vi'}
-        </Text>
-        <Icon width={Platform.SizeScale(25)} height={Platform.SizeScale(10)} icon={Icons.ICON_DROP_DOWN} size={2} />
-      </Touchable>
+      <View style={[styles.lang, commonStyles.row]}>
+        <Dropdown data={langs} />
+      </View>
+
       <View style={styles.logo}>
         <Image resizeMode="contain" style={commonStyles.image} source={Images.LOGO} />
       </View>
@@ -78,7 +76,7 @@ const LoginScreen: FC = () => {
           </Text>
         </Touchable>
         <LinearGradient useAngle angle={93.32} colors={COLORS.PINK_GRADIENT} style={styles.finger}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Icons.FINGERPRINT} />
+          <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_FINGER} />
         </LinearGradient>
       </View>
       <View style={[commonStyles.row, styles.funcGroup]}>

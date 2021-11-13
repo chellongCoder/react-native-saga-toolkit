@@ -1,22 +1,22 @@
-import { Icon } from '@components/common-icon';
 import { DropdownSelection } from '@components/dropdown-selection';
-import { Text } from '@components/text';
-import { Touchable } from '@components/touchable';
-import { View } from '@components/view';
 import { COLORS } from '@theme/colors';
-import commonStyles from '@theme/commonStyles';
-import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import React, { memo, useCallback, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
-const _Dropdown = () => {
+export type DropdownSelectionProps = {
+  data: {
+    name: string;
+  }[];
+};
+
+const _Dropdown = ({ data }: DropdownSelectionProps) => {
   const [isShow, setIsShow] = useState(false);
   const onShowPopup = useCallback(() => {
     setIsShow(!isShow);
   }, [isShow]);
 
-  return <DropdownSelection />;
+  return <DropdownSelection {...{ data }} />;
 };
 
 export const Dropdown = memo(_Dropdown);
