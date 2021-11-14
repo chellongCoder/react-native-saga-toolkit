@@ -14,14 +14,16 @@ type Props = {
   width?: number;
   height?: number;
   style?: StyleProp<ViewStyle>;
+  textColor?: string;
+  disabled?: boolean;
 };
-const _CommonButton = ({ text, type, onPress, width, height, style }: Props) => {
+const _CommonButton = ({ text, type, onPress, width, height, style, textColor, disabled }: Props) => {
   switch (type) {
     case 'normal':
       return (
-        <Touchable {...{ onPress }}>
+        <Touchable {...{ disabled, onPress }}>
           <View style={[styles.container, style, pickBy({ width, height }, identity)]}>
-            <Text color={COLORS._1AC1AD} fontSize={Platform.SizeScale(15)}>
+            <Text color={textColor ?? COLORS._1AC1AD} fontSize={Platform.SizeScale(15)}>
               {text}
             </Text>
           </View>
@@ -29,14 +31,14 @@ const _CommonButton = ({ text, type, onPress, width, height, style }: Props) => 
       );
     case 'gradient':
       return (
-        <Touchable {...{ onPress }}>
+        <Touchable {...{ disabled, onPress }}>
           <LinearGradient
             useAngle
             angle={137.31}
             colors={COLORS.BUTTON_GRADIENT}
             style={[styles.container, style, pickBy({ width, height }, identity)]}
           >
-            <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(15)}>
+            <Text color={textColor ?? COLORS.WHITE} fontSize={Platform.SizeScale(15)}>
               {text}
             </Text>
           </LinearGradient>
@@ -45,16 +47,16 @@ const _CommonButton = ({ text, type, onPress, width, height, style }: Props) => 
 
     case 'border':
       return (
-        <Touchable {...{ onPress }} style={[styles.container1, style, pickBy({ width, height }, identity)]}>
-          <Text fontSize={Platform.SizeScale(15)} color={COLORS.GREEN}>
+        <Touchable {...{ disabled, onPress }} style={[styles.container1, style, pickBy({ width, height }, identity)]}>
+          <Text fontSize={Platform.SizeScale(15)} color={textColor ?? COLORS.GREEN}>
             {text}
           </Text>
         </Touchable>
       );
     default:
       return (
-        <Touchable {...{ onPress }} style={[styles.container2, style, pickBy({ width, height }, identity)]}>
-          <Text fontType="fontBold" fontSize={Platform.SizeScale(15)} color={COLORS.WHITE}>
+        <Touchable {...{ disabled, onPress }} style={[styles.container2, style, pickBy({ width, height }, identity)]}>
+          <Text fontType="fontBold" fontSize={Platform.SizeScale(15)} color={textColor ?? COLORS.WHITE}>
             {text}
           </Text>
         </Touchable>
