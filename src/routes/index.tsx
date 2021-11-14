@@ -25,6 +25,7 @@ import { CurrencyStack } from './CurrencyStack';
 import { MarketScreen } from '@scenes/market';
 import { MarketStack } from './MarketStack';
 import { SwapScreen } from '@scenes/swap';
+import { PassphraseScreen } from '@scenes/passphase';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -84,7 +85,7 @@ export const MainStackScreen: FC = () => {
         }}
       />
       <MainStack.Screen
-        name={ROUTES.CoinProfile}
+        name={'CoinProfile'}
         component={CoinProfileScreen}
         options={{
           headerShown: false,
@@ -92,7 +93,7 @@ export const MainStackScreen: FC = () => {
         }}
       />
       <MainStack.Screen
-        name={ROUTES.AddWallet}
+        name={'AddWallet'}
         component={AddWalletScreen}
         options={{
           headerShown: false,
@@ -100,8 +101,16 @@ export const MainStackScreen: FC = () => {
         }}
       />
       <MainStack.Screen
-        name={ROUTES.CreateNewWallet}
+        name={'CreateNewWallet'}
         component={CreateNewWalletScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'Passphrase'}
+        component={PassphraseScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

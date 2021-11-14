@@ -32,6 +32,7 @@ export type MainStackT = {
   CoinProfile: undefined;
   AddWallet: undefined;
   CreateNewWallet: undefined;
+  Passphrase: undefined;
   OtherPage: undefined;
   Login: undefined;
   LoginPassword: undefined;

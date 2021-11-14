@@ -65,6 +65,8 @@ const COLORS = {
   _06DE68: '#06DE68',
   _F21515: '#F21515',
   _1AC1AD: '#1AC1AD',
+  _139B8B_30: 'rgba(19, 155, 139, 0.3)',
+  _43D8C6: '#43D8C6',
 };
 
 export { COLORS };

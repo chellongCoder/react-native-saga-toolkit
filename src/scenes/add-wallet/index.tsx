@@ -23,6 +23,10 @@ const _AddWalletScreen: FC = () => {
     navigation.navigate('CreateNewWallet');
   }, [navigation]);
 
+  const onPassphrase = useCallback(() => {
+    navigation.navigate('Passphrase');
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Topbar title="Add Wallet">
@@ -64,9 +68,10 @@ const _AddWalletScreen: FC = () => {
             <CommonButton
               style={styles.button}
               type="normal"
-              text={'Passphase'}
+              text={'Passphrase'}
               width={Platform.SizeScale(343)}
               height={Platform.SizeScale(56)}
+              onPress={onPassphrase}
             />
           </View>
           <View mt={Platform.SizeScale(10)}>

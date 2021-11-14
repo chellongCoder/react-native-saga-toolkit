@@ -88,11 +88,11 @@ const _HomeScreen = ({}) => {
         <ScrollView style={styles.body}>
           <View mv={Platform.SizeScale(20)} style={[commonStyles.row, commonStyles.spaceBetween]}>
             <Icon icon={Icons.ICON_WALLET} size={3} />
-            <View style={[commonStyles.row, { alignItems: 'flex-end' }]}>
+            <View style={[commonStyles.row]}>
               <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={'#085A51'}>
                 Your custom name{' '}
               </Text>
-              <Icon icon={Icons.ICON_DROP_DOWN} size={1.5} />
+              <Icon icon={Icons.ICON_DROP_DOWN} size={1} />
             </View>
             <Icon icon={Icons.ICON_BARCODE} size={3} />
           </View>
@@ -134,9 +134,13 @@ const _HomeScreen = ({}) => {
               </Text>
             </Touchable>
             <View style={[commonStyles.column]}>
-              <Icon icon={Icons.ICON_BUYCOIN} size={5} style={[{ backgroundColor: COLORS._9977FC }, styles.action]} />
+              <Icon
+                icon={Icons.ICON_MARKET_SDG}
+                size={5}
+                style={[{ backgroundColor: COLORS._9977FC }, styles.action]}
+              />
               <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
-                buy coin
+                marketplace
               </Text>
             </View>
           </View>

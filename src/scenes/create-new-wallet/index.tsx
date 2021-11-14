@@ -40,7 +40,6 @@ const _CreateNewWalletScreen = ({}) => {
               Wallet name
             </Text>
             <TextField
-              // onChangeText={setUserName}
               style={styles.inputRateStyle}
               placeholder={'Enter wallet name'}
               inputStyle={styles.inputStyles}

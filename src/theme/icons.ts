@@ -19,6 +19,7 @@ import ICON_FILTER from './../../assets/icons/icon_filter.png'
 import ICON_FINGER from './../../assets/icons/icon_finger.png'
 import ICON_INCREASE from './../../assets/icons/icon_increase.png'
 import ICON_MARKET from './../../assets/icons/icon_market.png'
+import ICON_MARKET_SDG from './../../assets/icons/icon_market_sdg.png'
 import ICON_MENU from './../../assets/icons/icon_menu.png'
 import ICON_MK from './../../assets/icons/icon_mk.png'
 import ICON_MK_UNFOCUS from './../../assets/icons/icon_mk_unfocus.png'
@@ -26,8 +27,10 @@ import ICON_MORE from './../../assets/icons/icon_more.png'
 import ICON_NEW from './../../assets/icons/icon_new.png'
 import ICON_PLUS from './../../assets/icons/icon_plus.png'
 import ICON_QR from './../../assets/icons/icon_qr.png'
+import ICON_QUESTION from './../../assets/icons/icon_question.png'
 import ICON_RECEIVE from './../../assets/icons/icon_receive.png'
 import ICON_RESTORE from './../../assets/icons/icon_restore.png'
+import ICON_SCAN from './../../assets/icons/icon_scan.png'
 import ICON_SDG from './../../assets/icons/icon_sdg.png'
 import ICON_SEARCH from './../../assets/icons/icon_search.png'
 import ICON_SEND from './../../assets/icons/icon_send.png'
@@ -67,6 +70,7 @@ ICON_FILTER,
 ICON_FINGER,
 ICON_INCREASE,
 ICON_MARKET,
+ICON_MARKET_SDG,
 ICON_MENU,
 ICON_MK,
 ICON_MK_UNFOCUS,
@@ -74,8 +78,10 @@ ICON_MORE,
 ICON_NEW,
 ICON_PLUS,
 ICON_QR,
+ICON_QUESTION,
 ICON_RECEIVE,
 ICON_RESTORE,
+ICON_SCAN,
 ICON_SDG,
 ICON_SEARCH,
 ICON_SEND,
