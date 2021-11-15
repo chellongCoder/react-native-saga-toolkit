@@ -1,5 +1,5 @@
 import React, { forwardRef, memo, useImperativeHandle, useRef } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { useBottomSheetStyle } from './styles';
 import BottomSheet from 'react-native-bottomsheet-reanimated';
 
@@ -33,7 +33,7 @@ const _BottomSheetCustom: React.FC<BottomSheetProps> = forwardRef(({ header, bod
       bottomSheerColor="#FFFFFF"
       // backDropColor="red"
       ref={bottomSheet}
-      initialPosition={'50%'}
+      initialPosition={'0%'}
       snapPoints={snapPoints}
       isBackDrop={true}
       isBackDropDismissByPress={true}

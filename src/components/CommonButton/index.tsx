@@ -9,7 +9,7 @@ import { pickBy, identity } from 'lodash';
 
 type Props = {
   text: string;
-  type: 'gradient' | 'border' | 'full' | 'normal';
+  type?: 'gradient' | 'border' | 'full' | 'normal';
   onPress?: () => void;
   width?: number;
   height?: number;

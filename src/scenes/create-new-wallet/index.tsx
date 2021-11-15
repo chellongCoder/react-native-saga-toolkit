@@ -16,15 +16,22 @@ import { useCopied } from '@hook/use-copied';
 import { Touchable } from '@components/touchable';
 import { ScrollView } from 'react-native';
 import { data } from '@components/dropdown-selection/__mocks__/data';
+import { useBottomSheet } from '@hook/use-bottom-sheet';
+import SelfGeneratedPassphrase from './SelfGeneratedPassphrase';
 
 const _CreateNewWalletScreen = ({}) => {
   const navigation = useNavigation();
   const styles = useCreateNewWalletStyle();
   const copy = useCopied();
+  const bottomSheet = useBottomSheet();
 
   const onCopy = useCallback(() => {
     copy.onShow('asasd');
   }, [copy]);
+
+  const onShowPassPhrase = useCallback(() => {
+    bottomSheet.onShow(<SelfGeneratedPassphrase />);
+  }, [bottomSheet]);
 
   return (
     <View style={styles.container}>
@@ -81,9 +88,11 @@ const _CreateNewWalletScreen = ({}) => {
             </View>
           </View>
 
-          <View alignItems="center" mt={Platform.SizeScale(20)}>
-            <Text color={COLORS._13A6D4}>Self-generated Passphrase</Text>
-          </View>
+          <Touchable onPress={onShowPassPhrase}>
+            <View alignItems="center" mt={Platform.SizeScale(20)}>
+              <Text color={COLORS._13A6D4}>Self-generated Passphrase</Text>
+            </View>
+          </Touchable>
 
           <View mt={Platform.SizeScale(20)} mh={Platform.SizeScale(20)} style={styles.note}>
             <View style={[commonStyles.row]}>
