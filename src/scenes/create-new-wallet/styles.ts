@@ -44,6 +44,10 @@ export const useCreateNewWalletStyle = () => {
           paddingVertical: Platform.SizeScale(10),
           borderRadius: Platform.SizeScale(20),
         },
+        button: {
+          alignSelf: 'center',
+          marginBottom: Platform.SizeScale(20),
+        },
       }),
     [insets],
   );
