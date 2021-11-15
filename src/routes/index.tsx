@@ -27,6 +27,7 @@ import { MarketStack } from './MarketStack';
 import { SwapScreen } from '@scenes/swap';
 import { PassphraseScreen } from '@scenes/passphase';
 import { WalletDetailScreen } from '@scenes/wallet-detail';
+import { PassphraseVerificationScreen } from '@scenes/passphrase-verification';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -104,6 +105,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'CreateNewWallet'}
         component={CreateNewWalletScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'PassphraseVerification'}
+        component={PassphraseVerificationScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

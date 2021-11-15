@@ -9,7 +9,7 @@ import { pickBy, identity } from 'lodash';
 
 type Props = {
   text: string;
-  type?: 'gradient' | 'border' | 'full' | 'normal';
+  type?: 'gradient' | 'gradient2' | 'border' | 'full' | 'normal';
   onPress?: () => void;
   width?: number;
   height?: number;
@@ -38,7 +38,23 @@ const _CommonButton = ({ text, type, onPress, width, height, style, textColor, d
             colors={COLORS.BUTTON_GRADIENT}
             style={[styles.container, style, pickBy({ width, height }, identity)]}
           >
-            <Text color={textColor ?? COLORS.WHITE} fontSize={Platform.SizeScale(15)}>
+            <Text color={textColor ?? COLORS.WHITE} fontType="fontBold" fontSize={Platform.SizeScale(15)}>
+              {text}
+            </Text>
+          </LinearGradient>
+        </Touchable>
+      );
+
+    case 'gradient2':
+      return (
+        <Touchable {...{ disabled, onPress }}>
+          <LinearGradient
+            useAngle
+            angle={137.31}
+            colors={COLORS.MINT_GREEN_GRADIENT}
+            style={[styles.container, style, pickBy({ width, height }, identity)]}
+          >
+            <Text color={textColor ?? COLORS.WHITE} fontType="fontBold" fontSize={Platform.SizeScale(15)}>
               {text}
             </Text>
           </LinearGradient>

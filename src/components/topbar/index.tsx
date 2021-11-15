@@ -40,7 +40,7 @@ const _Topbar = ({ children, title, renderHeader }: Props) => {
               <Touchable onPress={onBack} style={styles.iconBack}>
                 <Icon tintColor={COLORS._085A51} icon={Icons.ICON_BACK} size={2} />
               </Touchable>
-              <Text color={COLORS._085A51} fontSize={Platform.SizeScale(18)}>
+              <Text fontType="fontBold" color={COLORS._085A51} fontSize={Platform.SizeScale(18)}>
                 {title}
               </Text>
             </>

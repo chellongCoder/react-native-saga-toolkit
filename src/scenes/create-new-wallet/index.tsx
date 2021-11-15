@@ -18,9 +18,12 @@ import { ScrollView } from 'react-native';
 import { data } from '@components/dropdown-selection/__mocks__/data';
 import { useBottomSheet } from '@hook/use-bottom-sheet';
 import SelfGeneratedPassphrase from './SelfGeneratedPassphrase';
+import { CommonButton } from '@components/CommonButton';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ScreenRouteT } from '@routes/types';
 
 const _CreateNewWalletScreen = ({}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'CreateNewWallet'>>();
   const styles = useCreateNewWalletStyle();
   const copy = useCopied();
   const bottomSheet = useBottomSheet();
@@ -28,6 +31,10 @@ const _CreateNewWalletScreen = ({}) => {
   const onCopy = useCallback(() => {
     copy.onShow('asasd');
   }, [copy]);
+
+  const onNext = useCallback(() => {
+    navigation.navigate('PassphraseVerification');
+  }, [navigation]);
 
   const onShowPassPhrase = useCallback(() => {
     bottomSheet.onShow(<SelfGeneratedPassphrase />);
@@ -112,6 +119,17 @@ const _CreateNewWalletScreen = ({}) => {
             </View>
           </View>
         </ScrollView>
+        <View mt={Platform.SizeScale(10)}>
+          <CommonButton
+            style={styles.button}
+            type="gradient2"
+            text={'Next'}
+            width={Platform.SizeScale(343)}
+            height={Platform.SizeScale(47)}
+            textColor={COLORS.BLACK}
+            onPress={onNext}
+          />
+        </View>
       </Topbar>
     </View>
   );
