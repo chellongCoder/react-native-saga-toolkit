@@ -40,6 +40,7 @@ export type MainStackT = {
   CurrencyStack: NavigatorScreenParams<CurrencyStackT> | undefined;
   MarketStack: NavigatorScreenParams<MarketStackT> | undefined;
   FeePerByte: undefined;
+  WalletDetail: undefined;
 };
 export type ScreenKeyT = keyof (BottomTabT & RootStackT & MainStackT);
 export type ScreenRouteT = BottomTabT & RootStackT & MainStackT & CurrencyStackT & MarketStackT;

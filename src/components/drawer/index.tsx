@@ -21,30 +21,36 @@ const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
     navigation.navigate(ROUTES.AddWallet);
   }, [navigation]);
 
+  const onWalletDetail = useCallback(() => {
+    navigation.navigate(ROUTES.WalletDetail);
+  }, [navigation]);
+
   const renderItemContent = useCallback(
     item => {
       const backgroundColor = item.isSelected ? COLORS._04322C : COLORS._26BBA9;
       return (
-        <View style={[{ backgroundColor }, commonStyles.row, commonStyles.spaceBetween, styles.itemContainer]}>
-          <View style={[commonStyles.row]}>
-            <Icon icon={Icons.ICON_AVATAR} size={4} />
-            <View ml={Platform.SizeScale(10)}>
-              <Text fontSize={Platform.SizeScale(15)} color={COLORS.WHITE}>
-                {item.name}
-              </Text>
-              <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(15)} color={COLORS.WHITE}>
-                {item.price}
-              </Text>
+        <Touchable onPress={onWalletDetail}>
+          <View style={[{ backgroundColor }, commonStyles.row, commonStyles.spaceBetween, styles.itemContainer]}>
+            <View style={[commonStyles.row]}>
+              <Icon icon={Icons.ICON_AVATAR} size={4} />
+              <View ml={Platform.SizeScale(10)}>
+                <Text fontSize={Platform.SizeScale(15)} color={COLORS.WHITE}>
+                  {item.name}
+                </Text>
+                <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(15)} color={COLORS.WHITE}>
+                  {item.price}
+                </Text>
+              </View>
+            </View>
+            <View>
+              {item.isSelected ? (
+                <Icon icon={Icons.ICON_THREEDOT} size={2} />
+              ) : (
+                <Icon tintColor={COLORS._04322C} icon={Icons.ICON_THREEDOT} size={2} />
+              )}
             </View>
           </View>
-          <View>
-            {item.isSelected ? (
-              <Icon icon={Icons.ICON_THREEDOT} size={2} />
-            ) : (
-              <Icon tintColor={COLORS._04322C} icon={Icons.ICON_THREEDOT} size={2} />
-            )}
-          </View>
-        </View>
+        </Touchable>
       );
     },
     [styles.itemContainer],
