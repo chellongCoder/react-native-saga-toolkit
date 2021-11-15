@@ -25,6 +25,7 @@ import ICON_MK from './../../assets/icons/icon_mk.png'
 import ICON_MK_UNFOCUS from './../../assets/icons/icon_mk_unfocus.png'
 import ICON_MORE from './../../assets/icons/icon_more.png'
 import ICON_NEW from './../../assets/icons/icon_new.png'
+import ICON_PENCIL from './../../assets/icons/icon_pencil.png'
 import ICON_PLUS from './../../assets/icons/icon_plus.png'
 import ICON_QR from './../../assets/icons/icon_qr.png'
 import ICON_QUESTION from './../../assets/icons/icon_question.png'
@@ -76,6 +77,7 @@ ICON_MK,
 ICON_MK_UNFOCUS,
 ICON_MORE,
 ICON_NEW,
+ICON_PENCIL,
 ICON_PLUS,
 ICON_QR,
 ICON_QUESTION,

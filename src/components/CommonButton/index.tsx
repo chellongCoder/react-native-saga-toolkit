@@ -23,7 +23,7 @@ const _CommonButton = ({ text, type, onPress, width, height, style, textColor, d
       return (
         <Touchable {...{ disabled, onPress }}>
           <View style={[styles.container, style, pickBy({ width, height }, identity)]}>
-            <Text color={textColor ?? COLORS._1AC1AD} fontSize={Platform.SizeScale(15)}>
+            <Text fontType="fontBold" color={textColor ?? COLORS._1AC1AD} fontSize={Platform.SizeScale(15)}>
               {text}
             </Text>
           </View>

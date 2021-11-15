@@ -5,5 +5,6 @@ export enum ROUTES {
   BottomTab = 'BottomTab',
   Drawer = 'Drawer',
   AddWallet = 'AddWallet',
+  WalletDetail = 'WalletDetail',
   CreateNewWallet = 'CreateNewWallet',
 }
