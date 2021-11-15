@@ -34,6 +34,7 @@ import BlurViewProvider from '@provider/blur-view';
 import CopiedProvider from '@provider/copied';
 import codePush from 'react-native-code-push';
 import { ErrorBoundary } from '@components/error-boundary';
+import BottomSheetProvider from '@provider/bottom-sheet';
 
 enableScreens();
 
@@ -118,12 +119,14 @@ const App: FC = () => {
                 <CopiedProvider>
                   <SafeAreaProvider>
                     <BlurViewProvider>
-                      <NavigationContainer ref={navigationRef}>
-                        <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
-                        <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
-                          <RootStackScreen />
-                        </Layout>
-                      </NavigationContainer>
+                      <BottomSheetProvider>
+                        <NavigationContainer ref={navigationRef}>
+                          <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
+                          <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
+                            <RootStackScreen />
+                          </Layout>
+                        </NavigationContainer>
+                      </BottomSheetProvider>
                     </BlurViewProvider>
                   </SafeAreaProvider>
                 </CopiedProvider>
