@@ -17,7 +17,7 @@ const CustomTabar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }: 
   const tabFocus = [
     <Icon size={3} icon={Icons.ICON_WALLET} />,
     <Icon size={3} icon={Icons.ICON_MK} />,
-    <Icon size={3} icon={Icons.ICON_BROSWER} />,
+    <Icon size={3} icon={Icons.ICON_BROSWER_FOCUS} />,
     <Icon size={3} icon={Icons.ICON_DEX} />,
     <Icon size={3} icon={Icons.ICON_SETTING} />,
   ];

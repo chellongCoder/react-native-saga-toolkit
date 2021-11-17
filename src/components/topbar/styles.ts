@@ -4,7 +4,7 @@ import React, { memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export const useTopbarStyle = () => {
+export const useTopbarStyle = (hasHeader: boolean) => {
   const insets = useSafeAreaInsets();
   return useMemo(
     () =>
@@ -19,7 +19,7 @@ export const useTopbarStyle = () => {
         body: {
           backgroundColor: COLORS.BACKGROUND,
           flex: 1,
-          marginTop: insets.top,
+          marginTop: hasHeader ? 0 : insets.top,
           borderTopLeftRadius: Platform.SizeScale(30),
           borderTopRightRadius: Platform.SizeScale(30),
           overflow: 'hidden',

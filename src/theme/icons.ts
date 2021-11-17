@@ -5,6 +5,7 @@ import ICON_AVATAR from './../../assets/icons/icon_avatar.png'
 import ICON_BACK from './../../assets/icons/icon_back.png'
 import ICON_BARCODE from './../../assets/icons/icon_barcode.png'
 import ICON_BROSWER from './../../assets/icons/icon_broswer.png'
+import ICON_BROSWER_FOCUS from './../../assets/icons/icon_broswer_focus.png'
 import ICON_BUYCOIN from './../../assets/icons/icon_buycoin.png'
 import ICON_CHECKBOX from './../../assets/icons/icon_checkbox.png'
 import ICON_CLOSEEYE from './../../assets/icons/icon_closeeye.png'
@@ -37,6 +38,7 @@ import ICON_SEARCH from './../../assets/icons/icon_search.png'
 import ICON_SEND from './../../assets/icons/icon_send.png'
 import ICON_SETTING from './../../assets/icons/icon_setting.png'
 import ICON_SETTING_UNFOCUS from './../../assets/icons/icon_setting_unfocus.png'
+import ICON_SHARE from './../../assets/icons/icon_share.png'
 import ICON_SUPPORT from './../../assets/icons/icon_support.png'
 import ICON_THREE_DOT_GREEN from './../../assets/icons/icon_three_dot_green.png'
 import ICON_THREEDOT from './../../assets/icons/icon_threedot.png'
@@ -57,6 +59,7 @@ ICON_AVATAR,
 ICON_BACK,
 ICON_BARCODE,
 ICON_BROSWER,
+ICON_BROSWER_FOCUS,
 ICON_BUYCOIN,
 ICON_CHECKBOX,
 ICON_CLOSEEYE,
@@ -89,6 +92,7 @@ ICON_SEARCH,
 ICON_SEND,
 ICON_SETTING,
 ICON_SETTING_UNFOCUS,
+ICON_SHARE,
 ICON_SUPPORT,
 ICON_THREE_DOT_GREEN,
 ICON_THREEDOT,

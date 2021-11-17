@@ -1,3 +1,5 @@
+import Color from 'color';
+
 const COLORS = {
   TORQUISE: '#1abc9c',
   EMERALD: '#2ecc71',
@@ -68,6 +70,10 @@ const COLORS = {
   _139B8B_30: 'rgba(19, 155, 139, 0.3)',
   _43D8C6: '#43D8C6',
   _DA0101: '#DA0101',
+  _0F9888: '#0F9888',
+  _F4F5F7: '#F4F5F7',
+  _737373: '#737373',
+  customOpacity: (color: string, opacity: number) => Color(color, 'hex').alpha(opacity).toString(),
 };
 
 export { COLORS };

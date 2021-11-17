@@ -22,6 +22,7 @@ import { Sorting } from './Sorting';
 import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomSheetCustom } from '@components/bottom-sheet';
+import { TabBorderradius } from '@components/tab-borderradius';
 
 const _HomeScreen = ({}) => {
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
@@ -48,8 +49,8 @@ const _HomeScreen = ({}) => {
   }, [navigation]);
 
   const onReceive = useCallback(() => {
-    bottomSheet.current?.open(1);
-  }, []);
+    navigation.navigate('Receive');
+  }, [navigation]);
 
   const onPressAvatar = useCallback(() => {
     refMenu.current?.onPressAvatar?.();
@@ -140,7 +141,7 @@ const _HomeScreen = ({}) => {
                 style={[{ backgroundColor: COLORS._9977FC }, styles.action]}
               />
               <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
-                marketplace
+                market
               </Text>
             </View>
           </View>
@@ -188,14 +189,21 @@ const _HomeScreen = ({}) => {
               </View>
             </View>
 
-            <View style={styles.list}>
-              <ListFullOption
-                listFooterComponent={<View style={{ height: Platform.SizeScale(150) }} />}
-                data={assets}
-                renderSubItem={renderItemContent}
-                showsVerticalScrollIndicator={false}
-              />
-            </View>
+            {tabIndex === 1 && (
+              <View style={styles.list}>
+                <ListFullOption
+                  listFooterComponent={<View style={{ height: Platform.SizeScale(150) }} />}
+                  data={assets}
+                  renderSubItem={renderItemContent}
+                  showsVerticalScrollIndicator={false}
+                />
+              </View>
+            )}
+            {tabIndex === 2 && (
+              <View style={[styles.list, { alignItems: 'center' }]}>
+                <TabBorderradius unActiveTabTextColor={COLORS.WHITE} />
+              </View>
+            )}
           </View>
         </ScrollView>
         <BottomSheetCustom header={<></>} body={<Sorting />} ref={bottomSheet} />

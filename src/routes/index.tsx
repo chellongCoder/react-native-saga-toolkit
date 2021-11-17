@@ -28,6 +28,8 @@ import { SwapScreen } from '@scenes/swap';
 import { PassphraseScreen } from '@scenes/passphase';
 import { WalletDetailScreen } from '@scenes/wallet-detail';
 import { PassphraseVerificationScreen } from '@scenes/passphrase-verification';
+import { BrowserScreen } from '@scenes/browser';
+import { ReceiveScreen } from '@scenes/receive';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -41,7 +43,7 @@ export const BottomTab: FC = () => {
     <Tab.Navigator {...{ tabBar }} tabBarOptions={{}}>
       <Tab.Screen name="Wallet" component={HomeScreen} />
       <Tab.Screen name="Market" component={MarketScreen} />
-      <Tab.Screen name="Home" component={WalletPage} />
+      <Tab.Screen name="Home" component={BrowserScreen} />
       <Tab.Screen name="Exchange" component={SwapScreen} />
       <Tab.Screen name="Setting" component={OtherPage} />
     </Tab.Navigator>
@@ -137,6 +139,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'Send'}
         component={SendScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'Receive'}
+        component={ReceiveScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

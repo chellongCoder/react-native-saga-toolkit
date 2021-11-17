@@ -15,9 +15,10 @@ interface Props {
   children: React.ReactNode;
   title?: string;
   renderHeader?: () => React.ReactChild;
+  header?: React.ReactNode;
 }
-const _Topbar = ({ children, title, renderHeader }: Props) => {
-  const styles = useTopbarStyle();
+const _Topbar = ({ children, title, renderHeader, header }: Props) => {
+  const styles = useTopbarStyle(!!header);
   const navigation = useNavigation();
 
   const onBack = useCallback(() => {
@@ -26,6 +27,7 @@ const _Topbar = ({ children, title, renderHeader }: Props) => {
 
   return (
     <LinearGradient useAngle angle={108.66} colors={COLORS.DRAWER_GRADIENT} style={styles.container}>
+      {header}
       <View style={styles.body}>
         <View
           mb={Platform.SizeScale(10)}
