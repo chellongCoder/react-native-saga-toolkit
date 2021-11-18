@@ -23,6 +23,10 @@ export const usePassphraseVerificationStyle = () => {
           backgroundColor: COLORS._139B8B_30,
           alignSelf: 'center',
         },
+        like: {
+          width: Platform.SizeScale(123),
+          height: Platform.SizeScale(94),
+        },
       }),
     [insets],
   );

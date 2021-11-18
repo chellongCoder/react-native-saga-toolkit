@@ -21,16 +21,31 @@ import SelfGeneratedPassphrase from './SelfGeneratedPassphrase';
 import { CommonButton } from '@components/CommonButton';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ScreenRouteT } from '@routes/types';
+import { useBlurView } from '@hook/use-blur-view';
+import Qr from './qr';
 
 const _CreateNewWalletScreen = ({}) => {
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'CreateNewWallet'>>();
   const styles = useCreateNewWalletStyle();
   const copy = useCopied();
   const bottomSheet = useBottomSheet();
+  const blurView = useBlurView();
 
   const onCopy = useCallback(() => {
     copy.onShow('asasd');
   }, [copy]);
+
+  const onShowQr = useCallback(() => {
+    blurView.onShow(
+      <Qr />,
+      {
+        right: Platform.SizeScale(40),
+        top: Platform.SizeScale(50),
+      },
+
+      'zoom',
+    );
+  }, [blurView]);
 
   const onNext = useCallback(() => {
     navigation.navigate('PassphraseVerification');
@@ -87,12 +102,14 @@ const _CreateNewWalletScreen = ({}) => {
                 </Text>
               </View>
             </Touchable>
-            <View style={[commonStyles.row, styles.action]}>
-              <Icon size={1.5} icon={Icons.ICON_QR} />
-              <Text ml={Platform.SizeScale(10)} fontSize={Platform.SizeScale(12)}>
-                QR Code
-              </Text>
-            </View>
+            <Touchable onPress={onShowQr}>
+              <View style={[commonStyles.row, styles.action]}>
+                <Icon size={1.5} icon={Icons.ICON_QR} />
+                <Text ml={Platform.SizeScale(10)} fontSize={Platform.SizeScale(12)}>
+                  QR Code
+                </Text>
+              </View>
+            </Touchable>
           </View>
 
           <Touchable onPress={onShowPassPhrase}>

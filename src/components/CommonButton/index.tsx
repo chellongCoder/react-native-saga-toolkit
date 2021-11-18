@@ -6,6 +6,8 @@ import React, { memo } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { pickBy, identity } from 'lodash';
+import { Icon } from '@components/common-icon';
+import { Icons } from '@theme/icons';
 
 type Props = {
   text: string;
@@ -16,8 +18,9 @@ type Props = {
   style?: StyleProp<ViewStyle>;
   textColor?: string;
   disabled?: boolean;
+  icon?: React.ReactNode;
 };
-const _CommonButton = ({ text, type, onPress, width, height, style, textColor, disabled }: Props) => {
+const _CommonButton = ({ text, type, onPress, width, height, style, textColor, disabled, icon }: Props) => {
   switch (type) {
     case 'normal':
       return (
@@ -64,6 +67,7 @@ const _CommonButton = ({ text, type, onPress, width, height, style, textColor, d
     case 'border':
       return (
         <Touchable {...{ disabled, onPress }} style={[styles.container1, style, pickBy({ width, height }, identity)]}>
+          {icon}
           <Text fontSize={Platform.SizeScale(15)} color={textColor ?? COLORS.GREEN}>
             {text}
           </Text>
@@ -98,6 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: COLORS.GREEN,
+    flexDirection: 'row',
   },
   container2: {
     width: Platform.SizeScale(91),
