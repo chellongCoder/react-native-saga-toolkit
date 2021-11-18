@@ -45,7 +45,7 @@ const _BlurView = ({
         {component}
         <Touchable onPress={onHide} style={commonStyles.absolute}>
           <Blur
-            blurType="light"
+            blurType="extraDark"
             style={commonStyles.absolute}
             blurAmount={2}
             blurRadius={20}

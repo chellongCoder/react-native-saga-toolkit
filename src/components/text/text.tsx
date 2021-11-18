@@ -24,6 +24,7 @@ const Text = ({
   mt,
   mh,
   mv,
+  textAlign,
   ...other
 }: ParsedTextProps) => {
   const onShouldStartLoadWithRequest = useCallback(req => {
@@ -44,6 +45,7 @@ const Text = ({
       { color: isPress ? activeColor : color, textTransform },
       { marginLeft: ml, marginRight: mr, marginTop: mt, marginBottom: mb, marginHorizontal: mh, marginVertical: mv },
       { fontSize },
+      { textAlign },
       style,
       { fontFamily: isPress ? fonts.fontBold : fonts[fontType] },
     ]);

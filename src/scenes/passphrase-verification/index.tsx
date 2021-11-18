@@ -10,14 +10,55 @@ import { COLORS } from '@theme/colors';
 import { CommonButton } from '@components/CommonButton';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ScreenRouteT } from '@routes/types';
+import { useBlurView } from '@hook/use-blur-view';
+import { CommonCard } from '@components/common-card';
+import { LazyImage } from '@components/lazy-image';
+import { Images } from '@theme/images';
+import { Text } from '@components/text';
 
 const _PassphraseVerificationScreen = ({}) => {
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'PassphraseVerification'>>();
   const styles = usePassphraseVerificationStyle();
+  const blurView = useBlurView();
+
+  const onShowComplete = useCallback(() => {
+    blurView.onShow(
+      <CommonCard title="COMPLETED" width={Platform.SizeScale(310)}>
+        <View mt={Platform.SizeScale(20)} alignItems="center">
+          <LazyImage resizeMode="contain" source={Images.IMAGE_LIKE} style={styles.like} />
+        </View>
+        <Text
+          mv={Platform.SizeScale(20)}
+          mh={Platform.SizeScale(20)}
+          textAlign="center"
+          fontSize={Platform.SizeScale(18)}
+        >
+          Welcome to SDG Wallet, Your wallet has been created!
+        </Text>
+        <View mv={Platform.SizeScale(20)} alignItems="center">
+          <CommonButton
+            onPress={() => {
+              blurView.onHide();
+            }}
+            width={Platform.SizeScale(290)}
+            type="full"
+            text="Done"
+          />
+        </View>
+      </CommonCard>,
+      {
+        right: Platform.SizeScale(30),
+        top: Platform.SizeScale(100),
+      },
+
+      'zoom',
+    );
+  }, [blurView, styles.like]);
 
   const onComplete = useCallback(() => {
     navigation.replace('Drawer');
-  }, [navigation]);
+    onShowComplete();
+  }, [navigation, onShowComplete]);
 
   return (
     <View>

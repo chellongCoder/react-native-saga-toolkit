@@ -32,6 +32,7 @@ import ICON_QR from './../../assets/icons/icon_qr.png'
 import ICON_QUESTION from './../../assets/icons/icon_question.png'
 import ICON_RECEIVE from './../../assets/icons/icon_receive.png'
 import ICON_RESTORE from './../../assets/icons/icon_restore.png'
+import ICON_SAVE from './../../assets/icons/icon_save.png'
 import ICON_SCAN from './../../assets/icons/icon_scan.png'
 import ICON_SDG from './../../assets/icons/icon_sdg.png'
 import ICON_SEARCH from './../../assets/icons/icon_search.png'
@@ -86,6 +87,7 @@ ICON_QR,
 ICON_QUESTION,
 ICON_RECEIVE,
 ICON_RESTORE,
+ICON_SAVE,
 ICON_SCAN,
 ICON_SDG,
 ICON_SEARCH,
