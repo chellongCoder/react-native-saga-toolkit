@@ -56,6 +56,10 @@ const _HomeScreen = ({}) => {
     refMenu.current?.onPressAvatar?.();
   }, []);
 
+  const onMarket = useCallback(() => {
+    navigation.navigate('Buy');
+  }, [navigation]);
+
   const renderItemContent = useCallback(() => {
     return (
       <View mh={Platform.SizeScale(20)} style={[commonStyles.row, styles.item]}>
@@ -134,16 +138,18 @@ const _HomeScreen = ({}) => {
                 receive
               </Text>
             </Touchable>
-            <View style={[commonStyles.column]}>
-              <Icon
-                icon={Icons.ICON_MARKET_SDG}
-                size={5}
-                style={[{ backgroundColor: COLORS._9977FC }, styles.action]}
-              />
-              <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
-                market
-              </Text>
-            </View>
+            <Touchable onPress={onMarket}>
+              <View style={[commonStyles.column]}>
+                <Icon
+                  icon={Icons.ICON_MARKET_SDG}
+                  size={5}
+                  style={[{ backgroundColor: COLORS._9977FC }, styles.action]}
+                />
+                <Text mt={Platform.SizeScale(5)} fontSize={Platform.SizeScale(12)}>
+                  market
+                </Text>
+              </View>
+            </Touchable>
           </View>
 
           <View style={styles.tablist}>
