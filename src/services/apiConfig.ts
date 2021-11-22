@@ -1,3 +1,5 @@
 export enum API_CONFIG {
-  LOGIN = 'oauth2/token',
+  LOGIN = 'login',
+  MNEMONIC = 'wallets/mnemonic',
+  WALLETS = 'wallets',
 }

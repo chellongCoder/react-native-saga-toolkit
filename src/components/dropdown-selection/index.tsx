@@ -2,11 +2,13 @@ import { Icon } from '@components/common-icon';
 import { Text } from '@components/text';
 import { Touchable } from '@components/touchable';
 import { View } from '@components/view';
+import { saveLengthMnemonic } from '@redux/wallet/actions';
 import { COLORS } from '@theme/colors';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useDropdownSelectionStyle } from './styles';
 
 export type DropdownSelectionProps = {
@@ -19,7 +21,7 @@ export type DropdownSelectionProps = {
 const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width, data }) => {
   const [isShow, setIsShow] = useState(false);
   const [choosenData, setChoosenData] = useState(data[0].name);
-
+  const dispatch = useDispatch();
   const onShowPopup = useCallback(() => {
     setIsShow(!isShow);
   }, [isShow]);
@@ -30,6 +32,10 @@ const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width, data }) =
   }, []);
 
   const styles = useDropdownSelectionStyle(width);
+
+  useEffect(() => {
+    dispatch(saveLengthMnemonic(+choosenData));
+  }, [choosenData, dispatch]);
 
   return (
     <View>
@@ -46,7 +52,7 @@ const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width, data }) =
         <View style={styles.options}>
           {data.map((value, index) => {
             return (
-              <Touchable onPress={() => onChoice(value.name)}>
+              <Touchable key={index} onPress={() => onChoice(value.name)}>
                 <Text mv={Platform.SizeScale(5)} color={COLORS.WHITE} fontSize={Platform.SizeScale(11)}>
                   {value.name}
                 </Text>

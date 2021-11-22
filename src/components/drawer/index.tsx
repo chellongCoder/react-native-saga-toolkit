@@ -53,7 +53,7 @@ const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
         </Touchable>
       );
     },
-    [styles.itemContainer],
+    [onWalletDetail, styles.itemContainer],
   );
   return (
     <LinearGradient useAngle angle={108.66} colors={COLORS.DRAWER_GRADIENT} style={styles.container}>

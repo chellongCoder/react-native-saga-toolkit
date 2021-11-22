@@ -2,6 +2,7 @@ import { Icon } from '@components/common-icon';
 import { CommonMenu } from '@components/common-menu';
 import { Touchable } from '@components/touchable';
 import { useBlurView } from '@hook/use-blur-view';
+import { DrawerActionHelpers, DrawerActions, ParamListBase, useNavigation } from '@react-navigation/native';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Images } from '@theme/images';
@@ -16,17 +17,19 @@ export interface ICommonHeader {
 const _CommonHeader = ({ _onPressAvatar }: ICommonHeader) => {
   const styles = useCommonHeaderStyle();
   const blurView = useBlurView();
+  const navigation = useNavigation();
 
   const onShowMenu = useCallback(() => {
-    blurView.onShow(
-      <CommonMenu />,
-      {
-        right: Platform.SizeScale(10),
-        top: Platform.SizeScale(50),
-      },
-      'zoom',
-    );
-  }, [blurView]);
+    // blurView.onShow(
+    //   <CommonMenu />,
+    //   {
+    //     right: Platform.SizeScale(10),
+    //     top: Platform.SizeScale(50),
+    //   },
+    //   'zoom',
+    // );
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  }, [navigation]);
 
   const onPressAvatar = useCallback(() => {
     _onPressAvatar?.();

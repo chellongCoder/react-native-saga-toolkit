@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useCreateNewWalletStyle } from './styles';
 import { Topbar } from '@components/topbar';
@@ -23,21 +23,31 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { ScreenRouteT } from '@routes/types';
 import { useBlurView } from '@hook/use-blur-view';
 import Qr from './qr';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeNameWallet, getPassphraseRequest } from '@redux/wallet/actions';
+import { RootState } from '@redux/reducers';
+import { mapDataTablePassphrase } from '@tools/wallet.helper';
 
 const _CreateNewWalletScreen = ({}) => {
+  const { mnemonic, lengthMnemonic, walletName } = useSelector((state: RootState) => state.wallet);
+
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'CreateNewWallet'>>();
   const styles = useCreateNewWalletStyle();
   const copy = useCopied();
   const bottomSheet = useBottomSheet();
   const blurView = useBlurView();
+  const dispatch = useDispatch();
+  const dataTablePassphrase = useMemo(() => {
+    return mapDataTablePassphrase(mnemonic.split(' '));
+  }, [mnemonic]);
 
   const onCopy = useCallback(() => {
-    copy.onShow('asasd');
-  }, [copy]);
+    copy.onShow(mnemonic);
+  }, [copy, mnemonic]);
 
   const onShowQr = useCallback(() => {
     blurView.onShow(
-      <Qr />,
+      <Qr {...{ text: mnemonic }} />,
       {
         right: Platform.SizeScale(40),
         top: Platform.SizeScale(50),
@@ -45,7 +55,7 @@ const _CreateNewWalletScreen = ({}) => {
 
       'zoom',
     );
-  }, [blurView]);
+  }, [blurView, mnemonic]);
 
   const onNext = useCallback(() => {
     navigation.navigate('PassphraseVerification');
@@ -54,6 +64,23 @@ const _CreateNewWalletScreen = ({}) => {
   const onShowPassPhrase = useCallback(() => {
     bottomSheet.onShow(<SelfGeneratedPassphrase />);
   }, [bottomSheet]);
+
+  const onChangeNameWallet = useCallback(
+    (text: string) => {
+      dispatch(changeNameWallet(text));
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    if (lengthMnemonic) {
+      dispatch(
+        getPassphraseRequest({
+          length: lengthMnemonic,
+        }),
+      );
+    }
+  }, [dispatch, lengthMnemonic]);
 
   return (
     <View style={styles.container}>
@@ -73,6 +100,8 @@ const _CreateNewWalletScreen = ({}) => {
               placeholder={'Enter wallet name'}
               inputStyle={styles.inputStyles}
               placeholderTextColor={COLORS._989898}
+              onChangeText={onChangeNameWallet}
+              value={walletName}
             />
           </View>
 
@@ -92,7 +121,7 @@ const _CreateNewWalletScreen = ({}) => {
             <Dropdown data={data} />
           </View>
 
-          <ParsephaseTable />
+          <ParsephaseTable {...{ dataTablePassphrase }} />
           <View mt={Platform.SizeScale(20)} style={[commonStyles.row, commonStyles.center]}>
             <Touchable onPress={onCopy}>
               <View style={[commonStyles.row, styles.action]}>

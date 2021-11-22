@@ -8,8 +8,9 @@ import React, { memo, useCallback } from 'react';
 import { useParsephaseTableStyle } from './styles';
 import { table } from './__mocks__/data';
 import Color from 'color';
+import { TablePassPhrase } from '@redux/wallet/types';
 
-const _ParsephaseTable = ({}) => {
+const _ParsephaseTable = ({ dataTablePassphrase }: { dataTablePassphrase: TablePassPhrase[] }) => {
   const styles = useParsephaseTableStyle();
   const renderItemContent = useCallback(
     (item, index) => {
@@ -33,7 +34,7 @@ const _ParsephaseTable = ({}) => {
     <View style={{ zIndex: -1 }} mt={Platform.SizeScale(10)}>
       <ListFullOption
         // listFooterComponent={<View style={{ height: Platform.SizeScale(100) }} />}
-        data={table}
+        data={dataTablePassphrase}
         renderSubItem={renderItemContent}
         showsVerticalScrollIndicator={false}
         numColumns={3}

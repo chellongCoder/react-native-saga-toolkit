@@ -9,11 +9,15 @@ import { Images } from '@theme/images';
 import { Platform } from '@theme/platform';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 
-const Qr = () => {
+const Qr = ({ text }: { text: string }) => {
   return (
     <View style={styles.container}>
-      <LazyImage resizeMode="contain" source={Images.IMAGE_QR} style={styles.qr} />
+      {/* <LazyImage resizeMode="contain" source={Images.IMAGE_QR} style={styles.qr} /> */}
+      <View mv={Platform.SizeScale(40)}>
+        <QRCode size={170} value={text} />
+      </View>
       <Text fontSize={Platform.SizeScale(11)} color={COLORS._139B8B}>
         This QR code contains your Passphrase
       </Text>
