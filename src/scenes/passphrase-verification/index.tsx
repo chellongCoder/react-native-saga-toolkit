@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { usePassphraseVerificationStyle } from './styles';
 import { Topbar } from '@components/topbar';
@@ -15,11 +15,19 @@ import { CommonCard } from '@components/common-card';
 import { LazyImage } from '@components/lazy-image';
 import { Images } from '@theme/images';
 import { Text } from '@components/text';
+import { useDispatch, useSelector } from 'react-redux';
+import { addWalletRequest } from '@redux/wallet/actions';
+import { RootState } from '@redux/reducers';
 
 const _PassphraseVerificationScreen = ({}) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+  const { walletName } = useSelector((state: RootState) => state.wallet);
+
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'PassphraseVerification'>>();
   const styles = usePassphraseVerificationStyle();
   const blurView = useBlurView();
+  const [passphrase, setPassphrase] = useState('');
+  const dispatch = useDispatch();
 
   const onShowComplete = useCallback(() => {
     blurView.onShow(
@@ -56,9 +64,18 @@ const _PassphraseVerificationScreen = ({}) => {
   }, [blurView, styles.like]);
 
   const onComplete = useCallback(() => {
-    navigation.replace('Drawer');
-    onShowComplete();
-  }, [navigation, onShowComplete]);
+    dispatch(
+      addWalletRequest({
+        mnemonic: passphrase,
+        name: walletName,
+        userId: user?.data.id ?? '',
+        callback: () => {
+          navigation.replace('Drawer');
+          onShowComplete();
+        },
+      }),
+    );
+  }, [dispatch, navigation, onShowComplete, passphrase, user?.data.id, walletName]);
 
   return (
     <View>
@@ -72,17 +89,19 @@ const _PassphraseVerificationScreen = ({}) => {
             placeholder={'Enter your passphrase'}
             inputStyle={styles.inputStyles}
             placeholderTextColor={COLORS._989898}
+            onChangeText={setPassphrase}
           />
         </View>
         <View mt={Platform.SizeScale(10)}>
           <CommonButton
-            style={styles.button}
+            style={[styles.button, { backgroundColor: passphrase ? COLORS._139B8B : styles.button.backgroundColor }]}
             type="normal"
             text={'Next'}
             width={Platform.SizeScale(343)}
             height={Platform.SizeScale(47)}
             textColor={COLORS.WHITE}
             onPress={onComplete}
+            disabled={!passphrase}
           />
         </View>
       </Topbar>

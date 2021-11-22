@@ -58,7 +58,7 @@ const CustomTabar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }: 
     };
 
     return (
-      <Touchable activeOpacity={1} {...{ onPress }} style={[styles.tabBar]}>
+      <Touchable key={index} activeOpacity={1} {...{ onPress }} style={[styles.tabBar]}>
         <View style={[commonStyles.row]}>{isFocused ? tabFocus[index] : tabUnFocus[index]}</View>
       </Touchable>
     );
