@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useHomeStyle } from './styles';
@@ -12,7 +12,6 @@ import commonStyles from '@theme/commonStyles';
 import { Text } from '@components/text';
 import { Platform } from '@theme/platform';
 import { View } from '@components/view';
-import { BreadCrumb } from '@components/bread-crumb';
 import { Touchable } from '@components/touchable';
 import Color from 'color';
 import { ListFullOption } from '@components/list';
@@ -23,18 +22,30 @@ import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomSheetCustom } from '@components/bottom-sheet';
 import { TabBorderradius } from '@components/tab-borderradius';
+import Balance from './Balance';
+import { useDispatch, useSelector } from 'react-redux';
+import { getWalletsRequest } from '@redux/wallet/actions';
+import { RootState } from '@redux/reducers';
+import { mapDataWallet } from '@tools/wallet.helper';
+import { WalletDetail } from '@redux/wallet/types';
+import { useBottomSheet } from '@hook/use-bottom-sheet';
+import { Wallet } from './Wallets';
 
 const _HomeScreen = ({}) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+  const { wallets } = useSelector((state: RootState) => state.wallet);
+
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
   const styles = useHomeStyle();
   const [tabIndex, setTabIndex] = useState(1);
   const blurView = useBlurView();
   const refMenu = React.useRef<MenuHandle>(null); // assign null makes it compatible with elements.
-  const bottomSheet = useRef<{ open: (index: number) => void }>();
-
-  const onShowMenu = useCallback(() => {
-    bottomSheet.current?.open(1);
-  }, []);
+  const dispatch = useDispatch();
+  const mapWallets = useMemo(() => {
+    return mapDataWallet(wallets);
+  }, [wallets]);
+  const [currentWallet, setCurrentWallet] = useState<WalletDetail>();
+  const bottomSheet = useBottomSheet();
 
   const onChangeTab1 = useCallback(() => {
     setTabIndex(1);
@@ -59,6 +70,36 @@ const _HomeScreen = ({}) => {
   const onMarket = useCallback(() => {
     navigation.navigate('Buy');
   }, [navigation]);
+
+  const onShowWallets = useCallback(() => {
+    bottomSheet.onShow(
+      <Wallet
+        {...{
+          setCurrentWallet,
+          currentWallet,
+          onHide: () => {
+            bottomSheet.onHide();
+          },
+        }}
+      />,
+    );
+  }, [bottomSheet, currentWallet]);
+
+  const onShowSorting = useCallback(() => {
+    bottomSheet.onShow(<Sorting />);
+  }, [bottomSheet]);
+
+  useEffect(() => {
+    dispatch(
+      getWalletsRequest({
+        userId: user?.data.id ?? '',
+      }),
+    );
+  }, [dispatch, user?.data.id]);
+
+  useEffect(() => {
+    setCurrentWallet(mapWallets[0]);
+  }, [mapWallets]);
 
   const renderItemContent = useCallback(() => {
     return (
@@ -93,33 +134,18 @@ const _HomeScreen = ({}) => {
         <ScrollView style={styles.body}>
           <View mv={Platform.SizeScale(20)} style={[commonStyles.row, commonStyles.spaceBetween]}>
             <Icon icon={Icons.ICON_WALLET} size={3} />
-            <View style={[commonStyles.row]}>
-              <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={'#085A51'}>
-                Your custom name{' '}
-              </Text>
-              <Icon icon={Icons.ICON_DROP_DOWN} size={1} />
-            </View>
+            <Touchable onPress={onShowWallets}>
+              <View style={[commonStyles.row]}>
+                <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={'#085A51'}>
+                  {currentWallet?.name}{' '}
+                </Text>
+                <Icon icon={Icons.ICON_DROP_DOWN} size={1} />
+              </View>
+            </Touchable>
             <Icon icon={Icons.ICON_BARCODE} size={3} />
           </View>
 
-          <BreadCrumb
-            left={
-              <View>
-                <Text fontSize={Platform.SizeScale(30)} mr={Platform.SizeScale(10)}>
-                  $56,955
-                </Text>
-              </View>
-            }
-            right={
-              <Touchable
-                onPress={() => {
-                  navigation.navigate('OtherPage');
-                }}
-              >
-                <Icon icon={Icons.ICON_CLOSEEYE} size={2} />
-              </Touchable>
-            }
-          />
+          <Balance />
 
           <View
             mv={Platform.SizeScale(20)}
@@ -187,7 +213,7 @@ const _HomeScreen = ({}) => {
                 </Touchable>
               </View>
               <View flex={1} style={[commonStyles.row, commonStyles.spaceBetween]}>
-                <Touchable onPress={onShowMenu}>
+                <Touchable onPress={onShowSorting}>
                   <Icon icon={Icons.ICON_FILTER} size={2} />
                 </Touchable>
                 <Icon tintColor={COLORS._0F7D70} icon={Icons.ICON_SEARCH} size={2} />

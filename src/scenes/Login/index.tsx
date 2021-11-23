@@ -19,6 +19,7 @@ import { Dropdown } from '@scenes/create-new-wallet/dropdown';
 import { langs } from './__mocks__/data';
 import { loginRequest } from '@redux/actions';
 import AsyncStorage from '@react-native-community/async-storage';
+import { useLoadingGlobal } from '@hook/use-loading-global';
 
 const LoginScreen: FC = () => {
   const [t, i18n] = useTranslation();
@@ -27,6 +28,7 @@ const LoginScreen: FC = () => {
   const [lang, setLang] = useState('en');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const loading = useLoadingGlobal();
 
   const switchLocaleToEn = useCallback(() => {
     i18n.changeLanguage('en');
@@ -39,6 +41,7 @@ const LoginScreen: FC = () => {
   }, [i18n]);
 
   const onLogin = useCallback(async () => {
+    loading.onShow();
     const fcmToken = await AsyncStorage.getItem('@fcmToken');
     console.log(`🛠 LOG: 🚀 --> -------------------------------------------------------------------------`);
     console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 48 ~ onLogin ~ fcmToken`, fcmToken);
@@ -56,13 +59,14 @@ const LoginScreen: FC = () => {
           console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 40 ~ onLogin ~ responseDataLogin`, responseDataLogin);
           console.log(
             `🛠 LOG: 🚀 --> -------------------------------------------------------------------------------------------`,
+            loading.onHide(),
           );
         },
       }),
     );
 
     // navigate(ROUTES.LoginPassword, {});
-  }, [dispatch, password, username]);
+  }, [dispatch, loading, password, username]);
 
   return (
     <LinearGradient useAngle angle={180} colors={COLORS.GREEN_GRADIENT} style={{ flex: 1 }}>
@@ -80,6 +84,7 @@ const LoginScreen: FC = () => {
           placeholder={t('Login:email')}
           inputStyle={styles.inputStyles}
           placeholderTextColor={COLORS.GREEN}
+          autoCapitalize={'none'}
         />
         <TextField
           onChangeText={setPassword}

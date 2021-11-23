@@ -4,28 +4,70 @@ import { ListFullOption } from '@components/list';
 import { SelectionItem } from '@components/selection-item';
 import { Text } from '@components/text';
 import { View } from '@components/view';
+import { RootState } from '@redux/reducers';
+import { WalletDetail } from '@redux/wallet/types';
 import { COLORS } from '@theme/colors';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
-import React, { FC, memo, useCallback, useMemo } from 'react';
+import { mapWalletsHome } from '@tools/wallet.helper';
+import React, { FC, memo, useCallback, useMemo, useRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { sorts } from './__mocks__/data';
+import { useSelector } from 'react-redux';
 
-const _Sorting = () => {
+const _Wallet = ({
+  setCurrentWallet,
+  currentWallet,
+  onHide,
+}: {
+  setCurrentWallet: any;
+  currentWallet?: WalletDetail;
+  onHide: () => void;
+}) => {
+  const { wallets } = useSelector((state: RootState) => state.wallet);
+
+  /**
+   *lấy ra những thằng ví không phải là thằng ví ở home để chọn
+   *
+   * @return {*} ví []
+   */
+  const mapWallets = useMemo(() => {
+    return mapWalletsHome(wallets).filter(e => e.id !== currentWallet?.id);
+  }, [currentWallet?.id, wallets]);
+  const choiceWallet = useRef();
+
   const renderItemMenu = useCallback((item, index, isFavorite, onPress) => {
-    return <Item {...{ item, index, isFavorite, onPress }} />;
+    const _onPress = () => {
+      onPress();
+      choiceWallet.current = item;
+    };
+    return <Item {...{ item, index, isFavorite, onPress: _onPress }} />;
   }, []);
+
+  const onChoiceWallet = useCallback(() => {
+    setCurrentWallet(choiceWallet.current);
+    onHide();
+  }, [onHide, setCurrentWallet]);
 
   return (
     <View style={styles.container}>
       <View alignItems={'center'}>
         <Text fontSize={Platform.SizeScale(18)} mv={Platform.SizeScale(10)}>
-          Sorting Rules
+          Select Wallets
         </Text>
       </View>
-      <ListFullOption showsVerticalScrollIndicator={false} style={{}} data={sorts} renderSubItem={renderItemMenu} />
+      <ListFullOption
+        showsVerticalScrollIndicator={false}
+        style={{}}
+        data={mapWallets}
+        renderSubItem={renderItemMenu}
+      />
       <View mv={Platform.SizeScale(20)}>
-        <CommonButton width={Platform.deviceWidth - Platform.SizeScale(40)} type="full" text={'Sort'} />
+        <CommonButton
+          onPress={onChoiceWallet}
+          width={Platform.deviceWidth - Platform.SizeScale(40)}
+          type="full"
+          text={'Done'}
+        />
       </View>
     </View>
   );
@@ -44,21 +86,13 @@ const Item = ({ item, index, isFavorite, onPress }) => {
   }, [isFavorite, item.name]);
 
   const renderRightAccessory = useCallback(() => {
-    return (
-      <>
-        <View style={styles.itemNote}>
-          <Text color={COLORS._13A6D4} fontSize={Platform.SizeScale(12)}>
-            {item.note}
-          </Text>
-        </View>
-      </>
-    );
-  }, [item.note]);
+    return <></>;
+  }, []);
 
   return <SelectionItem {...{ item, index, isFavorite, onPress, renderLeftAccessory, renderRightAccessory }} />;
 };
 
-export const Sorting = memo(_Sorting);
+export const Wallet = memo(_Wallet);
 
 const styles = StyleSheet.create({
   container: {

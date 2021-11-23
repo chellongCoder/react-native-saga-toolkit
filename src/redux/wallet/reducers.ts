@@ -4,6 +4,9 @@ import {
   getPassphraseFailed,
   getPassphraseRequest,
   getPassphraseSuccess,
+  getWalletsFailed,
+  getWalletsRequest,
+  getWalletsSuccess,
   saveLengthMnemonic,
 } from './actions';
 
@@ -14,6 +17,7 @@ export interface WalletState {
   privateKey: string;
   account: string;
   walletName: string;
+  wallets: any[];
 }
 
 const initialState: WalletState = {
@@ -23,6 +27,7 @@ const initialState: WalletState = {
   privateKey: '',
   account: '',
   walletName: '',
+  wallets: [],
 };
 
 export const walletReducer = createReducer(initialState, {
@@ -41,5 +46,15 @@ export const walletReducer = createReducer(initialState, {
   },
   [changeNameWallet.type]: (state, action) => {
     state.walletName = action.payload;
+  },
+  [getWalletsRequest.type]: state => {
+    state.requesting = true;
+  },
+  [getWalletsSuccess.type]: (state, action) => {
+    state.requesting = false;
+    state.wallets = action.payload.data;
+  },
+  [getWalletsFailed.type]: state => {
+    state.requesting = false;
   },
 });

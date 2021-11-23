@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
-import { persistedRootReducer } from '@redux/reducers';
+import resettableReducer, { persistedRootReducer } from '@redux/reducers';
 import rootSaga from '@redux/rootSaga';
 import { createLogger } from 'redux-logger';
 
@@ -27,7 +27,7 @@ const middleware = [
 
 // Create Store
 const store = configureStore({
-  reducer: persistedRootReducer,
+  reducer: resettableReducer,
   middleware,
   devTools: process.env.NODE_ENV !== 'production',
 });

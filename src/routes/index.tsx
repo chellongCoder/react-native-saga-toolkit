@@ -32,6 +32,7 @@ import { BrowserScreen } from '@scenes/browser';
 import { ReceiveScreen } from '@scenes/receive';
 import { BuyScreen } from '@scenes/buy';
 import { BuyCoinScreen } from '@scenes/buy-coin';
+import { SettingScreen } from '@scenes/setting';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -47,7 +48,7 @@ export const BottomTab: FC = () => {
       <Tab.Screen name="Market" component={MarketScreen} />
       <Tab.Screen name="Home" component={BrowserScreen} />
       <Tab.Screen name="Exchange" component={SwapScreen} />
-      <Tab.Screen name="Setting" component={OtherPage} />
+      <Tab.Screen name="Setting" component={SettingScreen} />
     </Tab.Navigator>
   );
 };

@@ -35,6 +35,7 @@ import CopiedProvider from '@provider/copied';
 import codePush from 'react-native-code-push';
 import { ErrorBoundary } from '@components/error-boundary';
 import BottomSheetProvider from '@provider/bottom-sheet';
+import LoadingGlobalProvider from '@tools/loading-global';
 
 enableScreens();
 
@@ -116,20 +117,22 @@ const App: FC = () => {
           <Provider store={store}>
             <PersistGate loading={<Splashscreen />} persistor={persistor}>
               <NetworkProvider>
-                <CopiedProvider>
-                  <SafeAreaProvider>
-                    <BlurViewProvider>
-                      <BottomSheetProvider>
-                        <NavigationContainer ref={navigationRef}>
-                          <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
-                          <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
-                            <RootStackScreen />
-                          </Layout>
-                        </NavigationContainer>
-                      </BottomSheetProvider>
-                    </BlurViewProvider>
-                  </SafeAreaProvider>
-                </CopiedProvider>
+                <LoadingGlobalProvider>
+                  <CopiedProvider>
+                    <SafeAreaProvider>
+                      <BlurViewProvider>
+                        <BottomSheetProvider>
+                          <NavigationContainer ref={navigationRef}>
+                            <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
+                            <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
+                              <RootStackScreen />
+                            </Layout>
+                          </NavigationContainer>
+                        </BottomSheetProvider>
+                      </BlurViewProvider>
+                    </SafeAreaProvider>
+                  </CopiedProvider>
+                </LoadingGlobalProvider>
               </NetworkProvider>
             </PersistGate>
           </Provider>

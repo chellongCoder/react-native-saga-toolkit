@@ -10,8 +10,8 @@ const _BreadCrumb = ({
   style,
   onPress,
 }: {
-  left: React.ReactNode;
-  right: React.ReactNode;
+  left?: React.ReactNode;
+  right?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   onPress?: () => void;
 }) => {

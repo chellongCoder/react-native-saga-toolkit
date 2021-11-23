@@ -15,11 +15,16 @@ const BottomSheetProvider = ({ children }: BottomSheetProps) => {
     }, 0);
   }, []);
 
+  const onHide = useCallback(() => {
+    bottomSheet.current?.open(0);
+  }, []);
+
   const contextValue = useMemo<BottomSheetContextValue>(
     () => ({
       onShow,
+      onHide,
     }),
-    [onShow],
+    [onHide, onShow],
   );
   return (
     <>

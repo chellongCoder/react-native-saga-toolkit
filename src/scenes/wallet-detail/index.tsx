@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { useWalletDetailStyle } from './styles';
 import { Topbar } from '@components/topbar';
 import { TextField } from '@components/text-field';
@@ -12,8 +12,9 @@ import { Icon } from '@components/common-icon';
 import { BreadCrumb } from '@components/bread-crumb';
 import { CommonButton } from '@components/CommonButton';
 import commonStyles from '@theme/commonStyles';
+import { ScreenRouteT } from '@routes/types';
 
-const _WalletDetailScreen = ({}) => {
+const _WalletDetailScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'WalletDetail'> }) => {
   const navigation = useNavigation();
   const styles = useWalletDetailStyle();
 
