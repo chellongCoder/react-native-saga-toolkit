@@ -30,3 +30,36 @@ export type AddWalletSuccessPayload = {
   };
   message: string;
 };
+
+export interface GetWalletPayload extends ApiParamsT {
+  userId: string;
+}
+
+export type GetWalletSuccessPayload = {
+  data: any[];
+  message: string;
+};
+
+export type WalletDetail = {
+  id: string;
+  assets: any[];
+  name: string;
+  mnemonic: string;
+  privateKey: string;
+  address: string;
+  user: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ProfileWallet = {
+  name: string;
+  price: string;
+  isSelected: boolean;
+};
+
+export type WalletsHome = {
+  name: string;
+  note: string;
+  id: string;
+};

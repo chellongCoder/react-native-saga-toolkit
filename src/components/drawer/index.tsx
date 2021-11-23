@@ -1,5 +1,5 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from '@react-navigation/drawer';
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { useDrawerStyle } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from '@theme/colors';
@@ -10,26 +10,46 @@ import { View } from '@components/view';
 import { Text } from '@components/text';
 import { Platform } from '@theme/platform';
 import { ListFullOption } from '@components/list';
-import { profiles } from './__mocks__/data';
 import { Touchable } from '@components/touchable';
 import { ROUTES } from '@routes/constants';
+import { DrawerActions } from '@react-navigation/native';
+import { RootState } from '@redux/reducers';
+import { useSelector } from 'react-redux';
+import { mapDataWallet, mapWalletsList } from '@tools/wallet.helper';
 
 const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
+  const { wallets } = useSelector((state: RootState) => state.wallet);
+  const profiles = useMemo(() => {
+    return mapWalletsList(wallets);
+  }, [wallets]);
+  const mapWallets = useMemo(() => {
+    return mapDataWallet(wallets);
+  }, [wallets]);
+
   const styles = useDrawerStyle();
 
   const onAddWallet = useCallback(() => {
     navigation.navigate(ROUTES.AddWallet);
   }, [navigation]);
 
-  const onWalletDetail = useCallback(() => {
-    navigation.navigate(ROUTES.WalletDetail);
+  const onWalletDetail = useCallback(
+    (index: number) => {
+      navigation.navigate(ROUTES.WalletDetail, {
+        walletDetail: mapWallets[index],
+      });
+    },
+    [mapWallets, navigation],
+  );
+
+  const onBack = useCallback(() => {
+    navigation.dispatch(DrawerActions.toggleDrawer());
   }, [navigation]);
 
   const renderItemContent = useCallback(
-    item => {
+    (item, index) => {
       const backgroundColor = item.isSelected ? COLORS._04322C : COLORS._26BBA9;
       return (
-        <Touchable onPress={onWalletDetail}>
+        <Touchable onPress={() => onWalletDetail(index)}>
           <View style={[{ backgroundColor }, commonStyles.row, commonStyles.spaceBetween, styles.itemContainer]}>
             <View style={[commonStyles.row]}>
               <Icon icon={Icons.ICON_AVATAR} size={4} />
@@ -58,7 +78,9 @@ const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
   return (
     <LinearGradient useAngle angle={108.66} colors={COLORS.DRAWER_GRADIENT} style={styles.container}>
       <View mh={Platform.SizeScale(20)} style={[commonStyles.row, commonStyles.spaceBetween]}>
-        <Icon icon={Icons.ICON_BACK} size={2} />
+        <Touchable onPress={onBack}>
+          <Icon icon={Icons.ICON_BACK} size={2} />
+        </Touchable>
         <Text fontSize={Platform.SizeScale(20)} color={COLORS.WHITE}>
           Wallet
         </Text>

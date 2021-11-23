@@ -34,7 +34,9 @@ const _DropdownSelection: React.FC<DropdownSelectionProps> = ({ width, data }) =
   const styles = useDropdownSelectionStyle(width);
 
   useEffect(() => {
-    dispatch(saveLengthMnemonic(+choosenData));
+    if (+choosenData) {
+      dispatch(saveLengthMnemonic(+choosenData));
+    }
   }, [choosenData, dispatch]);
 
   return (

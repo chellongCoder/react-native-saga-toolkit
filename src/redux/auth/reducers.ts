@@ -1,4 +1,4 @@
-import { loginRequestFailed, loginRequestSuccess } from '@redux/actions';
+import { loginRequestFailed, loginRequestSuccess, logoutRequest, purgeRequest } from '@redux/actions';
 import { createReducer } from '@reduxjs/toolkit';
 import uniqBy from 'lodash/uniqBy';
 import { loginRequest } from './actions';
@@ -27,5 +27,9 @@ export const authReducer = createReducer(initialState, {
   },
   [loginRequestFailed.type]: state => {
     state.requesting = false;
+  },
+  [logoutRequest.type]: state => {
+    state.requesting = false;
+    state.logged = false;
   },
 });

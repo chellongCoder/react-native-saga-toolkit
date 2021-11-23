@@ -3,6 +3,8 @@ import { persistCombineReducers, PersistConfig, persistReducer } from 'redux-per
 import { allFilmsReducer } from '@redux/ghibli/reducers';
 import { authReducer } from '@redux/auth/reducers';
 import { walletReducer } from '@redux/wallet/reducers';
+import { logoutRequest, purgeRequest } from './actions';
+import { Action } from 'redux';
 
 const walletConfig: PersistConfig<any> = {
   key: 'wallet',
@@ -28,6 +30,13 @@ const persistConfig = {
 // Setup Reducers
 export const persistedRootReducer = persistCombineReducers(persistConfig, reducers);
 
+const resettableReducer = (state, action: Action<unknown>) => {
+  if (logoutRequest.match(action)) {
+    return persistedRootReducer(undefined, action);
+  }
+  return persistedRootReducer(state, action);
+};
+
 export type RootState = ReturnType<typeof persistedRootReducer>;
 
-export default persistedRootReducer;
+export default resettableReducer;

@@ -14,16 +14,19 @@ function* loginSaga({ payload }: PayloadAction<LogginPayload>): Generator<
     }>,
   void
 > {
-  const { username, password, fcmToken } = payload;
+  const { username, password, fcmToken, callback } = payload;
   try {
     const filmsRes: any = yield callSafe(AuthAPI.requestLogin, { username, password, fcmToken });
 
     if (!isEmpty(filmsRes)) {
+      callback?.(filmsRes);
       yield put(loginRequestSuccess(filmsRes));
     } else {
+      callback?.(filmsRes);
       yield put(loginRequestFailed() as any);
     }
   } catch (err) {
+    callback?.(err);
     yield put(loginRequestFailed() as any);
   }
 }
