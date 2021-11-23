@@ -21,4 +21,5 @@ export type ParsedTextProps = ParsedTextPropsBase & {
   mh?: number;
   mv?: number;
   textAlign?: 'left' | 'center' | 'right';
+  maxWidth?: number;
 };

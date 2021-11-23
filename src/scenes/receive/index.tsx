@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { useReceiveStyle } from './styles';
 import { Topbar } from '@components/topbar';
 import { Currency } from '@components/currency';
@@ -15,14 +15,23 @@ import { Images } from '@theme/images';
 import { Icon } from '@components/common-icon';
 import { Icons } from '@theme/icons';
 import { CommonButton } from '@components/CommonButton';
+import { ScreenRouteT } from '@routes/types';
+import QRCode from 'react-native-qrcode-svg';
+import { useCopied } from '@hook/use-copied';
 
-const _ReceiveScreen = ({}) => {
+const _ReceiveScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'Receive'> }) => {
+  const { walletDetail } = route.params;
   const navigation = useNavigation();
   const styles = useReceiveStyle();
+  const copy = useCopied();
+
+  const onCopy = useCallback(() => {
+    copy.onShow(walletDetail.address);
+  }, [copy, walletDetail.address]);
 
   return (
     <View>
-      <Topbar title="Your custom name">
+      <Topbar title={walletDetail.name}>
         <ScrollView>
           <View mh={Platform.SizeScale(10)} style={[commonStyles.row, commonStyles.spaceBetween]}>
             <Text fontType="fontBold" fontSize={Platform.SizeScale(16)} color={COLORS._1A9E8F}>
@@ -32,7 +41,10 @@ const _ReceiveScreen = ({}) => {
           </View>
           <View mv={Platform.SizeScale(40)} alignItems="center">
             <CommonCard title="ETH - Ethereum (Coin)" width={Platform.SizeScale(310)}>
-              <LazyImage resizeMode="contain" source={Images.IMAGE_QR} style={styles.qr} />
+              {/* <LazyImage resizeMode="contain" source={Images.IMAGE_QR} style={styles.qr} /> */}
+              <View mv={Platform.SizeScale(30)} alignItems="center">
+                <QRCode size={250} value={walletDetail.mnemonic} />
+              </View>
             </CommonCard>
           </View>
           <View
@@ -57,8 +69,14 @@ const _ReceiveScreen = ({}) => {
               <View ml={Platform.SizeScale(10)}>
                 <Icon tintColor={COLORS._26BBA9} size={1} icon={Icons.ICON_BACK} />
               </View>
-              <Text mv={Platform.SizeScale(10)} color={COLORS._737373} fontSize={Platform.SizeScale(11)}>
-                18pyWcndOwmxukF993gFDIWPoFiPENAXcd
+              <Text
+                numberOfLines={1}
+                mv={Platform.SizeScale(10)}
+                color={COLORS._737373}
+                fontSize={Platform.SizeScale(11)}
+                maxWidth={Platform.SizeScale(200)}
+              >
+                {walletDetail.address}
               </Text>
               <View mr={Platform.SizeScale(10)}>
                 <Icon size={1} icon={Icons.ICON_ARROW_RIGHT} />
@@ -78,6 +96,7 @@ const _ReceiveScreen = ({}) => {
                     <Icon size={2} icon={Icons.ICON_COPY} />
                   </View>
                 }
+                onPress={onCopy}
               />
               <CommonButton
                 type="border"

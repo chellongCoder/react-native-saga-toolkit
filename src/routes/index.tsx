@@ -33,6 +33,7 @@ import { ReceiveScreen } from '@scenes/receive';
 import { BuyScreen } from '@scenes/buy';
 import { BuyCoinScreen } from '@scenes/buy-coin';
 import { SettingScreen } from '@scenes/setting';
+import { ShowPassphraseScreen } from '@scenes/show-passphrase';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -126,6 +127,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'WalletDetail'}
         component={WalletDetailScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'ShowPassphrase'}
+        component={ShowPassphraseScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

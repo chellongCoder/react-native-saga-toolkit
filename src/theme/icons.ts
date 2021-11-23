@@ -26,6 +26,7 @@ import ICON_MK from './../../assets/icons/icon_mk.png'
 import ICON_MK_UNFOCUS from './../../assets/icons/icon_mk_unfocus.png'
 import ICON_MORE from './../../assets/icons/icon_more.png'
 import ICON_NEW from './../../assets/icons/icon_new.png'
+import ICON_NODATA from './../../assets/icons/icon_nodata.png'
 import ICON_OPEN_EYE from './../../assets/icons/icon_open_eye.png'
 import ICON_PENCIL from './../../assets/icons/icon_pencil.png'
 import ICON_PLUS from './../../assets/icons/icon_plus.png'
@@ -82,6 +83,7 @@ ICON_MK,
 ICON_MK_UNFOCUS,
 ICON_MORE,
 ICON_NEW,
+ICON_NODATA,
 ICON_OPEN_EYE,
 ICON_PENCIL,
 ICON_PLUS,

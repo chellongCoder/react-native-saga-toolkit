@@ -70,7 +70,10 @@ const _PassphraseVerificationScreen = ({}) => {
         name: walletName,
         userId: user?.data.id ?? '',
         callback: () => {
-          navigation.replace('Drawer');
+          navigation.reset({
+            routes: [{ name: 'Drawer' }],
+            routeNames: ['Drawer'],
+          });
           onShowComplete();
         },
       }),

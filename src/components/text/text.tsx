@@ -25,6 +25,7 @@ const Text = ({
   mh,
   mv,
   textAlign,
+  maxWidth,
   ...other
 }: ParsedTextProps) => {
   const onShouldStartLoadWithRequest = useCallback(req => {
@@ -46,6 +47,7 @@ const Text = ({
       { marginLeft: ml, marginRight: mr, marginTop: mt, marginBottom: mb, marginHorizontal: mh, marginVertical: mv },
       { fontSize },
       { textAlign },
+      { maxWidth },
       style,
       { fontFamily: isPress ? fonts.fontBold : fonts[fontType] },
     ]);

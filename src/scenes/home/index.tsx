@@ -60,8 +60,10 @@ const _HomeScreen = ({}) => {
   }, [navigation]);
 
   const onReceive = useCallback(() => {
-    navigation.navigate('Receive');
-  }, [navigation]);
+    navigation.navigate('Receive', {
+      walletDetail: currentWallet!,
+    });
+  }, [currentWallet, navigation]);
 
   const onPressAvatar = useCallback(() => {
     refMenu.current?.onPressAvatar?.();
@@ -225,9 +227,16 @@ const _HomeScreen = ({}) => {
               <View style={styles.list}>
                 <ListFullOption
                   listFooterComponent={<View style={{ height: Platform.SizeScale(150) }} />}
-                  data={assets}
+                  data={[]}
                   renderSubItem={renderItemContent}
                   showsVerticalScrollIndicator={false}
+                  ListEmptyComponent={() => {
+                    return (
+                      <View alignItems="center">
+                        <Icon icon={Icons.ICON_NODATA} size={40} />
+                      </View>
+                    );
+                  }}
                 />
               </View>
             )}
