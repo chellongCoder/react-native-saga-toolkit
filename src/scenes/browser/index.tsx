@@ -12,6 +12,7 @@ import commonStyles from '@theme/commonStyles';
 import { Platform } from '@theme/platform';
 import { TextField } from '@components/text-field';
 import { Text } from '@components/text';
+import { Images } from '@theme/images';
 
 const _BrowserScreen = ({}) => {
   const navigation = useNavigation();
@@ -60,7 +61,7 @@ const _BrowserScreen = ({}) => {
         }
       >
         <View>
-          <Text>Search History</Text>
+          <Icon icon={Images.IMG_COMING_SOON} width={Platform.deviceWidth} height={Platform.deviceHeight / 2} />
         </View>
       </Topbar>
     </View>
