@@ -97,7 +97,7 @@ export const Wallet = memo(_Wallet);
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.WHITE,
-    height: Platform.SizeScale(Platform.deviceHeight / 1.5),
+    height: Platform.SizeScale(Platform.deviceHeight / 1.7),
     width: Platform.deviceWidth - Platform.SizeScale(20),
     paddingHorizontal: Platform.SizeScale(10),
     borderTopLeftRadius: Platform.SizeScale(33),

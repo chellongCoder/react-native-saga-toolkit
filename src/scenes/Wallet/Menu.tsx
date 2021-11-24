@@ -3,12 +3,25 @@ import { Touchable } from '@components/touchable';
 import { COLORS } from '@theme/colors';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
-import React, { forwardRef, memo, Ref, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  memo,
+  Ref,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import { BlurView as Blur } from '@react-native-community/blur';
 import commonStyles from '@theme/commonStyles';
 import { Text } from '@components/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScreenRouteT } from '@routes/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 export type MenuHandle = {
   onPressAvatar?: () => void;
@@ -16,9 +29,10 @@ export type MenuHandle = {
 const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
   const animation = useRef(new Animated.Value(0)).current;
   const styles = useStyleMenu();
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
 
   let _open = false;
-  const onPressAvatar = () => {
+  const onPressAvatar = useCallback(() => {
     const toValue = _open ? 0 : 1;
     Animated.timing(animation, {
       toValue,
@@ -26,7 +40,7 @@ const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
       useNativeDriver: true,
     }).start();
     _open = !_open;
-  };
+  }, []);
   const firstItemStyle = {
     transform: [
       { scale: animation },
@@ -89,6 +103,11 @@ const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
     ],
   };
 
+  const onUserSetting = useCallback(() => {
+    navigation.navigate('Setting');
+    onPressAvatar();
+  }, [navigation, onPressAvatar]);
+
   useImperativeHandle(ref, () => ({
     onPressAvatar,
   }));
@@ -115,7 +134,7 @@ const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
       </Animated.View>
       <>
         <Animated.View style={[styles.button, styles.account, secondItemStyle]}>
-          <Touchable style={styles.iconSubMenu1}>
+          <Touchable onPress={onUserSetting} style={styles.iconSubMenu1}>
             <Icon size={3} icon={Icons.ICON_USER} tintColor={COLORS.DARK_GREEN} />
           </Touchable>
           <Text style={[styles.labelAccount]}>{`Account`.toLocaleUpperCase()}</Text>

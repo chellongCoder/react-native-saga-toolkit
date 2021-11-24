@@ -30,6 +30,7 @@ import { mapDataWallet } from '@tools/wallet.helper';
 import { WalletDetail } from '@redux/wallet/types';
 import { useBottomSheet } from '@hook/use-bottom-sheet';
 import { Wallet } from './Wallets';
+import { getUserRequest } from '@redux/actions';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -60,8 +61,10 @@ const _HomeScreen = ({}) => {
   }, [navigation]);
 
   const onReceive = useCallback(() => {
-    navigation.navigate('Receive');
-  }, [navigation]);
+    navigation.navigate('Receive', {
+      walletDetail: currentWallet!,
+    });
+  }, [currentWallet, navigation]);
 
   const onPressAvatar = useCallback(() => {
     refMenu.current?.onPressAvatar?.();
@@ -100,6 +103,14 @@ const _HomeScreen = ({}) => {
   useEffect(() => {
     setCurrentWallet(mapWallets[0]);
   }, [mapWallets]);
+
+  useEffect(() => {
+    dispatch(
+      getUserRequest({
+        id: user?.data.id ?? '',
+      }),
+    );
+  }, [dispatch, user?.data.id]);
 
   const renderItemContent = useCallback(() => {
     return (
@@ -225,9 +236,16 @@ const _HomeScreen = ({}) => {
               <View style={styles.list}>
                 <ListFullOption
                   listFooterComponent={<View style={{ height: Platform.SizeScale(150) }} />}
-                  data={assets}
+                  data={[]}
                   renderSubItem={renderItemContent}
                   showsVerticalScrollIndicator={false}
+                  ListEmptyComponent={() => {
+                    return (
+                      <View alignItems="center">
+                        <Icon icon={Icons.ICON_NODATA} size={40} />
+                      </View>
+                    );
+                  }}
                 />
               </View>
             )}

@@ -13,10 +13,17 @@ import { BreadCrumb } from '@components/bread-crumb';
 import { CommonButton } from '@components/CommonButton';
 import commonStyles from '@theme/commonStyles';
 import { ScreenRouteT } from '@routes/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const _WalletDetailScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'WalletDetail'> }) => {
-  const navigation = useNavigation();
+  const { walletDetail } = route.params;
+
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'WalletDetail'>>();
   const styles = useWalletDetailStyle();
+
+  const onShowPassPhrase = useCallback(() => {
+    navigation.navigate('ShowPassphrase', { walletDetail });
+  }, [navigation, walletDetail]);
 
   const renderRightAccessory = useCallback(() => {
     return (
@@ -42,7 +49,7 @@ const _WalletDetailScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'Wallet
               </Text>
               <TextField
                 style={styles.inputRateStyle}
-                placeholder={'your custom name'}
+                placeholder={walletDetail.name}
                 inputStyle={styles.inputStyles}
                 placeholderTextColor={COLORS._989898}
                 renderRightAccessory={renderRightAccessory}
@@ -50,6 +57,7 @@ const _WalletDetailScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'Wallet
             </View>
             <View mh={Platform.SizeScale(20)}>
               <BreadCrumb
+                onPress={onShowPassPhrase}
                 style={styles.button}
                 left={
                   <View>
