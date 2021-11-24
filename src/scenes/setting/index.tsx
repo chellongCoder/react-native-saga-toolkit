@@ -14,10 +14,12 @@ import { Text } from '@components/text';
 import { Icons } from '@theme/icons';
 import { BreadCrumb } from '@components/bread-crumb';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutRequest, purgeRequest } from '@redux/actions';
+import { logoutRequest, purgeRequest, sendEmailVerifyRequest } from '@redux/actions';
 import { RootState } from '@redux/reducers';
 import { useCopied } from '@hook/use-copied';
 import { ScrollView } from 'react-native';
+import { showConfirm } from '@utils';
+import { useLoadingGlobal } from '@hook/use-loading-global';
 
 const _SettingScreen = ({}) => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
@@ -26,6 +28,7 @@ const _SettingScreen = ({}) => {
   const styles = useSettingStyle();
   const dispatch = useDispatch();
   const copy = useCopied();
+  const loading = useLoadingGlobal();
   const onBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
@@ -37,6 +40,21 @@ const _SettingScreen = ({}) => {
   const onCopy = useCallback(() => {
     copy.onShow(userInfo?.data._id);
   }, [copy, userInfo?.data._id]);
+
+  const onVerificationEmail = useCallback(() => {
+    showConfirm('By clicking "OK" you will go to Email verification', () => {
+      loading.onShow();
+      dispatch(
+        sendEmailVerifyRequest({
+          email: userInfo?.data.email,
+          callback: () => {
+            loading.onHide();
+            navigation.navigate('EmailVerification', { email: userInfo?.data?.email });
+          },
+        }),
+      );
+    });
+  }, [dispatch, loading, navigation, userInfo?.data.email]);
 
   return (
     <View>
@@ -116,8 +134,12 @@ const _SettingScreen = ({}) => {
                   </View>
                 }
                 right={
-                  <Touchable>
-                    <Icon icon={Icons.ICON_CHECKBOX} size={3} />
+                  <Touchable onPress={onVerificationEmail}>
+                    {userInfo?.data.verified ? (
+                      <Icon icon={Icons.ICON_CHECKBOX} size={3} />
+                    ) : (
+                      <Icon icon={Icons.ICON_UNCHECKBOX} size={3} />
+                    )}
                   </Touchable>
                 }
               />

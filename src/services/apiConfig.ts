@@ -3,4 +3,6 @@ export enum API_CONFIG {
   MNEMONIC = 'wallets/mnemonic',
   WALLETS = 'wallets',
   GET_USER = 'users',
+  RESEND_EMAIL = 'resend-verify',
+  VERIFY_EMAIL = 'verify',
 }

@@ -15,7 +15,7 @@ export function alertMessage(message: string, onPress?: any, content = '') {
   }, 0);
 }
 
-export const showConfirm = (title = 'Xác nhận', message = '', onPositive = () => {}, onNegative = () => {}) => {
+export const showConfirm = (message = '', onPositive = () => {}, onNegative = () => {}, title = 'Verfication') => {
   Alert.alert(title, message, [
     {
       text: 'OK',

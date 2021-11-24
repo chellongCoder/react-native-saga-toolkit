@@ -34,6 +34,7 @@ import { BuyScreen } from '@scenes/buy';
 import { BuyCoinScreen } from '@scenes/buy-coin';
 import { SettingScreen } from '@scenes/setting';
 import { ShowPassphraseScreen } from '@scenes/show-passphrase';
+import { EmailVerificationScreen } from '@scenes/email-verification';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -199,6 +200,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'MarketStack'}
         component={MarketStack}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'EmailVerification'}
+        component={EmailVerificationScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,
