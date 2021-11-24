@@ -188,6 +188,13 @@ android {
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
+        project.ext { appName = project.env.get("AppName") }
+                def formattedDate = new Date().format('YYYY-MM-dd HH-mm-ss')
+                def newName = output.outputFile.name
+                newName = newName.replace("app-", "$project.ext.appName-") //"MyAppName" -> I set my app variables in the root project
+                newName = newName.replace("-release", "-" + formattedDate)
+            //noinspection GroovyAssignabilityCheck
+            output.outputFileName = newName
             // For each separate APK per architecture, set a unique version code as described here:
             // https://developer.android.com/studio/build/configure-apk-splits.html
             // Example: versionCode 1 will generate 1001 for armeabi-v7a, 1002 for x86, etc.
