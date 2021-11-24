@@ -1,19 +1,27 @@
-import { loginRequestFailed, loginRequestSuccess, logoutRequest, purgeRequest } from '@redux/actions';
+import {
+  getUserFailed,
+  getUserRequest,
+  getUserSuccess,
+  loginRequestFailed,
+  loginRequestSuccess,
+  logoutRequest,
+} from '@redux/actions';
 import { createReducer } from '@reduxjs/toolkit';
-import uniqBy from 'lodash/uniqBy';
 import { loginRequest } from './actions';
-import { UserLogin } from './types';
+import { GetUserSuccessPayload, UserLogin } from './types';
 
 export interface AuthState {
   logged: boolean;
   requesting: boolean;
   user?: UserLogin;
+  userInfo?: GetUserSuccessPayload;
 }
 
 const initialState: AuthState = {
   logged: false,
   requesting: false,
   user: undefined,
+  userInfo: undefined,
 };
 
 export const authReducer = createReducer(initialState, {
@@ -31,5 +39,15 @@ export const authReducer = createReducer(initialState, {
   [logoutRequest.type]: state => {
     state.requesting = false;
     state.logged = false;
+  },
+  [getUserRequest.type]: state => {
+    state.requesting = true;
+  },
+  [getUserSuccess.type]: (state, action) => {
+    state.requesting = false;
+    state.userInfo = action.payload;
+  },
+  [getUserFailed.type]: state => {
+    state.requesting = false;
   },
 });

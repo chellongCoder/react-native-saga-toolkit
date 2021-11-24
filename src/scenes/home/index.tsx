@@ -30,6 +30,7 @@ import { mapDataWallet } from '@tools/wallet.helper';
 import { WalletDetail } from '@redux/wallet/types';
 import { useBottomSheet } from '@hook/use-bottom-sheet';
 import { Wallet } from './Wallets';
+import { getUserRequest } from '@redux/actions';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -102,6 +103,14 @@ const _HomeScreen = ({}) => {
   useEffect(() => {
     setCurrentWallet(mapWallets[0]);
   }, [mapWallets]);
+
+  useEffect(() => {
+    dispatch(
+      getUserRequest({
+        id: user?.data.id ?? '',
+      }),
+    );
+  }, [dispatch, user?.data.id]);
 
   const renderItemContent = useCallback(() => {
     return (

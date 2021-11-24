@@ -16,3 +16,27 @@ export type UserLogin = {
     token: string;
   };
 };
+
+export interface GetUserParams extends ApiParamsT {
+  id?: string;
+}
+
+export type GetUserSuccessPayload = {
+  data: {
+    _id: string;
+    verified: boolean;
+    avatar: string;
+    username: string;
+    email: string;
+    code: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    fullname: string;
+    wallet: string;
+    wishlist: any[];
+    kyc: string[];
+    fcmToken: string;
+  };
+  message: string;
+};

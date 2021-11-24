@@ -1,7 +1,7 @@
 import commonStyles from '@theme/commonStyles';
 import React, { memo } from 'react';
 import { View, Text, Image, StyleProp, ViewStyle, Animated } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import FastImage, { ResizeMode } from 'react-native-fast-image';
 
 const _Icon = ({
   icon,
@@ -16,8 +16,9 @@ const _Icon = ({
   mv,
   width,
   height,
+  resizeMode = 'contain',
 }: {
-  icon: number;
+  icon: any;
   size?: number;
   tintColor?: string;
   style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
@@ -29,6 +30,7 @@ const _Icon = ({
   mv?: number;
   width?: number;
   height?: number;
+  resizeMode?: ResizeMode;
 }) => {
   return (
     <Animated.View
@@ -41,7 +43,7 @@ const _Icon = ({
         style,
       ]}
     >
-      <FastImage tintColor={tintColor} resizeMode="contain" style={commonStyles.image} source={icon} />
+      <FastImage tintColor={tintColor} resizeMode={resizeMode} style={commonStyles.image} source={icon} />
     </Animated.View>
   );
 };
