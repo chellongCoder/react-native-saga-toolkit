@@ -19,6 +19,7 @@ import ICON_EX from './../../assets/icons/icon_ex.png'
 import ICON_FILTER from './../../assets/icons/icon_filter.png'
 import ICON_FINGER from './../../assets/icons/icon_finger.png'
 import ICON_INCREASE from './../../assets/icons/icon_increase.png'
+import ICON_LIKE from './../../assets/icons/icon_like.png'
 import ICON_MARKET from './../../assets/icons/icon_market.png'
 import ICON_MARKET_SDG from './../../assets/icons/icon_market_sdg.png'
 import ICON_MENU from './../../assets/icons/icon_menu.png'
@@ -76,6 +77,7 @@ ICON_EX,
 ICON_FILTER,
 ICON_FINGER,
 ICON_INCREASE,
+ICON_LIKE,
 ICON_MARKET,
 ICON_MARKET_SDG,
 ICON_MENU,

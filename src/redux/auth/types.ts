@@ -40,3 +40,20 @@ export type GetUserSuccessPayload = {
   };
   message: string;
 };
+
+export interface SendEmailVerifyPayload extends ApiParamsT {
+  email?: string;
+}
+export interface SendEmailVerifySuccessPayload {
+  email: string;
+  username: string;
+}
+
+export interface EmailVerifyPayload extends ApiParamsT {
+  email: string;
+  code: string;
+}
+export interface EmailVerifySuccessPayload {
+  email: string;
+  username: string;
+}
