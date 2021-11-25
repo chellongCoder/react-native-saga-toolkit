@@ -3,6 +3,9 @@ import { call, CallEffect, ForkEffect, put, PutEffect, takeLatest } from 'redux-
 import isEmpty from 'lodash/isEmpty';
 import * as AuthAPI from './apiCall';
 import {
+  changePasswordFailed,
+  changePasswordRequest,
+  changePasswordSuccess,
   getUserFailed,
   getUserRequest,
   getUserSuccess,
@@ -17,6 +20,8 @@ import {
   verifyEmailSuccess,
 } from '@redux/actions';
 import {
+  ChangePasswordPayload,
+  ChangePasswordSuccessPayload,
   EmailVerifyPayload,
   EmailVerifySuccessPayload,
   GetUserParams,
@@ -45,11 +50,11 @@ function* loginSaga({ payload }: PayloadAction<LogginPayload>): Generator<
       yield put(loginRequestSuccess(filmsRes));
     } else {
       callback?.(filmsRes);
-      yield put(loginRequestFailed() as any);
+      yield put(loginRequestFailed(filmsRes) as any);
     }
   } catch (err) {
     callback?.(err);
-    yield put(loginRequestFailed() as any);
+    yield put(loginRequestFailed(err) as any);
   }
 }
 
@@ -69,10 +74,10 @@ function* getUserSaga({ payload }: PayloadAction<GetUserParams>): Generator<
       yield put(getUserSuccess(filmsRes as GetUserSuccessPayload) as any);
       callback?.(filmsRes as GetUserSuccessPayload);
     } else {
-      yield put(getUserFailed() as any);
+      yield put(getUserFailed(filmsRes) as any);
     }
   } catch (err) {
-    yield put(getUserFailed() as any);
+    yield put(getUserFailed(err) as any);
   }
 }
 
@@ -93,11 +98,11 @@ function* sendEmailVerifySaga({ payload }: PayloadAction<SendEmailVerifyPayload>
       yield put(sendEmailVerifySuccess(filmsRes));
     } else {
       callback?.(filmsRes);
-      yield put(sendEmailVerifyFailed() as any);
+      yield put(sendEmailVerifyFailed(filmsRes) as any);
     }
   } catch (err) {
     callback?.(err);
-    yield put(sendEmailVerifyFailed() as any);
+    yield put(sendEmailVerifyFailed(err) as any);
   }
 }
 
@@ -118,11 +123,36 @@ function* verifyEmailSaga({ payload }: PayloadAction<EmailVerifyPayload>): Gener
       yield put(verifyEmailSuccess(filmsRes));
     } else {
       callback?.(filmsRes);
-      yield put(verifyEmailFailed() as any);
+      yield put(verifyEmailFailed(filmsRes) as any);
     }
   } catch (err) {
     callback?.(err);
-    yield put(verifyEmailFailed() as any);
+    yield put(verifyEmailFailed(err) as any);
+  }
+}
+
+function* changePasswordSaga({ payload }: PayloadAction<ChangePasswordPayload>): Generator<
+  | CallEffect
+  | PutEffect<{
+      payload: ChangePasswordSuccessPayload;
+      type: string;
+    }>,
+  void
+> {
+  const { userId, oldPassword, newPassword, callback } = payload;
+  try {
+    const filmsRes: any = yield callSafe(AuthAPI.requestChangePasswordVerify, { userId, oldPassword, newPassword });
+
+    if (!isEmpty(filmsRes)) {
+      callback?.(filmsRes, 'SUCCESS');
+      yield put(changePasswordSuccess(filmsRes));
+    } else {
+      callback?.(filmsRes, 'ERROR');
+      yield put(changePasswordFailed(filmsRes) as any);
+    }
+  } catch (err) {
+    callback?.(err, 'ERROR');
+    yield put(changePasswordFailed(err) as any);
   }
 }
 
@@ -131,6 +161,7 @@ function* authSaga(): Generator<ForkEffect<never>, void> {
   yield takeLatest(getUserRequest.type, getUserSaga);
   yield takeLatest(sendEmailVerifyRequest.type, sendEmailVerifySaga);
   yield takeLatest(verifyEmailRequest.type, verifyEmailSaga);
+  yield takeLatest(changePasswordRequest.type, changePasswordSaga);
 }
 
 export default authSaga;

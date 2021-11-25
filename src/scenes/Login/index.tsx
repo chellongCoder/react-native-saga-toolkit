@@ -13,13 +13,12 @@ import { Touchable } from '@components/touchable';
 import { Icons } from '@theme/icons';
 import { Platform } from '@theme/platform';
 import { Text } from '@components/text';
-import { navigate } from '@routes/navigationUtils';
-import { ROUTES } from '@routes/constants';
 import { Dropdown } from '@scenes/create-new-wallet/dropdown';
 import { langs } from './__mocks__/data';
 import { loginRequest } from '@redux/actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useLoadingGlobal } from '@hook/use-loading-global';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const LoginScreen: FC = () => {
   const [t, i18n] = useTranslation();
@@ -74,48 +73,50 @@ const LoginScreen: FC = () => {
         <Dropdown data={langs} />
       </View>
 
-      <View style={styles.logo}>
-        <Image resizeMode="contain" style={commonStyles.image} source={Images.LOGO} />
-      </View>
-      <View style={styles.input}>
-        <TextField
-          onChangeText={setUsername}
-          style={styles.inputRateStyle}
-          placeholder={t('Login:email')}
-          inputStyle={styles.inputStyles}
-          placeholderTextColor={COLORS.GREEN}
-          autoCapitalize={'none'}
-        />
-        <TextField
-          onChangeText={setPassword}
-          style={styles.inputRateStyle}
-          placeholder={t('Login:pass')}
-          inputStyle={styles.inputStyles}
-          placeholderTextColor={COLORS.GREEN}
-          secureTextEntry
-        />
-      </View>
-      <View style={[commonStyles.row, commonStyles.spaceBetween, styles.buttonGroup]}>
-        <Touchable onPress={onLogin} style={styles.button}>
-          <Text fontType="fontBold" color={COLORS.LIGHT_GREEN} fontSize={Platform.SizeScale(20)}>
-            {t('Login:login')}
-          </Text>
-        </Touchable>
-        <LinearGradient useAngle angle={93.32} colors={COLORS.PINK_GRADIENT} style={styles.finger}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_FINGER} />
-        </LinearGradient>
-      </View>
-      <View style={[commonStyles.row, styles.funcGroup]}>
-        <View style={styles.func}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_NEW} />
+      <KeyboardAwareScrollView>
+        <View style={styles.logo}>
+          <Image resizeMode="contain" style={commonStyles.image} source={Images.LOGO} />
         </View>
-        <View style={styles.func}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_SUPPORT} />
+        <View style={styles.input}>
+          <TextField
+            onChangeText={setUsername}
+            style={styles.inputRateStyle}
+            placeholder={t('Login:email')}
+            inputStyle={styles.inputStyles}
+            placeholderTextColor={COLORS.GREEN}
+            autoCapitalize={'none'}
+          />
+          <TextField
+            onChangeText={setPassword}
+            style={styles.inputRateStyle}
+            placeholder={t('Login:pass')}
+            inputStyle={styles.inputStyles}
+            placeholderTextColor={COLORS.GREEN}
+            secureTextEntry
+          />
         </View>
-        <View style={styles.func}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_MORE} />
+        <View style={[commonStyles.row, commonStyles.spaceBetween, styles.buttonGroup]}>
+          <Touchable onPress={onLogin} style={styles.button}>
+            <Text fontType="fontBold" color={COLORS.LIGHT_GREEN} fontSize={Platform.SizeScale(20)}>
+              {t('Login:login')}
+            </Text>
+          </Touchable>
+          <LinearGradient useAngle angle={93.32} colors={COLORS.PINK_GRADIENT} style={styles.finger}>
+            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_FINGER} />
+          </LinearGradient>
         </View>
-      </View>
+        <View style={[commonStyles.row, styles.funcGroup]}>
+          <View style={styles.func}>
+            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_NEW} />
+          </View>
+          <View style={styles.func}>
+            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_SUPPORT} />
+          </View>
+          <View style={styles.func}>
+            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_MORE} />
+          </View>
+        </View>
+      </KeyboardAwareScrollView>
     </LinearGradient>
   );
 };

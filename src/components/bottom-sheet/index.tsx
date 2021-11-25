@@ -38,7 +38,7 @@ const _BottomSheetCustom: React.FC<BottomSheetProps> = forwardRef(({ header, bod
       isBackDrop={true}
       isBackDropDismissByPress={true}
       isRoundBorderWithTipHeader={true}
-      keyboardAware
+      // keyboardAware
       header={header}
       body={body}
     />

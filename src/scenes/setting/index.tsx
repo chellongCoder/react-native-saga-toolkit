@@ -56,6 +56,10 @@ const _SettingScreen = ({}) => {
     });
   }, [dispatch, loading, navigation, userInfo?.data.email]);
 
+  const onChangePassword = useCallback(() => {
+    navigation.navigate('ChangePassword');
+  }, [navigation]);
+
   return (
     <View>
       <Topbar>
@@ -146,6 +150,7 @@ const _SettingScreen = ({}) => {
             </View>
             <View mt={Platform.SizeScale(10)}>
               <BreadCrumb
+                onPress={onChangePassword}
                 left={
                   <View>
                     <Text fontSize={Platform.SizeScale(15)}>Change Password</Text>
