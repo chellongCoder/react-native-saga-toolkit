@@ -34,6 +34,10 @@ export const useBuyCoinStyle = () => {
           paddingHorizontal: Platform.SizeScale(5),
           borderRadius: Platform.SizeScale(20),
         },
+        button: {
+          backgroundColor: COLORS._139B8B_30,
+          alignSelf: 'center',
+        },
       }),
     [insets],
   );

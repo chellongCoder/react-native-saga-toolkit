@@ -19,6 +19,8 @@ import { mapDataWallet, mapWalletsList } from '@tools/wallet.helper';
 
 const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
   const { wallets } = useSelector((state: RootState) => state.wallet);
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+
   const profiles = useMemo(() => {
     return mapWalletsList(wallets);
   }, [wallets]);
@@ -84,7 +86,16 @@ const _Drawer = ({ navigation }: DrawerContentComponentProps) => {
         <Text fontSize={Platform.SizeScale(20)} color={COLORS.WHITE}>
           Wallet
         </Text>
-        <Icon icon={Icons.ICON_AVATAR} size={3} />
+        <Icon
+          style={{
+            overflow: 'hidden',
+            borderRadius: Platform.SizeScale(50),
+          }}
+          mr={Platform.SizeScale(10)}
+          resizeMode="cover"
+          icon={{ uri: userInfo?.data.avatar }}
+          size={2.5}
+        />
       </View>
 
       <View

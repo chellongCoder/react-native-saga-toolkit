@@ -57,3 +57,11 @@ export interface EmailVerifySuccessPayload {
   email: string;
   username: string;
 }
+
+export interface ChangePasswordPayload extends ApiParamsT {
+  userId: string;
+  oldPassword: string;
+  newPassword: string;
+}
+
+export type ChangePasswordSuccessPayload = ApiParamsT;

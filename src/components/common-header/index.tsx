@@ -3,18 +3,22 @@ import { CommonMenu } from '@components/common-menu';
 import { Touchable } from '@components/touchable';
 import { useBlurView } from '@hook/use-blur-view';
 import { DrawerActionHelpers, DrawerActions, ParamListBase, useNavigation } from '@react-navigation/native';
+import { RootState } from '@redux/reducers';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Images } from '@theme/images';
 import { Platform } from '@theme/platform';
 import React, { memo, useCallback } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import { useCommonHeaderStyle } from './styles';
 
 export interface ICommonHeader {
   _onPressAvatar?: () => void;
 }
 const _CommonHeader = ({ _onPressAvatar }: ICommonHeader) => {
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+
   const styles = useCommonHeaderStyle();
   const blurView = useBlurView();
   const navigation = useNavigation();
@@ -39,7 +43,16 @@ const _CommonHeader = ({ _onPressAvatar }: ICommonHeader) => {
     <View style={[commonStyles.row, commonStyles.spaceBetween, styles.header]}>
       <View style={commonStyles.row}>
         <Touchable onPress={onPressAvatar}>
-          <Icon mr={Platform.SizeScale(10)} icon={Icons.ICON_AVATAR} size={4} />
+          <Icon
+            style={{
+              overflow: 'hidden',
+              borderRadius: Platform.SizeScale(50),
+            }}
+            mr={Platform.SizeScale(10)}
+            resizeMode="cover"
+            icon={{ uri: userInfo?.data.avatar }}
+            size={4}
+          />
         </Touchable>
         <View style={styles.logo}>
           <Image resizeMode="contain" style={commonStyles.image} source={Images.TEXT_LOGO} />

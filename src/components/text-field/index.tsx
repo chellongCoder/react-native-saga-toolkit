@@ -1,12 +1,14 @@
 import React, { forwardRef, Ref, useMemo, useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { useLayout } from '@react-native-community/hooks';
-import Icon from 'react-native-vector-icons/Entypo';
 import { Text } from '../text';
 import { Touchable } from '../touchable';
 import { useStylesTextField } from './styles';
 import { TextFiledProps } from './types';
 import { Platform } from '@theme/platform';
+import { Icon } from '@components/common-icon';
+import { Icons } from '@theme/icons';
+import { COLORS } from '@theme/colors';
 
 export const TextField = forwardRef(
   (
@@ -33,7 +35,11 @@ export const TextField = forwardRef(
       setSecureTextEntry(prev => !prev);
     }
     const iosEye = useMemo(() => {
-      return !showSecureTextEntry ? 'eye' : 'eye-with-line';
+      return !showSecureTextEntry ? (
+        <Icon tintColor={COLORS._909090} icon={Icons.ICON_OPEN_EYE} size={Platform.SizeScale(3)} />
+      ) : (
+        <Icon tintColor={COLORS._909090} icon={Icons.ICON_CLOSEEYE} size={Platform.SizeScale(3)} />
+      );
     }, [showSecureTextEntry]);
 
     const androidEye = useMemo(() => {
@@ -45,14 +51,10 @@ export const TextField = forwardRef(
         return renderRightAccessory?.();
       }
       if (!renderRightAccessory) {
-        return (
-          <Touchable onPress={showPassword}>
-            <Icon size={Platform.SizeScale(30)} name={Platform.OS === 'android' ? androidEye : iosEye} />
-          </Touchable>
-        );
+        return <Touchable onPress={showPassword}>{iosEye}</Touchable>;
       }
       return renderRightAccessory?.();
-    }, [androidEye, iosEye, renderRightAccessory, secureTextEntry]);
+    }, [iosEye, renderRightAccessory, secureTextEntry]);
 
     return (
       <View style={[styles.content, style]}>

@@ -10,6 +10,7 @@ import { Text } from '@components/text';
 import { COLORS } from '@theme/colors';
 import { Icons } from '@theme/icons';
 import { TextField } from '@components/text-field';
+import { CommonButton } from '@components/CommonButton';
 
 const _BuyCoinScreen = ({}) => {
   const navigation = useNavigation();
@@ -73,7 +74,7 @@ const _BuyCoinScreen = ({}) => {
               )}
             />
           </View>
-          <View mh={Platform.SizeScale(10)} mt={Platform.SizeScale(20)}>
+          <View mb={Platform.SizeScale(30)} mh={Platform.SizeScale(10)} mt={Platform.SizeScale(20)}>
             <Text
               mb={Platform.SizeScale(10)}
               fontType="fontBold"
@@ -97,6 +98,28 @@ const _BuyCoinScreen = ({}) => {
               )}
             />
           </View>
+        </View>
+        <View mt={Platform.SizeScale(20)} mh={Platform.SizeScale(20)}>
+          <Text fontSize={Platform.SizeScale(15)}>{`Why Credit Card?`}</Text>
+          <Text fontSize={Platform.SizeScale(11)} fontType="fontLight" color={COLORS._282828}>
+            {`
+1. Fast: Average 10-30 mins for cryptocurrency to reach your wallet.
+2. Low Fees: only 3.5% per transaction or 10 USD, whichever is higher.
+3. Convenient: Visa and MasterCard accepted.`}
+          </Text>
+        </View>
+
+        <View mt={Platform.SizeScale(30)}>
+          <CommonButton
+            style={[styles.button, { backgroundColor: true ? COLORS._139B8B : styles.button.backgroundColor }]}
+            type="normal"
+            text={'Buy Now'}
+            width={Platform.SizeScale(343)}
+            height={Platform.SizeScale(47)}
+            textColor={COLORS.WHITE}
+            disabled={true}
+            // onPress={onComplete}
+          />
         </View>
       </Topbar>
     </View>
