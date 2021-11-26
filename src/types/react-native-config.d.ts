@@ -9,4 +9,5 @@ declare module 'react-native-config' {
   export const AppName: string;
   export const API_URL: string;
   export const API_COIN: string;
+  export const SENTRY_DNS: string;
 }

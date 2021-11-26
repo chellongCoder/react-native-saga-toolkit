@@ -36,8 +36,30 @@ import codePush from 'react-native-code-push';
 import { ErrorBoundary } from '@components/error-boundary';
 import BottomSheetProvider from '@provider/bottom-sheet';
 import LoadingGlobalProvider from '@tools/loading-global';
+import * as Sentry from '@sentry/react-native';
+import SentryProvider from '@tools/sentry';
+import { useSentry } from '@hook/use-sentry';
 
 enableScreens();
+
+const Navigation: FC = () => {
+  const sentry = useSentry();
+
+  return (
+    <NavigationContainer
+      onReady={() => {
+        // Register the navigation container with the instrumentation
+        sentry.routingInstrumentation.registerNavigationContainer(navigationRef);
+      }}
+      ref={navigationRef}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
+      <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
+        <RootStackScreen />
+      </Layout>
+    </NavigationContainer>
+  );
+};
 
 const App: FC = () => {
   const codePushStatusDidChange = (syncStatus: any) => {
@@ -93,52 +115,51 @@ const App: FC = () => {
   }, [sync]);
 
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<Splashscreen />}>
-        <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-          <IconRegistry
-            icons={[
-              AntDesignIconsPack,
-              EntypoIconsPack,
-              EvilIconsPack,
-              FeatherIconsPack,
-              FontAwesomeIconsPack,
-              FontAwesome5IconsPack,
-              FontistoIconsPack,
-              FoundationIconsPack,
-              IoniconsIconsPack,
-              MaterialIconsPack,
-              MaterialCommunityIconsPack,
-              OcticonsIconsPack,
-              SimpleLineIconsIconsPack,
-              ZocialIconsPack,
-            ]}
-          />
-          <Provider store={store}>
-            <PersistGate loading={<Splashscreen />} persistor={persistor}>
-              <NetworkProvider>
-                <LoadingGlobalProvider>
-                  <CopiedProvider>
-                    <SafeAreaProvider>
-                      <BlurViewProvider>
-                        <BottomSheetProvider>
-                          <NavigationContainer ref={navigationRef}>
-                            <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
-                            <Layout style={[globalStyle.flex1, globalStyle.justifyCenter]}>
-                              <RootStackScreen />
-                            </Layout>
-                          </NavigationContainer>
-                        </BottomSheetProvider>
-                      </BlurViewProvider>
-                    </SafeAreaProvider>
-                  </CopiedProvider>
-                </LoadingGlobalProvider>
-              </NetworkProvider>
-            </PersistGate>
-          </Provider>
-        </ApplicationProvider>
-      </Suspense>
-    </ErrorBoundary>
+    <Sentry.TouchEventBoundary>
+      <ErrorBoundary>
+        <Suspense fallback={<Splashscreen />}>
+          <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+            <IconRegistry
+              icons={[
+                AntDesignIconsPack,
+                EntypoIconsPack,
+                EvilIconsPack,
+                FeatherIconsPack,
+                FontAwesomeIconsPack,
+                FontAwesome5IconsPack,
+                FontistoIconsPack,
+                FoundationIconsPack,
+                IoniconsIconsPack,
+                MaterialIconsPack,
+                MaterialCommunityIconsPack,
+                OcticonsIconsPack,
+                SimpleLineIconsIconsPack,
+                ZocialIconsPack,
+              ]}
+            />
+            <Provider store={store}>
+              <PersistGate loading={<Splashscreen />} persistor={persistor}>
+                <SentryProvider>
+                  <NetworkProvider>
+                    <LoadingGlobalProvider>
+                      <CopiedProvider>
+                        <SafeAreaProvider>
+                          <BlurViewProvider>
+                            <BottomSheetProvider>
+                              <Navigation />
+                            </BottomSheetProvider>
+                          </BlurViewProvider>
+                        </SafeAreaProvider>
+                      </CopiedProvider>
+                    </LoadingGlobalProvider>
+                  </NetworkProvider>
+                </SentryProvider>
+              </PersistGate>
+            </Provider>
+          </ApplicationProvider>
+        </Suspense>
+      </ErrorBoundary>
+    </Sentry.TouchEventBoundary>
   );
 };
 
@@ -148,4 +169,4 @@ const codePushOptions = {
   checkFrequency: codePush.CheckFrequency.ON_APP_START,
 };
 
-export default codePush(codePushOptions)(App);
+export default codePush(codePushOptions)(Sentry.wrap(App));
