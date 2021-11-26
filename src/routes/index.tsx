@@ -227,8 +227,10 @@ export const MainStackScreen: FC = () => {
 };
 
 export const AuthStackScreen: FC = () => {
+  const { initRouteNameAuth } = useSelector((state: RootState) => state.auth);
+
   return (
-    <MainStack.Navigator initialRouteName={'Home'}>
+    <MainStack.Navigator initialRouteName={initRouteNameAuth}>
       <MainStack.Screen
         name={ROUTES.Login}
         component={Login}

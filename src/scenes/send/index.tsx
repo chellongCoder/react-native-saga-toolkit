@@ -17,6 +17,7 @@ import commonStyles from '@theme/commonStyles';
 import { TextField } from '@components/text-field';
 import { Touchable } from '@components/touchable';
 import { CommonButton } from '@components/CommonButton';
+import { inputAlert } from '@utils';
 
 const _SendScreen = ({}) => {
   const styles = useSendStyle();
@@ -30,6 +31,14 @@ const _SendScreen = ({}) => {
   const onChoiceFee = useCallback(() => {
     navigation.navigate('FeePerByte');
   }, [navigation]);
+
+  const onNext = useCallback(() => {
+    inputAlert('Please enter password', '', (password: string) => {
+      console.log(`🛠 LOG: 🚀 --> ----------------------------------------------------------------------------`);
+      console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 37 ~ inputAlert ~ password`, password);
+      console.log(`🛠 LOG: 🚀 --> ----------------------------------------------------------------------------`);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -164,7 +173,7 @@ const _SendScreen = ({}) => {
           backgroundColor={COLORS.WHITE}
           mb={Platform.SizeScale(10)}
         >
-          <CommonButton width={Platform.SizeScale(343)} type="full" text={'Next'} />
+          <CommonButton onPress={onNext} width={Platform.SizeScale(343)} type="full" text={'Next'} />
         </View>
       </Topbar>
     </View>

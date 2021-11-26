@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
 
 export const alertError = (message: string) => {
-  Alert.alert('Lỗi!', message);
+  Alert.alert('Error!', message);
 };
 
 export function alertMessage(message: string, onPress?: any, content = '') {
@@ -26,4 +26,28 @@ export const showConfirm = (message = '', onPositive = () => {}, onNegative = ()
       onPress: onNegative,
     },
   ]);
+};
+
+export const inputAlert = (
+  title: string,
+  message: string,
+  onNegative = (password?: string) => {},
+  onPositive = () => {},
+) => {
+  Alert.prompt(
+    title,
+    message,
+    [
+      {
+        text: 'Cancel',
+        onPress: () => onPositive(),
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: password => onNegative(password),
+      },
+    ],
+    'secure-text',
+  );
 };

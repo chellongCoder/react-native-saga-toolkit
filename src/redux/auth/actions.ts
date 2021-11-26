@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
+import { ROUTES } from '@routes/constants';
 import { PURGE } from 'redux-persist';
 import {
   ChangePasswordPayload,
@@ -34,3 +35,7 @@ export const changePasswordFailed = createAction<any>('CHANGE_PASSWORD_FAILED');
 
 export const logoutRequest = createAction('LOGOUT_REQUEST');
 export const purgeRequest = createAction(PURGE);
+
+export const changeInitRouteNameAuth = createAction<typeof ROUTES.Login | ROUTES.LoginPassword>(
+  'CHANGE_INIT_ROUTE_NAME_AUTH',
+);

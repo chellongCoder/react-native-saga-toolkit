@@ -32,7 +32,10 @@ export const persistedRootReducer = persistCombineReducers(persistConfig, reduce
 
 const resettableReducer = (state, action: Action<unknown>) => {
   if (logoutRequest.match(action)) {
-    return persistedRootReducer(undefined, action);
+    const { wallet, ...data } = state;
+    AsyncStorage.removeItem('persist:root');
+    AsyncStorage.removeItem('persist:wallet');
+    return persistedRootReducer(data, action);
   }
   return persistedRootReducer(state, action);
 };

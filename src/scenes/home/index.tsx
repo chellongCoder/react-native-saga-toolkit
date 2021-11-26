@@ -31,6 +31,8 @@ import { WalletDetail } from '@redux/wallet/types';
 import { useBottomSheet } from '@hook/use-bottom-sheet';
 import { Wallet } from './Wallets';
 import { getUserRequest } from '@redux/actions';
+import { GetUserSuccessPayload } from '@redux/auth/types';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -92,12 +94,17 @@ const _HomeScreen = ({}) => {
     bottomSheet.onShow(<Sorting />);
   }, [bottomSheet]);
 
+  const onAddWallets = useCallback(() => {
+    navigation.navigate('AddWallet');
+  }, [navigation]);
+
   useEffect(() => {
-    dispatch(
-      getWalletsRequest({
-        userId: user?.data.id ?? '',
-      }),
-    );
+    user?.data.id &&
+      dispatch(
+        getWalletsRequest({
+          userId: user?.data.id ?? '',
+        }),
+      );
   }, [dispatch, user?.data.id]);
 
   useEffect(() => {
@@ -105,11 +112,15 @@ const _HomeScreen = ({}) => {
   }, [mapWallets]);
 
   useEffect(() => {
-    dispatch(
-      getUserRequest({
-        id: user?.data.id ?? '',
-      }),
-    );
+    user?.data.id &&
+      dispatch(
+        getUserRequest({
+          id: user?.data.id ?? '',
+          callback: async (data: GetUserSuccessPayload) => {
+            await AsyncStorage.setItem('userInfo', JSON.stringify(data.data));
+          },
+        }),
+      );
   }, [dispatch, user?.data.id]);
 
   const renderItemContent = useCallback(() => {
@@ -145,14 +156,26 @@ const _HomeScreen = ({}) => {
         <ScrollView style={styles.body}>
           <View mv={Platform.SizeScale(20)} style={[commonStyles.row, commonStyles.spaceBetween]}>
             <Icon icon={Icons.ICON_WALLET} size={3} />
-            <Touchable onPress={onShowWallets}>
-              <View style={[commonStyles.row]}>
-                <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={'#085A51'}>
-                  {currentWallet?.name}{' '}
-                </Text>
-                <Icon icon={Icons.ICON_DROP_DOWN} size={1} />
-              </View>
-            </Touchable>
+            {mapWallets.length ? (
+              <Touchable onPress={onShowWallets}>
+                <View style={[commonStyles.row]}>
+                  <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={'#085A51'}>
+                    {currentWallet?.name}{' '}
+                  </Text>
+                  <Icon icon={Icons.ICON_DROP_DOWN} size={1} />
+                </View>
+              </Touchable>
+            ) : (
+              <Touchable onPress={onAddWallets}>
+                <View style={[commonStyles.row]}>
+                  <Icon icon={Icons.ICON_PLUS} size={1.5} />
+                  <Text fontType="fontBold" fontSize={Platform.SizeScale(20)} color={'#085A51'}>
+                    Add Wallet
+                  </Text>
+                </View>
+              </Touchable>
+            )}
+
             <Icon icon={Icons.ICON_BARCODE} size={3} />
           </View>
 
