@@ -14,12 +14,13 @@ import { Text } from '@components/text';
 import { Icons } from '@theme/icons';
 import { BreadCrumb } from '@components/bread-crumb';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutRequest, purgeRequest, sendEmailVerifyRequest } from '@redux/actions';
+import { changeInitRouteNameAuth, logoutRequest, purgeRequest, sendEmailVerifyRequest } from '@redux/actions';
 import { RootState } from '@redux/reducers';
 import { useCopied } from '@hook/use-copied';
 import { ScrollView } from 'react-native';
 import { showConfirm } from '@utils';
 import { useLoadingGlobal } from '@hook/use-loading-global';
+import { ROUTES } from '@routes/constants';
 
 const _SettingScreen = ({}) => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
@@ -34,8 +35,15 @@ const _SettingScreen = ({}) => {
   }, [navigation]);
 
   const onLogout = useCallback(() => {
-    dispatch(logoutRequest());
-  }, [dispatch]);
+    showConfirm('Do you wanna logout?', () => {
+      loading.onShow();
+      dispatch(changeInitRouteNameAuth(ROUTES.LoginPassword));
+      setTimeout(() => {
+        dispatch(logoutRequest());
+        loading.onHide();
+      }, 500);
+    });
+  }, [dispatch, loading]);
 
   const onCopy = useCallback(() => {
     copy.onShow(userInfo?.data._id);

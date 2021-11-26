@@ -1,4 +1,5 @@
 import {
+  changeInitRouteNameAuth,
   getUserFailed,
   getUserRequest,
   getUserSuccess,
@@ -7,6 +8,7 @@ import {
   logoutRequest,
 } from '@redux/actions';
 import { createReducer } from '@reduxjs/toolkit';
+import { ROUTES } from '@routes/constants';
 import { loginRequest } from './actions';
 import { GetUserSuccessPayload, UserLogin } from './types';
 
@@ -15,6 +17,7 @@ export interface AuthState {
   requesting: boolean;
   user?: UserLogin;
   userInfo?: GetUserSuccessPayload;
+  initRouteNameAuth: typeof ROUTES.Login | ROUTES.LoginPassword;
 }
 
 const initialState: AuthState = {
@@ -22,6 +25,7 @@ const initialState: AuthState = {
   requesting: false,
   user: undefined,
   userInfo: undefined,
+  initRouteNameAuth: ROUTES.Login,
 };
 
 export const authReducer = createReducer(initialState, {
@@ -49,5 +53,8 @@ export const authReducer = createReducer(initialState, {
   },
   [getUserFailed.type]: state => {
     state.requesting = false;
+  },
+  [changeInitRouteNameAuth.type]: (state, action) => {
+    state.initRouteNameAuth = action.payload;
   },
 });

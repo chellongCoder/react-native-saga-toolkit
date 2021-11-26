@@ -19,6 +19,7 @@ import { loginRequest } from '@redux/actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useLoadingGlobal } from '@hook/use-loading-global';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { alertError } from '@utils';
 
 const LoginScreen: FC = () => {
   const [t, i18n] = useTranslation();
@@ -51,15 +52,18 @@ const LoginScreen: FC = () => {
         username,
         password,
         fcmToken,
-        callback: (responseDataLogin: any) => {
+        callback: (responseDataLogin: any, type?: 'SUCCESS' | 'ERROR') => {
           console.log(
             `🛠 LOG: 🚀 --> -------------------------------------------------------------------------------------------`,
           );
           console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 40 ~ onLogin ~ responseDataLogin`, responseDataLogin);
           console.log(
             `🛠 LOG: 🚀 --> -------------------------------------------------------------------------------------------`,
-            loading.onHide(),
           );
+          loading.onHide();
+          if (type === 'ERROR') {
+            alertError(responseDataLogin?.error?.message);
+          }
         },
       }),
     );

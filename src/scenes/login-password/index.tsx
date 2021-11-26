@@ -2,8 +2,8 @@ import React, { useCallback, FC, memo, useState } from 'react';
 import { View, ScrollView, Image } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
-import { loginRequest } from '@redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeInitRouteNameAuth, loginRequest } from '@redux/actions';
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from '@theme/colors';
 import { Images } from '@theme/images';
@@ -17,14 +17,23 @@ import { Text } from '@components/text';
 import { Icon } from '@components/common-icon';
 import { langs } from '@scenes/Login/__mocks__/data';
 import { Dropdown } from '@scenes/create-new-wallet/dropdown';
+import { RootState } from '@redux/reducers';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useLoadingGlobal } from '@hook/use-loading-global';
+import { alertError } from '@utils';
+import { navigate, replace } from '@routes/navigationUtils';
+import { ROUTES } from '@routes/constants';
 
 const _LoginPasswordScreen = ({}) => {
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+
   const navigation = useNavigation();
   const [t, i18n] = useTranslation();
   const styles = useLoginPasswordStyle();
   const [lang, setLang] = useState('en');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const loading = useLoadingGlobal();
 
   const switchLocaleToEn = useCallback(() => {
     i18n.changeLanguage('en');
@@ -36,12 +45,40 @@ const _LoginPasswordScreen = ({}) => {
     setLang('vi');
   }, [i18n]);
 
-  const onLogin = useCallback(() => {
+  const onLogin = useCallback(async () => {
+    loading.onShow();
+    const fcmToken = await AsyncStorage.getItem('@fcmToken');
+    console.log(`🛠 LOG: 🚀 --> -------------------------------------------------------------------------`);
+    console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 48 ~ onLogin ~ fcmToken`, fcmToken);
+    console.log(`🛠 LOG: 🚀 --> -------------------------------------------------------------------------`);
+
     dispatch(
       loginRequest({
-        auth: true,
+        username: userInfo?.data.username ?? '',
+        password,
+        fcmToken,
+        callback: (responseDataLogin: any, type?: 'SUCCESS' | 'ERROR') => {
+          console.log(
+            `🛠 LOG: 🚀 --> -------------------------------------------------------------------------------------------`,
+          );
+          console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 40 ~ onLogin ~ responseDataLogin`, responseDataLogin);
+          console.log(
+            `🛠 LOG: 🚀 --> -------------------------------------------------------------------------------------------`,
+          );
+          loading.onHide();
+          if (type === 'ERROR') {
+            alertError(responseDataLogin?.error?.message);
+          }
+        },
       }),
     );
+
+    // navigate(ROUTES.LoginPassword, {});
+  }, [dispatch, loading, password, userInfo?.data.username]);
+
+  const onDeleteAcc = useCallback(() => {
+    dispatch(changeInitRouteNameAuth(ROUTES.Login));
+    replace(ROUTES.Login, {});
   }, [dispatch]);
 
   return (
@@ -54,18 +91,25 @@ const _LoginPasswordScreen = ({}) => {
       </View>
       <View style={styles.input}>
         <View style={[commonStyles.row, commonStyles.spaceBetween, styles.info]}>
-          <Icon icon={Icons.ICON_AVATAR} size={6} />
+          <Icon
+            style={{ overflow: 'hidden', borderRadius: Platform.SizeScale(50) }}
+            icon={{ uri: userInfo?.data.avatar }}
+            size={6}
+            resizeMode={'cover'}
+          />
           <View>
             <Text color={COLORS.LIGHT_GREEN} fontSize={Platform.SizeScale(15)}>
               Hello
             </Text>
             <Text color={COLORS.WHITE} fontSize={Platform.SizeScale(20)}>
-              LE HOANG LONG
+              {userInfo?.data.fullname}
             </Text>
           </View>
-          <View>
-            <Icon icon={Icons.ICON_X} size={2} />
-          </View>
+          <Touchable onPress={onDeleteAcc}>
+            <View>
+              <Icon icon={Icons.ICON_X} size={2} />
+            </View>
+          </Touchable>
         </View>
         <TextField
           onChangeText={setPassword}
