@@ -20,6 +20,7 @@ import ICON_FILTER from './../../assets/icons/icon_filter.png'
 import ICON_FINGER from './../../assets/icons/icon_finger.png'
 import ICON_INCREASE from './../../assets/icons/icon_increase.png'
 import ICON_LIKE from './../../assets/icons/icon_like.png'
+import ICON_LOADING from './../../assets/icons/icon_loading.png'
 import ICON_MARKET from './../../assets/icons/icon_market.png'
 import ICON_MARKET_SDG from './../../assets/icons/icon_market_sdg.png'
 import ICON_MENU from './../../assets/icons/icon_menu.png'
@@ -47,6 +48,8 @@ import ICON_SUPPORT from './../../assets/icons/icon_support.png'
 import ICON_THREE_DOT_GREEN from './../../assets/icons/icon_three_dot_green.png'
 import ICON_THREEDOT from './../../assets/icons/icon_threedot.png'
 import ICON_TICK from './../../assets/icons/icon_tick.png'
+import ICON_TRANS_FAIL from './../../assets/icons/icon_trans_fail.png'
+import ICON_TRANS_SUCCESS from './../../assets/icons/icon_trans_success.png'
 import ICON_UNACTIVE_STAR from './../../assets/icons/icon_unactive_star.png'
 import ICON_UNCHECKBOX from './../../assets/icons/icon_uncheckbox.png'
 import ICON_USER from './../../assets/icons/icon_user.png'
@@ -78,6 +81,7 @@ ICON_FILTER,
 ICON_FINGER,
 ICON_INCREASE,
 ICON_LIKE,
+ICON_LOADING,
 ICON_MARKET,
 ICON_MARKET_SDG,
 ICON_MENU,
@@ -105,6 +109,8 @@ ICON_SUPPORT,
 ICON_THREE_DOT_GREEN,
 ICON_THREEDOT,
 ICON_TICK,
+ICON_TRANS_FAIL,
+ICON_TRANS_SUCCESS,
 ICON_UNACTIVE_STAR,
 ICON_UNCHECKBOX,
 ICON_USER,

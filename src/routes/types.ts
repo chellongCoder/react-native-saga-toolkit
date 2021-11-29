@@ -49,6 +49,10 @@ export type MainStackT = {
   ShowPassphrase: { walletDetail: WalletDetail };
   EmailVerification: { email?: string };
   ChangePassword: undefined;
+  SendWaiting: undefined;
+  SendComplete: undefined;
+  Privatekey: undefined;
+  Keystore: undefined;
 };
 export type ScreenKeyT = keyof (BottomTabT & RootStackT & MainStackT);
 export type ScreenRouteT = BottomTabT & RootStackT & MainStackT & CurrencyStackT & MarketStackT;
