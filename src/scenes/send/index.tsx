@@ -37,8 +37,9 @@ const _SendScreen = ({}) => {
       console.log(`🛠 LOG: 🚀 --> ----------------------------------------------------------------------------`);
       console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 37 ~ inputAlert ~ password`, password);
       console.log(`🛠 LOG: 🚀 --> ----------------------------------------------------------------------------`);
+      navigation.navigate('SendComplete');
     });
-  }, []);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

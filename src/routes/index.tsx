@@ -36,6 +36,10 @@ import { SettingScreen } from '@scenes/setting';
 import { ShowPassphraseScreen } from '@scenes/show-passphrase';
 import { EmailVerificationScreen } from '@scenes/email-verification';
 import { ChangePasswordScreen } from '@scenes/change-password';
+import { SendWaitingScreen } from '@scenes/send-waiting';
+import { SendCompleteScreen } from '@scenes/send-complete';
+import { PrivatekeyScreen } from '@scenes/privatekey';
+import { KeystoreScreen } from '@scenes/keystore';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -111,6 +115,22 @@ export const MainStackScreen: FC = () => {
         }}
       />
       <MainStack.Screen
+        name={'Privatekey'}
+        component={PrivatekeyScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'Keystore'}
+        component={KeystoreScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
         name={'CreateNewWallet'}
         component={CreateNewWalletScreen}
         options={{
@@ -153,6 +173,22 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'Send'}
         component={SendScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'SendComplete'}
+        component={SendCompleteScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'SendWaiting'}
+        component={SendWaitingScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

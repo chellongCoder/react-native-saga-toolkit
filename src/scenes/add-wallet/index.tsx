@@ -27,6 +27,14 @@ const _AddWalletScreen: FC = () => {
     navigation.navigate('Passphrase');
   }, [navigation]);
 
+  const onPrivateKey = useCallback(() => {
+    navigation.navigate('Privatekey');
+  }, [navigation]);
+
+  const onKeyStore = useCallback(() => {
+    navigation.navigate('Keystore');
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Topbar title="Add Wallet">
@@ -78,18 +86,20 @@ const _AddWalletScreen: FC = () => {
             <CommonButton
               style={styles.button}
               type="normal"
-              text={'Passphase'}
+              text={'Private Key'}
               width={Platform.SizeScale(343)}
               height={Platform.SizeScale(56)}
+              onPress={onPrivateKey}
             />
           </View>
           <View mt={Platform.SizeScale(10)}>
             <CommonButton
               style={styles.button}
               type="normal"
-              text={'Passphase'}
+              text={'Keystore'}
               width={Platform.SizeScale(343)}
               height={Platform.SizeScale(56)}
+              onPress={onKeyStore}
             />
           </View>
         </View>
