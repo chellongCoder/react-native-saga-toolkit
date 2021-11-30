@@ -25,6 +25,10 @@ const _WalletDetailScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'Wallet
     navigation.navigate('ShowPassphrase', { walletDetail });
   }, [navigation, walletDetail]);
 
+  const onPublicKey = useCallback(() => {
+    navigation.navigate('PublicKey');
+  }, [navigation]);
+
   const renderRightAccessory = useCallback(() => {
     return (
       <View>
@@ -71,6 +75,7 @@ const _WalletDetailScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'Wallet
                 }
               />
               <BreadCrumb
+                onPress={onPublicKey}
                 style={styles.button}
                 left={
                   <View>

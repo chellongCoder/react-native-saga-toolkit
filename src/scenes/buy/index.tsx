@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useBuyStyle } from './styles';
 import { Topbar } from '@components/topbar';
@@ -15,10 +15,20 @@ import { coins } from './__mocks__/data';
 import { ListFullOption } from '@components/list';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ScreenRouteT } from '@routes/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTokensRequest } from '@redux/actions';
+import { RootState } from '@redux/reducers';
+import { mapTokensBuy } from '@tools/wallet.helper';
 
 const _BuyScreen = ({}) => {
+  const { tokens } = useSelector((state: RootState) => state.wallet);
+  const mapToken = useMemo(() => {
+    return mapTokensBuy(tokens);
+  }, [tokens]);
+
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Buy'>>();
   const styles = useBuyStyle();
+  const dispatch = useDispatch();
 
   const onNavigateDetail = useCallback(() => {
     navigation.navigate('BuyCoin');
@@ -27,6 +37,10 @@ const _BuyScreen = ({}) => {
   const onBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
+
+  useEffect(() => {
+    dispatch(getTokensRequest());
+  }, [dispatch]);
 
   const renderItemContent = useCallback(
     item => {
@@ -83,7 +97,7 @@ const _BuyScreen = ({}) => {
         <View mh={Platform.SizeScale(20)}>
           <ListFullOption
             listFooterComponent={<View style={{ height: Platform.SizeScale(150) }} />}
-            data={coins}
+            data={mapToken}
             renderSubItem={renderItemContent}
             showsVerticalScrollIndicator={false}
           />

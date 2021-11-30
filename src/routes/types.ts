@@ -53,6 +53,7 @@ export type MainStackT = {
   SendComplete: undefined;
   Privatekey: undefined;
   Keystore: undefined;
+  PublicKey: undefined;
 };
 export type ScreenKeyT = keyof (BottomTabT & RootStackT & MainStackT);
 export type ScreenRouteT = BottomTabT & RootStackT & MainStackT & CurrencyStackT & MarketStackT;

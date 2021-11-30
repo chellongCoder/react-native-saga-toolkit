@@ -63,3 +63,9 @@ export type WalletsHome = {
   note: string;
   id: string;
 };
+
+export type TokenBuyT = {
+  name: string;
+  coinName: string;
+  symbol: string;
+};

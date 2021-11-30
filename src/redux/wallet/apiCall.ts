@@ -70,3 +70,24 @@ export async function addWallet({ mnemonic, name, userId }: AddWalletPayload): P
     throw error;
   }
 }
+
+export async function getTokens(): Promise<any> {
+  const data = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const url = withQuery(`${Config.API_URL}/${API_CONFIG.TOKENS}`);
+    console.log(`🛠 LOG: 🚀 --> ---------------------------------------------------------------------`);
+    console.log(`🛠 LOG: 🚀 --> ~ file: apiCall.ts ~ line 21 ~ requestLogin ~ url`, url);
+    console.log(`🛠 LOG: 🚀 --> ---------------------------------------------------------------------`);
+    const response = await fetch(url, data);
+    return response.json();
+  } catch (error) {
+    console.error('login - Error: ', error);
+    throw error;
+  }
+}
