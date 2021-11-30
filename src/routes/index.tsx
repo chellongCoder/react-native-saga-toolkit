@@ -40,6 +40,7 @@ import { SendWaitingScreen } from '@scenes/send-waiting';
 import { SendCompleteScreen } from '@scenes/send-complete';
 import { PrivatekeyScreen } from '@scenes/privatekey';
 import { KeystoreScreen } from '@scenes/keystore';
+import { PublickeyScreen } from '@scenes/publickey';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -125,6 +126,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'Keystore'}
         component={KeystoreScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'PublicKey'}
+        component={PublickeyScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

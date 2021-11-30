@@ -22,6 +22,7 @@ import {
   getWalletsRequest,
   getWalletsSuccess,
 } from './actions';
+import { getTokensFailed, getTokensRequest, getTokensSuccess } from '@redux/actions';
 
 function* createPassPhraseSaga({ payload }: PayloadAction<PassPhrasePayload>): Generator<
   | CallEffect
@@ -92,10 +93,32 @@ function* getWalletsSaga({ payload }: PayloadAction<GetWalletPayload>): Generato
   }
 }
 
+function* getTokensSaga({ payload }: PayloadAction<any>): Generator<
+  | CallEffect
+  | PutEffect<{
+      payload: any;
+      type: string;
+    }>,
+  void
+> {
+  try {
+    const filmsRes: unknown = yield callSafe(WalletAPI.getTokens);
+
+    if (!isEmpty(filmsRes)) {
+      yield put(getTokensSuccess(filmsRes) as any);
+    } else {
+      yield put(getTokensFailed() as any);
+    }
+  } catch (err) {
+    yield put(getTokensFailed() as any);
+  }
+}
+
 function* walletSaga(): Generator<ForkEffect<never>, void> {
   yield takeLatest(getPassphraseRequest.type, createPassPhraseSaga);
   yield takeLatest(addWalletRequest.type, createWalletSaga);
   yield takeLatest(getWalletsRequest.type, getWalletsSaga);
+  yield takeLatest(getTokensRequest.type, getTokensSaga);
 }
 
 export default walletSaga;

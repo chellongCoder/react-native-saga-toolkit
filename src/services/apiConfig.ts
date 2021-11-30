@@ -6,4 +6,5 @@ export enum API_CONFIG {
   RESEND_EMAIL = 'resend-verify',
   VERIFY_EMAIL = 'verify',
   CHANGE_PASS = 'change-pass',
+  TOKENS = 'tokens',
 }

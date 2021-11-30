@@ -23,3 +23,7 @@ export const changeNameWallet = createAction<string>('CHANGE_NAME_WALLET');
 export const getWalletsRequest = createAction<GetWalletPayload>('GET_WALLET_REQUEST');
 export const getWalletsSuccess = createAction<GetWalletSuccessPayload>('GET_WALLET_SUCCESS');
 export const getWalletsFailed = createAction('GET_WALLET_FAILED');
+
+export const getTokensRequest = createAction('GET_TOKENS_REQUEST');
+export const getTokensSuccess = createAction<any>('GET_TOKENS_SUCCESS');
+export const getTokensFailed = createAction('GET_TOKENS_FAILED');

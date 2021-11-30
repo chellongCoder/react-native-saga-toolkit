@@ -1,4 +1,4 @@
-import { ProfileWallet, TablePassPhrase, WalletDetail, WalletsHome } from '@redux/wallet/types';
+import { ProfileWallet, TablePassPhrase, TokenBuyT, WalletDetail, WalletsHome } from '@redux/wallet/types';
 
 export const mapDataTablePassphrase = (data: any[]): TablePassPhrase[] => {
   return data.map((value, index) => {
@@ -34,6 +34,16 @@ export const mapWalletsHome = (data: any[]): WalletsHome[] => {
       name: value.name,
       note: '',
       id: value._id,
+    };
+  });
+};
+
+export const mapTokensBuy = (data: any[]): TokenBuyT[] => {
+  return data.map((value, index) => {
+    return {
+      name: `${value.symbol} ${value.name}`,
+      coinName: value.name,
+      symbol: value.symbol,
     };
   });
 };
