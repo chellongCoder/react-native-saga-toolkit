@@ -35,6 +35,17 @@ export interface GetWalletPayload extends ApiParamsT {
   userId: string;
 }
 
+export interface GetCurrencyMoonpayPayload extends ApiParamsT {
+  baseCurrencyAmount: number;
+  baseCurrencyCode: string;
+  apiKey: string;
+  symbol: string;
+}
+export interface GetCurrencyMoonpaySuccessPayload {
+  feeAmount: number;
+  message: string;
+}
+
 export type GetWalletSuccessPayload = {
   data: any[];
   message: string;

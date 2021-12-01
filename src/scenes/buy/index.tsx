@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTokensRequest } from '@redux/actions';
 import { RootState } from '@redux/reducers';
 import { mapTokensBuy } from '@tools/wallet.helper';
+import { TokenBuyT } from '@redux/wallet/types';
 
 const _BuyScreen = ({}) => {
   const { tokens } = useSelector((state: RootState) => state.wallet);
@@ -30,9 +31,12 @@ const _BuyScreen = ({}) => {
   const styles = useBuyStyle();
   const dispatch = useDispatch();
 
-  const onNavigateDetail = useCallback(() => {
-    navigation.navigate('BuyCoin');
-  }, [navigation]);
+  const onNavigateDetail = useCallback(
+    (item: TokenBuyT) => {
+      navigation.navigate('BuyCoin', { item });
+    },
+    [navigation],
+  );
 
   const onBack = useCallback(() => {
     navigation.goBack();
@@ -45,7 +49,7 @@ const _BuyScreen = ({}) => {
   const renderItemContent = useCallback(
     item => {
       return (
-        <Touchable onPress={onNavigateDetail}>
+        <Touchable onPress={() => onNavigateDetail(item)}>
           <View style={[commonStyles.row, styles.item]} mb={Platform.SizeScale(10)} backgroundColor={COLORS.WHITE}>
             <View ml={Platform.SizeScale(10)}>
               <Icon icon={Icons.ICON_AVATAR} size={5} />

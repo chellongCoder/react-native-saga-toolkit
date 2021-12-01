@@ -2,6 +2,7 @@ import { fonts } from '@theme/fonts';
 import { Platform } from '@theme/platform';
 import React, { useCallback, useState } from 'react';
 import { Linking, StyleSheet, Text as RCText } from 'react-native';
+import AutoHeightWebView from 'react-native-autoheight-webview';
 import ParsedText from 'react-native-parsed-text';
 import { ParsedTextProps } from './types';
 
@@ -51,6 +52,27 @@ const Text = ({
       style,
       { fontFamily: isPress ? fonts.fontBold : fonts[fontType] },
     ]);
+  }
+
+  if (isViewHtml) {
+    return (
+      <>
+        <AutoHeightWebView
+          scrollEnabled={false}
+          scrollEnabledWithZoomedin={true}
+          style={{
+            width: Platform.deviceWidth,
+          }}
+          customStyle={`
+                
+              `}
+          source={{
+            uri: children,
+          }}
+          {...{ onShouldStartLoadWithRequest }}
+        />
+      </>
+    );
   }
 
   if (isLongText) {

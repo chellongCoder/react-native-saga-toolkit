@@ -24,7 +24,7 @@ import { BottomSheetCustom } from '@components/bottom-sheet';
 import { TabBorderradius } from '@components/tab-borderradius';
 import Balance from './Balance';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWalletsRequest } from '@redux/wallet/actions';
+import { changeCurrentWallet, getWalletsRequest } from '@redux/wallet/actions';
 import { RootState } from '@redux/reducers';
 import { mapDataWallet } from '@tools/wallet.helper';
 import { WalletDetail } from '@redux/wallet/types';
@@ -122,6 +122,12 @@ const _HomeScreen = ({}) => {
         }),
       );
   }, [dispatch, user?.data.id]);
+
+  useEffect(() => {
+    if (currentWallet) {
+      dispatch(changeCurrentWallet(currentWallet));
+    }
+  }, [currentWallet, dispatch]);
 
   const renderItemContent = useCallback(() => {
     return (

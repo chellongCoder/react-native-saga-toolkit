@@ -5,6 +5,8 @@ import * as WalletAPI from './apiCall';
 import {
   AddWalletPayload,
   AddWalletSuccessPayload,
+  GetCurrencyMoonpayPayload,
+  GetCurrencyMoonpaySuccessPayload,
   GetWalletPayload,
   GetWalletSuccessPayload,
   PassPhrasePayload,
@@ -22,7 +24,14 @@ import {
   getWalletsRequest,
   getWalletsSuccess,
 } from './actions';
-import { getTokensFailed, getTokensRequest, getTokensSuccess } from '@redux/actions';
+import {
+  getCurrencyMoonpayFailed,
+  getCurrencyMoonpayRequest,
+  getCurrencyMoonpaySuccess,
+  getTokensFailed,
+  getTokensRequest,
+  getTokensSuccess,
+} from '@redux/actions';
 
 function* createPassPhraseSaga({ payload }: PayloadAction<PassPhrasePayload>): Generator<
   | CallEffect
@@ -114,11 +123,42 @@ function* getTokensSaga({ payload }: PayloadAction<any>): Generator<
   }
 }
 
+function* getCurrencySaga({ payload }: PayloadAction<GetCurrencyMoonpayPayload>): Generator<
+  | CallEffect
+  | PutEffect<{
+      payload: GetCurrencyMoonpaySuccessPayload;
+      type: string;
+    }>,
+  void
+> {
+  const { apiKey, symbol, baseCurrencyAmount, baseCurrencyCode, callback } = payload;
+  try {
+    const filmsRes: unknown = yield callSafe(WalletAPI.getMoonpayCurrency, {
+      apiKey,
+      baseCurrencyAmount,
+      baseCurrencyCode,
+      symbol,
+    });
+
+    if (!isEmpty(filmsRes)) {
+      yield put(getCurrencyMoonpaySuccess(filmsRes as GetCurrencyMoonpaySuccessPayload) as any);
+      callback?.(filmsRes, 'SUCCESS');
+    } else {
+      yield put(getCurrencyMoonpayFailed() as any);
+      callback?.(filmsRes, 'ERROR');
+    }
+  } catch (err) {
+    yield put(getCurrencyMoonpayFailed() as any);
+    callback?.(err, 'ERROR');
+  }
+}
+
 function* walletSaga(): Generator<ForkEffect<never>, void> {
   yield takeLatest(getPassphraseRequest.type, createPassPhraseSaga);
   yield takeLatest(addWalletRequest.type, createWalletSaga);
   yield takeLatest(getWalletsRequest.type, getWalletsSaga);
   yield takeLatest(getTokensRequest.type, getTokensSaga);
+  yield takeLatest(getCurrencyMoonpayRequest.type, getCurrencySaga);
 }
 
 export default walletSaga;

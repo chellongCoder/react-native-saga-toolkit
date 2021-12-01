@@ -2,10 +2,13 @@ import { createAction } from '@reduxjs/toolkit';
 import {
   AddWalletPayload,
   AddWalletSuccessPayload,
+  GetCurrencyMoonpayPayload,
+  GetCurrencyMoonpaySuccessPayload,
   GetWalletPayload,
   GetWalletSuccessPayload,
   PassPhrasePayload,
   PassPhraseSuccessPayload,
+  WalletDetail,
 } from './types';
 
 export const getPassphraseRequest = createAction<PassPhrasePayload>('GET_PASSPHRASE_REQUEST');
@@ -27,3 +30,9 @@ export const getWalletsFailed = createAction('GET_WALLET_FAILED');
 export const getTokensRequest = createAction('GET_TOKENS_REQUEST');
 export const getTokensSuccess = createAction<any>('GET_TOKENS_SUCCESS');
 export const getTokensFailed = createAction('GET_TOKENS_FAILED');
+
+export const getCurrencyMoonpayRequest = createAction<GetCurrencyMoonpayPayload>('GET_CURRENCY_MOONPAY_REQUEST');
+export const getCurrencyMoonpaySuccess = createAction<GetCurrencyMoonpaySuccessPayload>('GET_CURRENCY_MOONPAY_SUCCESS');
+export const getCurrencyMoonpayFailed = createAction('GET_CURRENCY_MOONPAY_FAILED');
+
+export const changeCurrentWallet = createAction<WalletDetail>('CHANGE_CURRENT_WALLET');

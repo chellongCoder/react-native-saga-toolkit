@@ -1,4 +1,4 @@
-import { getTokensFailed, getTokensRequest, getTokensSuccess } from '@redux/actions';
+import { changeCurrentWallet, getTokensFailed, getTokensRequest, getTokensSuccess } from '@redux/actions';
 import { createReducer } from '@reduxjs/toolkit';
 import {
   changeNameWallet,
@@ -10,6 +10,7 @@ import {
   getWalletsSuccess,
   saveLengthMnemonic,
 } from './actions';
+import { WalletDetail } from './types';
 
 export interface WalletState {
   requesting: boolean;
@@ -20,6 +21,7 @@ export interface WalletState {
   walletName: string;
   wallets: any[];
   tokens: any[];
+  currentWallet?: WalletDetail;
 }
 
 const initialState: WalletState = {
@@ -31,6 +33,7 @@ const initialState: WalletState = {
   walletName: '',
   wallets: [],
   tokens: [],
+  currentWallet: undefined,
 };
 
 export const walletReducer = createReducer(initialState, {
@@ -69,5 +72,8 @@ export const walletReducer = createReducer(initialState, {
   },
   [getTokensFailed.type]: state => {
     state.requesting = false;
+  },
+  [changeCurrentWallet.type]: (state, action) => {
+    state.currentWallet = action.payload;
   },
 });

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { persistCombineReducers, PersistConfig, persistReducer } from 'redux-persist';
 import { allFilmsReducer } from '@redux/ghibli/reducers';
 import { authReducer } from '@redux/auth/reducers';
-import { walletReducer } from '@redux/wallet/reducers';
+import { walletReducer, WalletState } from '@redux/wallet/reducers';
 import { logoutRequest, purgeRequest } from './actions';
 import { Action } from 'redux';
 
@@ -16,7 +16,7 @@ const walletConfig: PersistConfig<any> = {
 const reducers = {
   films: allFilmsReducer,
   auth: authReducer,
-  wallet: persistReducer(walletConfig, walletReducer),
+  wallet: persistReducer<WalletState>(walletConfig, walletReducer),
 };
 
 const persistConfig = {

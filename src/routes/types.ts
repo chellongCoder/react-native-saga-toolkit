@@ -1,5 +1,5 @@
 import { NavigatorScreenParams } from '@react-navigation/core';
-import { WalletDetail } from '@redux/wallet/types';
+import { TokenBuyT, WalletDetail } from '@redux/wallet/types';
 
 export type BottomTabT = {
   Wallet: undefined;
@@ -45,7 +45,7 @@ export type MainStackT = {
   PassphraseVerification: undefined;
   Receive: { walletDetail: WalletDetail };
   Buy: undefined;
-  BuyCoin: undefined;
+  BuyCoin: { item: TokenBuyT };
   ShowPassphrase: { walletDetail: WalletDetail };
   EmailVerification: { email?: string };
   ChangePassword: undefined;

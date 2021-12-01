@@ -10,4 +10,6 @@ declare module 'react-native-config' {
   export const API_URL: string;
   export const API_COIN: string;
   export const SENTRY_DNS: string;
+  export const MOONPAY_URL: string;
+  export const MOONPAY_API_KEY: string;
 }
