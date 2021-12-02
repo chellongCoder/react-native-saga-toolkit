@@ -22,6 +22,13 @@ export interface AddWalletPayload extends ApiParamsT {
   userId: string;
 }
 
+export interface SendWalletPayload extends ApiParamsT {
+  to: string;
+  amount: string;
+  symbol: string;
+  walletId: string;
+}
+
 export type AddWalletSuccessPayload = {
   data: {
     mnemonic: string;
@@ -44,6 +51,8 @@ export interface GetCurrencyMoonpayPayload extends ApiParamsT {
 export interface GetCurrencyMoonpaySuccessPayload {
   feeAmount: number;
   message: string;
+  quoteCurrencyPrice: number;
+  totalAmount: number;
 }
 
 export type GetWalletSuccessPayload = {
@@ -79,4 +88,12 @@ export type TokenBuyT = {
   name: string;
   coinName: string;
   symbol: string;
+};
+
+export type FinishedTransactionT = {
+  type: 'SUCCESS' | 'FAILED';
+  title: string;
+  message: string;
+  symbol: string;
+  titleButton: string;
 };

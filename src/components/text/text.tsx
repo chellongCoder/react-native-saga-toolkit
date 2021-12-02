@@ -66,9 +66,15 @@ const Text = ({
           customStyle={`
                 
               `}
-          source={{
-            uri: children,
-          }}
+          source={
+            typeof children === 'string'
+              ? {
+                  uri: children.toString(),
+                }
+              : {
+                  html: `<div>${children}</div>`,
+                }
+          }
           {...{ onShouldStartLoadWithRequest }}
         />
       </>

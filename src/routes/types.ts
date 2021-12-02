@@ -1,5 +1,5 @@
 import { NavigatorScreenParams } from '@react-navigation/core';
-import { TokenBuyT, WalletDetail } from '@redux/wallet/types';
+import { FinishedTransactionT, TokenBuyT, WalletDetail } from '@redux/wallet/types';
 
 export type BottomTabT = {
   Wallet: undefined;
@@ -50,10 +50,11 @@ export type MainStackT = {
   EmailVerification: { email?: string };
   ChangePassword: undefined;
   SendWaiting: undefined;
-  SendComplete: undefined;
+  SendComplete: FinishedTransactionT;
   Privatekey: undefined;
   Keystore: undefined;
   PublicKey: undefined;
+  QrScan: undefined;
 };
 export type ScreenKeyT = keyof (BottomTabT & RootStackT & MainStackT);
 export type ScreenRouteT = BottomTabT & RootStackT & MainStackT & CurrencyStackT & MarketStackT;

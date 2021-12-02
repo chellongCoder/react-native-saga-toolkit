@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { useSendCompleteStyle } from './styles';
 import { View } from '@components/view';
 import { Topbar } from '@components/topbar';
@@ -11,13 +11,23 @@ import { Platform } from '@theme/platform';
 import commonStyles from '@theme/commonStyles';
 import { CommonButton } from '@components/CommonButton';
 import { Icons } from '@theme/icons';
+import { ScreenRouteT } from '@routes/types';
 
-const _SendCompleteScreen = ({}) => {
+const _SendCompleteScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'SendComplete'> }) => {
+  const { message, symbol, title, titleButton, type } = route.params;
   const navigation = useNavigation();
   const styles = useSendCompleteStyle();
   const onBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
+
+  const onFinish = useCallback(() => {
+    navigation.reset({
+      routes: [{ name: 'Drawer' }],
+      routeNames: ['Drawer'],
+    });
+  }, [navigation]);
+
   return (
     <View>
       <Topbar>
@@ -37,23 +47,27 @@ const _SendCompleteScreen = ({}) => {
           </Touchable>
         </View>
         <View alignItems="center">
-          <Icon icon={Icons.ICON_TRANS_FAIL} size={5} />
-          <Text fontSize={Platform.SizeScale(20)} fontType="fontBold">
-            Please wait...
+          {type === 'SUCCESS' ? (
+            <Icon icon={Icons.ICON_TRANS_SUCCESS} size={5} />
+          ) : (
+            <Icon icon={Icons.ICON_TRANS_FAIL} size={5} />
+          )}
+          <Text mt={Platform.SizeScale(20)} fontSize={Platform.SizeScale(20)} fontType="fontBold">
+            {title}
           </Text>
-          <Text>
+          <Text mv={Platform.SizeScale(20)} fontSize={Platform.SizeScale(16)}>
             Your{' '}
             <Text fontSize={Platform.SizeScale(20)} fontType="fontBold">
-              BSS
+              {symbol}
             </Text>{' '}
-            will be sent to this account once the transaction is processed
+            {message}
           </Text>
         </View>
         <View mt={Platform.SizeScale(10)}>
           <CommonButton
             style={{ alignSelf: 'center' }}
             type="border"
-            text={'Processing...'}
+            text={titleButton}
             width={Platform.SizeScale(343)}
             height={Platform.SizeScale(47)}
             textColor={COLORS._26BBA9}
@@ -65,11 +79,11 @@ const _SendCompleteScreen = ({}) => {
           <CommonButton
             style={[styles.button, { backgroundColor: true ? COLORS._139B8B : styles.button.backgroundColor }]}
             type="normal"
-            text={'Processing...'}
+            text={'Go back'}
             width={Platform.SizeScale(343)}
             height={Platform.SizeScale(47)}
             textColor={COLORS.WHITE}
-            // onPress={onComplete}
+            onPress={onFinish}
             // disabled={!passphrase}
           />
         </View>

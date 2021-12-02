@@ -39,6 +39,7 @@ import LoadingGlobalProvider from '@tools/loading-global';
 import * as Sentry from '@sentry/react-native';
 import SentryProvider from '@tools/sentry';
 import { useSentry } from '@hook/use-sentry';
+import CustomisableAlert from 'react-native-customisable-alert';
 
 enableScreens();
 
@@ -159,6 +160,7 @@ const App: FC = () => {
           </ApplicationProvider>
         </Suspense>
       </ErrorBoundary>
+      <CustomisableAlert dismissable={false} />
     </Sentry.TouchEventBoundary>
   );
 };

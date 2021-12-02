@@ -19,7 +19,7 @@ export const useTopbarStyle = (hasHeader: boolean) => {
         body: {
           backgroundColor: COLORS.BACKGROUND,
           flex: 1,
-          marginTop: hasHeader ? 0 : insets.top,
+          marginTop: hasHeader ? 0 : Platform.OS === 'android' ? Platform.SizeScale(10) : insets.top,
           borderTopLeftRadius: Platform.SizeScale(30),
           borderTopRightRadius: Platform.SizeScale(30),
           overflow: 'hidden',

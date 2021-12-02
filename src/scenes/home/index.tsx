@@ -98,6 +98,10 @@ const _HomeScreen = ({}) => {
     navigation.navigate('AddWallet');
   }, [navigation]);
 
+  const onScan = useCallback(() => {
+    navigation.navigate('QrScan');
+  }, [navigation]);
+
   useEffect(() => {
     user?.data.id &&
       dispatch(
@@ -182,7 +186,9 @@ const _HomeScreen = ({}) => {
               </Touchable>
             )}
 
-            <Icon icon={Icons.ICON_BARCODE} size={3} />
+            <Touchable onPress={onScan}>
+              <Icon icon={Icons.ICON_BARCODE} size={3} />
+            </Touchable>
           </View>
 
           <Balance />

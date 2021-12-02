@@ -8,6 +8,7 @@ import {
   GetWalletSuccessPayload,
   PassPhrasePayload,
   PassPhraseSuccessPayload,
+  SendWalletPayload,
   WalletDetail,
 } from './types';
 
@@ -36,3 +37,9 @@ export const getCurrencyMoonpaySuccess = createAction<GetCurrencyMoonpaySuccessP
 export const getCurrencyMoonpayFailed = createAction('GET_CURRENCY_MOONPAY_FAILED');
 
 export const changeCurrentWallet = createAction<WalletDetail>('CHANGE_CURRENT_WALLET');
+
+export const sendToWalletRequest = createAction<SendWalletPayload>('SEND_TO_WALLET_REQUEST');
+export const sendToWalletSuccess = createAction<any>('SEND_TO_WALLET_SUCCESS');
+export const sendToWalletFailed = createAction('SEND_TO_WALLET_FAILED');
+
+export const captureQrCodeData = createAction<string>('CAPTURE_QR_CODE_DATA');

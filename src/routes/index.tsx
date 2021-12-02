@@ -41,6 +41,7 @@ import { SendCompleteScreen } from '@scenes/send-complete';
 import { PrivatekeyScreen } from '@scenes/privatekey';
 import { KeystoreScreen } from '@scenes/keystore';
 import { PublickeyScreen } from '@scenes/publickey';
+import { QrScanScreen } from '@scenes/qr-scan';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -134,6 +135,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'PublicKey'}
         component={PublickeyScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'QrScan'}
+        component={QrScanScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

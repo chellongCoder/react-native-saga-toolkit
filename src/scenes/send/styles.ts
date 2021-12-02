@@ -49,6 +49,12 @@ export const useSendStyle = () => {
           paddingTop: Platform.SizeScale(20),
           paddingBottom: Platform.SizeScale(30),
         },
+        buttonAlert: {
+          flex: 1,
+          alignItems: 'center',
+          paddingVertical: Platform.SizeScale(10),
+          borderTopWidth: StyleSheet.hairlineWidth,
+        },
       }),
     [],
   );

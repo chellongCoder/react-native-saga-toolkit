@@ -43,7 +43,7 @@ const _ReceiveScreen = ({ route }: { route: RouteProp<ScreenRouteT, 'Receive'> }
             <CommonCard title="ETH - Ethereum (Coin)" width={Platform.SizeScale(310)}>
               {/* <LazyImage resizeMode="contain" source={Images.IMAGE_QR} style={styles.qr} /> */}
               <View mv={Platform.SizeScale(30)} alignItems="center">
-                <QRCode size={250} value={walletDetail.mnemonic} />
+                <QRCode size={250} value={walletDetail.address} />
               </View>
             </CommonCard>
           </View>

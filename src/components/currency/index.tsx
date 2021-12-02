@@ -17,10 +17,10 @@ const _Currency = ({ onPress }: IProps) => {
     <Touchable {...{ onPress }} style={[commonStyles.row, styles.currency]}>
       <Icon icon={Icons.ICON_AVATAR} size={4} />
       <Text mh={Platform.SizeScale(10)} fontSize={Platform.SizeScale(15)}>
-        BBS
+        BTC
       </Text>
       <Text mr={Platform.SizeScale(20)} color={COLORS._888888} fontSize={Platform.SizeScale(11)}>
-        (BEP20)
+        (Bitcoin)
       </Text>
       <Icon icon={Icons.ICON_ARROW_RIGHT} size={2} />
     </Touchable>

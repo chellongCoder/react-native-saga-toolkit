@@ -36,9 +36,9 @@ export const TextField = forwardRef(
     }
     const iosEye = useMemo(() => {
       return !showSecureTextEntry ? (
-        <Icon tintColor={COLORS._909090} icon={Icons.ICON_OPEN_EYE} size={Platform.SizeScale(3)} />
-      ) : (
         <Icon tintColor={COLORS._909090} icon={Icons.ICON_CLOSEEYE} size={Platform.SizeScale(3)} />
+      ) : (
+        <Icon tintColor={COLORS._909090} icon={Icons.ICON_OPEN_EYE} size={Platform.SizeScale(3)} />
       );
     }, [showSecureTextEntry]);
 

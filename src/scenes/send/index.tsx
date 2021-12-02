@@ -1,5 +1,5 @@
-import React, { memo, useCallback } from 'react';
-import { ScrollView } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSendStyle } from './styles';
 import { Topbar } from '@components/topbar';
@@ -17,29 +17,124 @@ import commonStyles from '@theme/commonStyles';
 import { TextField } from '@components/text-field';
 import { Touchable } from '@components/touchable';
 import { CommonButton } from '@components/CommonButton';
-import { inputAlert } from '@utils';
+import { showAlert, closeAlert } from 'react-native-customisable-alert';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
+import { captureQrCodeData, getCurrencyMoonpayRequest, sendToWalletRequest } from '@redux/actions';
+import Config from 'react-native-config';
+import _ from 'lodash';
+import { GetCurrencyMoonpaySuccessPayload } from '@redux/wallet/types';
+import { mapTokensBuy } from '@tools/wallet.helper';
+import { alertError, numberWithCommas } from '@utils';
 
 const _SendScreen = ({}) => {
+  const { qrCodeData, tokens, currentWallet } = useSelector((state: RootState) => state.wallet);
+  const mapToken = useMemo(() => {
+    return mapTokensBuy(tokens);
+  }, [tokens]);
+  const [amount, setAmount] = useState(0);
+
   const styles = useSendStyle();
   const blurView = useBlurView();
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Send'>>();
+  const dispatch = useDispatch();
 
   const onPressCurrency = useCallback(() => {
-    navigation.navigate('CurrencyStack');
+    // navigation.navigate('CurrencyStack');
   }, [navigation]);
 
   const onChoiceFee = useCallback(() => {
     navigation.navigate('FeePerByte');
   }, [navigation]);
 
-  const onNext = useCallback(() => {
-    inputAlert('Please enter password', '', (password: string) => {
-      console.log(`🛠 LOG: 🚀 --> ----------------------------------------------------------------------------`);
-      console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 37 ~ inputAlert ~ password`, password);
-      console.log(`🛠 LOG: 🚀 --> ----------------------------------------------------------------------------`);
-      navigation.navigate('SendComplete');
-    });
+  const onScan = useCallback(() => {
+    navigation.navigate('QrScan');
   }, [navigation]);
+
+  const onSearch = _.debounce((text: string) => {
+    dispatch(
+      getCurrencyMoonpayRequest({
+        apiKey: Config.MOONPAY_API_KEY,
+        baseCurrencyAmount: +text,
+        baseCurrencyCode: 'usd',
+        symbol: mapToken[0].symbol,
+        callback: ({ data }: { data: GetCurrencyMoonpaySuccessPayload }, type?: 'SUCCESS' | 'ERROR') => {
+          console.log(`🛠 LOG: 🚀 --> ------------------------------------------------------------------`);
+          console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 35 ~ onSearch ~ data`, data);
+          console.log(`🛠 LOG: 🚀 --> ------------------------------------------------------------------`);
+          if (type === 'SUCCESS') {
+            setAmount(data.totalAmount * data.quoteCurrencyPrice);
+          } else {
+            alertError(data.message);
+          }
+        },
+      }),
+    );
+  }, 500);
+
+  const onComplete = useCallback(() => {
+    closeAlert();
+    dispatch(
+      sendToWalletRequest({
+        walletId: currentWallet?.id!,
+        to: qrCodeData,
+        amount: amount.toString(),
+        symbol: mapToken[0].symbol,
+      }),
+    );
+    navigation.navigate('SendWaiting');
+  }, [amount, currentWallet?.id, dispatch, mapToken, navigation, qrCodeData]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(captureQrCodeData(''));
+    };
+  }, [dispatch]);
+
+  const onNext = useCallback(() => {
+    showAlert({
+      alertType: 'custom',
+      customAlert: (
+        <View>
+          <View
+            style={{
+              height: Platform.SizeScale(155),
+              borderRadius: Platform.SizeScale(20),
+              backgroundColor: COLORS.WHITE,
+            }}
+          >
+            <View mt={Platform.SizeScale(10)} flex={1} mh={Platform.SizeScale(10)}>
+              <Text fontType="fontBold" fontSize={Platform.SizeScale(17)}>
+                Please enter password
+              </Text>
+            </View>
+            <View flex={1} mh={Platform.SizeScale(10)}>
+              <TextField
+                // onChangeText={setUserName}
+                secureTextEntry
+                placeholderTextColor={COLORS._909090}
+              />
+            </View>
+            <View flex={1} style={[commonStyles.row, commonStyles.spaceBetween]}>
+              <Touchable
+                style={[styles.buttonAlert, { borderRightWidth: StyleSheet.hairlineWidth }]}
+                onPress={closeAlert}
+              >
+                <Text color={COLORS._26BBA9} fontSize={Platform.SizeScale(17)}>
+                  Cancel
+                </Text>
+              </Touchable>
+              <Touchable onPress={onComplete} style={styles.buttonAlert}>
+                <Text fontType="fontBold" color={COLORS._26BBA9} fontSize={Platform.SizeScale(17)}>
+                  Ok
+                </Text>
+              </Touchable>
+            </View>
+          </View>
+        </View>
+      ),
+    });
+  }, [onComplete, styles.buttonAlert]);
 
   return (
     <View style={styles.container}>
@@ -65,15 +160,16 @@ const _SendScreen = ({}) => {
                 <View mr={Platform.SizeScale(20)}>
                   <Icon icon={Icons.ICON_WALLET} size={2} />
                 </View>
-                <Icon icon={Icons.ICON_BARCODE} size={2} />
+                <Touchable onPress={onScan}>
+                  <Icon icon={Icons.ICON_BARCODE} size={2} />
+                </Touchable>
               </View>
             </View>
             <View mh={Platform.SizeScale(10)}>
               <TextField
-                // onChangeText={setUserName}
                 style={styles.inputContainer}
                 placeholder={'Click to paste address'}
-                // inputStyle={styles.inputStyles}
+                value={qrCodeData}
                 placeholderTextColor={COLORS._909090}
               />
             </View>
@@ -89,10 +185,10 @@ const _SendScreen = ({}) => {
             </Text>
             <View mh={Platform.SizeScale(10)}>
               <TextField
-                // onChangeText={setUserName}
+                onChangeText={onSearch}
                 style={styles.inputContainer}
                 placeholder={'0.00'}
-                // inputStyle={styles.inputStyles}
+                keyboardType="decimal-pad"
                 placeholderTextColor={COLORS._909090}
                 renderRightAccessory={() => (
                   <View>
@@ -102,10 +198,10 @@ const _SendScreen = ({}) => {
               />
               <View mt={Platform.SizeScale(10)}>
                 <TextField
-                  // onChangeText={setUserName}
+                  value={numberWithCommas(+parseFloat(amount.toString()).toFixed(2))}
                   style={styles.inputContainer}
                   placeholder={'0.00'}
-                  // inputStyle={styles.inputStyles}
+                  editable={false}
                   placeholderTextColor={COLORS._909090}
                   renderRightAccessory={() => (
                     <View>

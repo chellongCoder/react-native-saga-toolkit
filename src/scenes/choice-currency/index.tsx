@@ -16,8 +16,12 @@ import { Touchable } from '@components/touchable';
 import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { CommonButton } from '@components/CommonButton';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 
 const _ChoiceCurrencyScreen = ({}) => {
+  const { qrCodeData, tokens, currentWallet } = useSelector((state: RootState) => state.wallet);
+
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'ChoiceCurrency'>>();
   const styles = useChoiceCurrencyStyle();
 

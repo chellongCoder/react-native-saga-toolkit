@@ -8,4 +8,5 @@ export const API_CONFIG = {
   CHANGE_PASS: 'change-pass',
   TOKENS: 'tokens',
   MOON_PAY_CURRENCY: (symbol: string) => `currencies/${symbol.toLocaleLowerCase()}/buy_quote`,
+  SEND: (walletId: string) => `wallets/${walletId}/send`,
 };

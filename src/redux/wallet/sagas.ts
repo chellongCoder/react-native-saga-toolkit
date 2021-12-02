@@ -11,6 +11,7 @@ import {
   GetWalletSuccessPayload,
   PassPhrasePayload,
   PassPhraseSuccessPayload,
+  SendWalletPayload,
 } from './types';
 import { callSafe } from '@redux/rootSaga';
 import {
@@ -31,6 +32,9 @@ import {
   getTokensFailed,
   getTokensRequest,
   getTokensSuccess,
+  sendToWalletFailed,
+  sendToWalletRequest,
+  sendToWalletSuccess,
 } from '@redux/actions';
 
 function* createPassPhraseSaga({ payload }: PayloadAction<PassPhrasePayload>): Generator<
@@ -140,7 +144,7 @@ function* getCurrencySaga({ payload }: PayloadAction<GetCurrencyMoonpayPayload>)
       symbol,
     });
 
-    if (!isEmpty(filmsRes)) {
+    if (!isEmpty(filmsRes) && !(filmsRes.data.errors as any)) {
       yield put(getCurrencyMoonpaySuccess(filmsRes as GetCurrencyMoonpaySuccessPayload) as any);
       callback?.(filmsRes, 'SUCCESS');
     } else {
@@ -153,12 +157,38 @@ function* getCurrencySaga({ payload }: PayloadAction<GetCurrencyMoonpayPayload>)
   }
 }
 
+function* sendToWalletSaga({ payload }: PayloadAction<SendWalletPayload>): Generator<
+  | CallEffect
+  | PutEffect<{
+      payload: any;
+      type: string;
+    }>,
+  void
+> {
+  const { amount, to, symbol, walletId, callback } = payload;
+  try {
+    const filmsRes: unknown = yield callSafe(WalletAPI.sendToWallet, { amount, to, symbol, walletId });
+
+    if (!isEmpty(filmsRes)) {
+      yield put(sendToWalletSuccess(filmsRes as any) as any);
+      callback?.(filmsRes as any, 'SUCCESS');
+    } else {
+      yield put(sendToWalletFailed() as any);
+      callback?.(filmsRes as any, 'ERROR');
+    }
+  } catch (err) {
+    yield put(sendToWalletFailed() as any);
+    callback?.(err, 'ERROR');
+  }
+}
+
 function* walletSaga(): Generator<ForkEffect<never>, void> {
   yield takeLatest(getPassphraseRequest.type, createPassPhraseSaga);
   yield takeLatest(addWalletRequest.type, createWalletSaga);
   yield takeLatest(getWalletsRequest.type, getWalletsSaga);
   yield takeLatest(getTokensRequest.type, getTokensSaga);
   yield takeLatest(getCurrencyMoonpayRequest.type, getCurrencySaga);
+  yield takeLatest(sendToWalletRequest.type, sendToWalletSaga);
 }
 
 export default walletSaga;

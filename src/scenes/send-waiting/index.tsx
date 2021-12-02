@@ -12,9 +12,15 @@ import { Icons } from '@theme/icons';
 import { Text } from '@components/text';
 import { Animated, Easing } from 'react-native';
 import { CommonButton } from '@components/CommonButton';
+import { RootState } from '@redux/reducers';
+import { useSelector } from 'react-redux';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ScreenRouteT } from '@routes/types';
 
 const _SendWaitingScreen = ({}) => {
-  const navigation = useNavigation();
+  const { typeTransaction } = useSelector((state: RootState) => state.wallet);
+
+  const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'SendWaiting'>>();
   const styles = useSendWaitingStyle();
   const spinValue = useRef(new Animated.Value(0));
 
@@ -43,6 +49,26 @@ const _SendWaitingScreen = ({}) => {
   useEffect(() => {
     startLoading();
   }, [startLoading]);
+
+  useEffect(() => {
+    if (typeTransaction === 'SUCCESS') {
+      navigation.navigate('SendComplete', {
+        message: 'has been sent to this account',
+        symbol: 'BTC',
+        title: 'Transaction Completed!',
+        titleButton: 'Show Receipt',
+        type: typeTransaction,
+      });
+    } else if (typeTransaction === 'FAILED') {
+      navigation.navigate('SendComplete', {
+        message: 'has been sent to this account',
+        symbol: 'BTC',
+        title: 'Transaction Completed!',
+        titleButton: 'Show Receipt',
+        type: typeTransaction,
+      });
+    }
+  }, [navigation, typeTransaction]);
 
   return (
     <View>

@@ -22,11 +22,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
 
 export type MenuHandle = {
   onPressAvatar?: () => void;
 };
 const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
+  const { currentWallet } = useSelector((state: RootState) => state.wallet);
+
   const animation = useRef(new Animated.Value(0)).current;
   const styles = useStyleMenu();
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
@@ -103,6 +107,16 @@ const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
     ],
   };
 
+  const onWalletDetail = useCallback(
+    (index: number) => {
+      navigation.navigate('WalletDetail', {
+        walletDetail: currentWallet!,
+      });
+      onPressAvatar();
+    },
+    [currentWallet, navigation, onPressAvatar],
+  );
+
   const onUserSetting = useCallback(() => {
     navigation.navigate('Setting');
     onPressAvatar();
@@ -141,7 +155,7 @@ const _Menu = forwardRef(({}: any, ref: Ref<MenuHandle>) => {
         </Animated.View>
       </>
       <Animated.View style={[styles.button, styles.wallet, firstItemStyle]}>
-        <Touchable style={styles.iconSubMenu2}>
+        <Touchable onPress={onWalletDetail} style={styles.iconSubMenu2}>
           <Icon size={3} icon={Icons.ICON_WALLET} tintColor={COLORS._009F92} />
         </Touchable>
         <Text style={[styles.labelWallet]}>{`Wallet`.toLocaleUpperCase()}</Text>
