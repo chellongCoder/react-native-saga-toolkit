@@ -9,6 +9,7 @@ import {
   PassPhrasePayload,
   PassPhraseSuccessPayload,
   SendWalletPayload,
+  TokenBuyT,
   WalletDetail,
 } from './types';
 
@@ -43,3 +44,5 @@ export const sendToWalletSuccess = createAction<any>('SEND_TO_WALLET_SUCCESS');
 export const sendToWalletFailed = createAction('SEND_TO_WALLET_FAILED');
 
 export const captureQrCodeData = createAction<string>('CAPTURE_QR_CODE_DATA');
+
+export const changeCurrentToken = createAction<TokenBuyT | undefined>('CHANGE_CURRENT_TOKEN');

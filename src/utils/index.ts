@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert, Linking } from 'react-native';
 
 export const alertError = (message: string) => {
   Alert.alert('Error!', message);
@@ -55,3 +55,7 @@ export const inputAlert = (
 export function numberWithCommas(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export const openUrl = (url: string) => {
+  Linking.openURL(url);
+};

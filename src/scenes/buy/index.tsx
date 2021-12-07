@@ -16,7 +16,6 @@ import { ListFullOption } from '@components/list';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ScreenRouteT } from '@routes/types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTokensRequest } from '@redux/actions';
 import { RootState } from '@redux/reducers';
 import { mapTokensBuy } from '@tools/wallet.helper';
 import { TokenBuyT } from '@redux/wallet/types';
@@ -29,7 +28,6 @@ const _BuyScreen = ({}) => {
 
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Buy'>>();
   const styles = useBuyStyle();
-  const dispatch = useDispatch();
 
   const onNavigateDetail = useCallback(
     (item: TokenBuyT) => {
@@ -42,9 +40,6 @@ const _BuyScreen = ({}) => {
     navigation.goBack();
   }, [navigation]);
 
-  useEffect(() => {
-    dispatch(getTokensRequest());
-  }, [dispatch]);
 
   const renderItemContent = useCallback(
     item => {

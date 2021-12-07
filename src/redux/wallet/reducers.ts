@@ -1,5 +1,6 @@
 import {
   captureQrCodeData,
+  changeCurrentToken,
   changeCurrentWallet,
   getTokensFailed,
   getTokensRequest,
@@ -9,6 +10,7 @@ import {
   sendToWalletSuccess,
 } from '@redux/actions';
 import { createReducer } from '@reduxjs/toolkit';
+import { mapTokensBuy } from '@tools/wallet.helper';
 import {
   changeNameWallet,
   getPassphraseFailed,
@@ -19,7 +21,7 @@ import {
   getWalletsSuccess,
   saveLengthMnemonic,
 } from './actions';
-import { WalletDetail } from './types';
+import { TokenBuyT, WalletDetail } from './types';
 
 export interface WalletState {
   requesting: boolean;
@@ -33,6 +35,7 @@ export interface WalletState {
   currentWallet?: WalletDetail;
   qrCodeData: string;
   typeTransaction?: 'WAIT' | 'SUCCESS' | 'FAILED';
+  currentToken?: TokenBuyT;
 }
 
 const initialState: WalletState = {
@@ -47,6 +50,7 @@ const initialState: WalletState = {
   currentWallet: undefined,
   qrCodeData: '',
   typeTransaction: undefined,
+  currentToken: undefined,
 };
 
 export const walletReducer = createReducer(initialState, {
@@ -103,5 +107,8 @@ export const walletReducer = createReducer(initialState, {
   [sendToWalletFailed.type]: state => {
     state.requesting = false;
     state.typeTransaction = 'FAILED';
+  },
+  [changeCurrentToken.type]: (state, action) => {
+    state.currentToken = action.payload;
   },
 });

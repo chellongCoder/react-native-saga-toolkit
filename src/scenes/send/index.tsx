@@ -20,15 +20,15 @@ import { CommonButton } from '@components/CommonButton';
 import { showAlert, closeAlert } from 'react-native-customisable-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
-import { captureQrCodeData, getCurrencyMoonpayRequest, sendToWalletRequest } from '@redux/actions';
+import { captureQrCodeData, changeCurrentToken, getCurrencyMoonpayRequest, sendToWalletRequest } from '@redux/actions';
 import Config from 'react-native-config';
 import _ from 'lodash';
 import { GetCurrencyMoonpaySuccessPayload } from '@redux/wallet/types';
 import { mapTokensBuy } from '@tools/wallet.helper';
-import { alertError, numberWithCommas } from '@utils';
+import { alertError, numberWithCommas, openUrl } from '@utils';
 
 const _SendScreen = ({}) => {
-  const { qrCodeData, tokens, currentWallet } = useSelector((state: RootState) => state.wallet);
+  const { qrCodeData, currentToken, tokens, currentWallet } = useSelector((state: RootState) => state.wallet);
   const mapToken = useMemo(() => {
     return mapTokensBuy(tokens);
   }, [tokens]);
@@ -40,7 +40,7 @@ const _SendScreen = ({}) => {
   const dispatch = useDispatch();
 
   const onPressCurrency = useCallback(() => {
-    // navigation.navigate('CurrencyStack');
+    navigation.navigate('CurrencyStack');
   }, [navigation]);
 
   const onChoiceFee = useCallback(() => {
@@ -57,7 +57,7 @@ const _SendScreen = ({}) => {
         apiKey: Config.MOONPAY_API_KEY,
         baseCurrencyAmount: +text,
         baseCurrencyCode: 'usd',
-        symbol: mapToken[0].symbol,
+        symbol: currentToken?.symbol ?? '',
         callback: ({ data }: { data: GetCurrencyMoonpaySuccessPayload }, type?: 'SUCCESS' | 'ERROR') => {
           console.log(`🛠 LOG: 🚀 --> ------------------------------------------------------------------`);
           console.log(`🛠 LOG: 🚀 --> ~ file: index.tsx ~ line 35 ~ onSearch ~ data`, data);
@@ -79,17 +79,11 @@ const _SendScreen = ({}) => {
         walletId: currentWallet?.id!,
         to: qrCodeData,
         amount: amount.toString(),
-        symbol: mapToken[0].symbol,
+        symbol: currentToken?.symbol ?? '',
       }),
     );
     navigation.navigate('SendWaiting');
-  }, [amount, currentWallet?.id, dispatch, mapToken, navigation, qrCodeData]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(captureQrCodeData(''));
-    };
-  }, [dispatch]);
+  }, [amount, currentToken?.symbol, currentWallet?.id, dispatch, navigation, qrCodeData]);
 
   const onNext = useCallback(() => {
     showAlert({
@@ -134,7 +128,18 @@ const _SendScreen = ({}) => {
         </View>
       ),
     });
+    openUrl('sdgsafekey://');
   }, [onComplete, styles.buttonAlert]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(captureQrCodeData(''));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(changeCurrentToken(mapToken[0]));
+  }, [dispatch, mapToken]);
 
   return (
     <View style={styles.container}>

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { memo, useCallback, useMemo, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useChoiceCurrencyStyle } from './styles';
 import GenericModal from '@components/GenericModal';
@@ -11,27 +11,43 @@ import commonStyles from '@theme/commonStyles';
 import { Platform } from '@theme/platform';
 import { COLORS } from '@theme/colors';
 import { ListFullOption } from '@components/list';
-import { currencies } from './__mocks__/data';
 import { Touchable } from '@components/touchable';
 import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { CommonButton } from '@components/CommonButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
+import { mapTokensBuy } from '@tools/wallet.helper';
+import { changeCurrentToken } from '@redux/actions';
+import { TokenBuyT } from '@redux/wallet/types';
 
 const _ChoiceCurrencyScreen = ({}) => {
   const { qrCodeData, tokens, currentWallet } = useSelector((state: RootState) => state.wallet);
+  const mapToken = useMemo(() => {
+    return mapTokensBuy(tokens);
+  }, [tokens]);
+  const token = useRef<TokenBuyT>();
+  const dispatch = useDispatch();
 
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'ChoiceCurrency'>>();
   const styles = useChoiceCurrencyStyle();
 
   const renderItemMenu = useCallback((item, index, isFavorite, onPress) => {
-    return <Item {...{ item, index, isFavorite, onPress }} />;
+    const _onPress = () => {
+      token.current = item;
+      onPress();
+    };
+    return <Item {...{ item, index, isFavorite, onPress: _onPress }} />;
   }, []);
 
   const onSearch = useCallback(() => {
     navigation.navigate('SearchCurrency');
   }, [navigation]);
+
+  const onChoiceCurrency = useCallback(() => {
+    navigation.goBack();
+    dispatch(changeCurrentToken(token.current));
+  }, [dispatch, navigation]);
 
   return (
     <GenericModal scrollEnabled={false} pageTitle={'choice a currency'}>
@@ -43,11 +59,11 @@ const _ChoiceCurrencyScreen = ({}) => {
       <ListFullOption
         showsVerticalScrollIndicator={false}
         style={{ width: Platform.deviceWidth }}
-        data={currencies}
+        data={mapToken}
         renderSubItem={renderItemMenu}
       />
       <View mv={Platform.SizeScale(20)}>
-        <CommonButton width={Platform.SizeScale(343)} type="full" text={'OK'} />
+        <CommonButton onPress={onChoiceCurrency} width={Platform.SizeScale(343)} type="full" text={'OK'} />
       </View>
     </GenericModal>
   );
@@ -66,7 +82,7 @@ const Item = ({ item, index, isFavorite, onPress }) => {
           {item.name}
         </Text>
         <Text ml={Platform.SizeScale(5)} fontSize={Platform.SizeScale(11)} color={COLORS._35CAB8}>
-          {item.group}
+          {item?.group}
         </Text>
       </View>
     );
@@ -76,10 +92,10 @@ const Item = ({ item, index, isFavorite, onPress }) => {
     return (
       <View mr={Platform.SizeScale(10)} alignItems="flex-end">
         <Text color={COLORS._282828} fontSize={Platform.SizeScale(13)}>
-          {item.total}
+          {item?.total}
         </Text>
         <Text mt={Platform.SizeScale(5)} color={COLORS._1A9E8F} fontSize={Platform.SizeScale(13)}>
-          {item.price}
+          {item?.price}
         </Text>
       </View>
     );
