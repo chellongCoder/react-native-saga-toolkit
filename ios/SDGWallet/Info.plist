@@ -20,12 +20,23 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>sdgwallet</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sdgwallet</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>11</string>
-	<!-- Required with iOS 10 and higher -->
-	<key>NSCameraUsageDescription</key>
-	<string>SDG Wallet need access to camera to scan qrcode</string>
-
+	<key>CodePushDeploymentKey</key>
+	<string>$(CodePushDeploymentKey_iOS)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -40,23 +51,19 @@
 		<dict>
 			<key>codepush.appcenter.ms</key>
 			<dict>
-      			<!--Include to allow subdomains-->
 				<key>NSIncludesSubdomains</key>
 				<true/>
-				<!--Include to allow HTTP requests-->
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-				<!--Include to specify minimum TLS version-->
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
 				<string>TLSv1.1</string>
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>SDG Wallet need access to camera to scan qrcode</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
-	<key>CodePushDeploymentKey</key>
-	<string>$(CodePushDeploymentKey_iOS)</string>
-
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
