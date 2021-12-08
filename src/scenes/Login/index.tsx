@@ -73,14 +73,7 @@ const LoginScreen: FC = () => {
 
   return (
     <LinearGradient useAngle angle={180} colors={COLORS.GREEN_GRADIENT} style={{ flex: 1 }}>
-      <View style={[styles.lang, commonStyles.row]}>
-        <Dropdown data={langs} />
-      </View>
-
       <KeyboardAwareScrollView>
-        <View style={styles.logo}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Images.LOGO} />
-        </View>
         <View style={styles.input}>
           <TextField
             onChangeText={setUsername}
@@ -105,20 +98,6 @@ const LoginScreen: FC = () => {
               {t('Login:login')}
             </Text>
           </Touchable>
-          <LinearGradient useAngle angle={93.32} colors={COLORS.PINK_GRADIENT} style={styles.finger}>
-            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_FINGER} />
-          </LinearGradient>
-        </View>
-        <View style={[commonStyles.row, styles.funcGroup]}>
-          <View style={styles.func}>
-            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_NEW} />
-          </View>
-          <View style={styles.func}>
-            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_SUPPORT} />
-          </View>
-          <View style={styles.func}>
-            <Image resizeMode="contain" style={commonStyles.image} source={Icons.ICON_MORE} />
-          </View>
         </View>
       </KeyboardAwareScrollView>
     </LinearGradient>

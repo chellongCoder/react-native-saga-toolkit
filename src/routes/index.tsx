@@ -48,16 +48,14 @@ const MainStack = createStackNavigator<MainStackT>();
 const Tab = createBottomTabNavigator<BottomTabT>();
 const DrawerStack = createDrawerNavigator();
 
-export const tabBar = (props: any) => <CustomTabar {...props} />;
-
 export const BottomTab: FC = () => {
   return (
-    <Tab.Navigator {...{ tabBar }} tabBarOptions={{}}>
-      <Tab.Screen name="Wallet" component={HomeScreen} />
-      <Tab.Screen name="Market" component={MarketScreen} />
-      <Tab.Screen name="Home" component={BrowserScreen} />
-      <Tab.Screen name="Exchange" component={SwapScreen} />
-      <Tab.Screen name="Setting" component={SettingScreen} />
+    <Tab.Navigator tabBarOptions={{}}>
+      <Tab.Screen name="Screen1" component={HomeScreen} />
+      <Tab.Screen name="Screen2" component={MarketScreen} />
+      <Tab.Screen name="Screen3" component={BrowserScreen} />
+      <Tab.Screen name="Screen4" component={SwapScreen} />
+      <Tab.Screen name="Screen5" component={SettingScreen} />
     </Tab.Navigator>
   );
 };

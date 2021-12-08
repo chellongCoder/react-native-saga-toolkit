@@ -3,7 +3,6 @@ import { Touchable } from '@components/touchable';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StyleSheet, View } from 'react-native';
 import { Platform } from '@theme/platform';
-import { TabBarAdvancedButton } from '@routes/tabbar';
 import { COLORS } from '@theme/colors';
 import { Icon } from '@components/common-icon';
 import { Icons } from '@theme/icons';

@@ -7,13 +7,7 @@ import { Platform } from '@theme/platform';
 import { Icon } from '@components/common-icon';
 
 const _SwapScreen: React.FC<any> = ({}) => {
-  return (
-    <View>
-      <Topbar title={'Swap'}>
-        <Icon icon={Images.IMG_COMING_SOON} width={Platform.deviceWidth} height={Platform.deviceHeight / 2} />
-      </Topbar>
-    </View>
-  );
+  return <View />;
 };
 
 export const SwapScreen = memo(_SwapScreen);

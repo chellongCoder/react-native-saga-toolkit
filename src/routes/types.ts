@@ -2,11 +2,11 @@ import { NavigatorScreenParams } from '@react-navigation/core';
 import { FinishedTransactionT, TokenBuyT, WalletDetail } from '@redux/wallet/types';
 
 export type BottomTabT = {
-  Wallet: undefined;
-  Market: undefined;
-  Home: undefined;
-  Exchange: undefined;
-  Setting: undefined;
+  Screen1: undefined;
+  Screen2: undefined;
+  Screen3: undefined;
+  Screen4: undefined;
+  Screen5: undefined;
 };
 
 export type RootStackT = {
