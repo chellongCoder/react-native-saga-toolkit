@@ -81,9 +81,15 @@ import com.android.build.OutputFile
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 ]
-
+project.ext.envConfigFiles = [
+    debug: ".env.staging",
+    release: ".env.production",
+    anothercustombuild: ".env",
+]
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -133,12 +139,15 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hisoft.base.sagatoolkit"
+        applicationId "com.hisoft.shadowgate.wallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 5
         versionName "1.0"
         multiDexEnabled true
+        resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
+        resValue "string", "build_config_package", "com.hisoft.sdgwallet"
+        missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
     }
     splits {
         abi {
@@ -155,6 +164,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
@@ -163,7 +180,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -172,6 +189,13 @@ android {
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
+        project.ext { appName = project.env.get("AppName") }
+                def formattedDate = new Date().format('YYYY-MM-dd HH-mm-ss')
+                def newName = output.outputFile.name
+                newName = newName.replace("app-", "$project.ext.appName-") //"MyAppName" -> I set my app variables in the root project
+                newName = newName.replace("-release", "-" + formattedDate)
+            //noinspection GroovyAssignabilityCheck
+            output.outputFileName = newName
             // For each separate APK per architecture, set a unique version code as described here:
             // https://developer.android.com/studio/build/configure-apk-splits.html
             // Example: versionCode 1 will generate 1001 for armeabi-v7a, 1002 for x86, etc.

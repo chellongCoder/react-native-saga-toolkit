@@ -64,6 +64,6 @@ const NetworkProvider = ({ children }: NetworkProviderProps) => {
   );
 };
 
-export default NetworkProvider;
+export { NetworkProvider };
 
 const styles = StyleSheet.create({});

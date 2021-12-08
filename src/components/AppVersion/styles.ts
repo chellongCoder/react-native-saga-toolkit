@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '@theme/colors';
+import { COLORS } from '@theme/colors';
 
 const styles = StyleSheet.create({
   infoText: {
-    color: palette.ASBESTOS,
+    color: COLORS.ASBESTOS,
     fontSize: 10,
     paddingVertical: 5,
     textAlign: 'center',

@@ -32,8 +32,14 @@
         "@components/*": [
           "src/components/*"
         ],
+        "@hook/*": [
+          "src/hook/*"
+        ],
         "@provider/*": [
           "src/provider/*"
+        ],
+        "@tools/*": [
+          "src/tools/*"
         ],
         "@i18n/*": [
           "src/i18n/*"

@@ -19,6 +19,10 @@ export const navigate: NavigateProps = (name, params) => {
   }
 };
 
+export const replace = (routeName: string, params: { [key: string]: any }) => {
+  navigationRef.current?.dispatch(StackActions.replace(routeName, params));
+};
+
 export const navigatePop = (): void => {
   if (isMountedRef.current && navigationRef.current) {
     // Perform navigation if the app has mounted

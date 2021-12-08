@@ -1,8 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.reactnativestarterapp">
+  package="com.hisoft.sdgwallet">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Include this only if you are planning to use the camera roll -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Include this only if you are planning to use the microphone for video recording -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -32,6 +40,12 @@
         <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+         <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="sdgwallet" />
         </intent-filter>
       </activity>
     </application>

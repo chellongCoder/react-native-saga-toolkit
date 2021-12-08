@@ -1,6 +1,6 @@
 {
-  "name": "ReactNativeStarterApp",
-  "displayName": "ReactNativeStarterApp",
+  "name": "SDGWallet",
+  "displayName": "SDG Wallet",
   "environments": {
     "development": {
       "API_URL": "https://ghibliapi.herokuapp.com",

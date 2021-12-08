@@ -1,5 +1,13 @@
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
+  env: {
+    production: {
+      plugins: ['transform-remove-console'],
+    },
+    // development: {
+    //   plugins: ['transform-remove-console'],
+    // },
+  },
   plugins: [
     [
       'module-resolver',
@@ -9,7 +17,9 @@ module.exports = {
         alias: {
           '@assets': './src/assets',
           '@components': './src/components',
+          '@hook': './src/hook',
           '@provider': './src/provider',
+          '@tools': './src/tools',
           '@i18n': './src/i18n',
           '@redux': './src/redux',
           '@routes': './src/routes',
