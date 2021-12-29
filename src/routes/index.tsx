@@ -50,7 +50,7 @@ const DrawerStack = createDrawerNavigator();
 
 export const BottomTab: FC = () => {
   return (
-    <Tab.Navigator tabBarOptions={{}}>
+    <Tab.Navigator tabBarOptions={{}} tabBar={props => <CustomTabar {...props} />}>
       <Tab.Screen name="Screen1" component={HomeScreen} />
       <Tab.Screen name="Screen2" component={MarketScreen} />
       <Tab.Screen name="Screen3" component={BrowserScreen} />
