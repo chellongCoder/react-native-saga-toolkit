@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>460694115124-n3oqtlftm5flvtlqthr0528v233avt5f.apps.googleusercontent.com</string>
+	<string>769042790963-a083qm393767utfehmad9q0qeidravrc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.460694115124-n3oqtlftm5flvtlqthr0528v233avt5f</string>
+	<string>com.googleusercontent.apps.769042790963-a083qm393767utfehmad9q0qeidravrc</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCfGl7xtRWRjhgYhqZ_HcuS6vRInhjF1io</string>
+	<string>AIzaSyB9ZdVNsQcUOjqj15eu_aiXqJOH02f_ipI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>460694115124</string>
+	<string>769042790963</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.hisoft.shadowgate.wallet</string>
+	<string>com.app.drcare</string>
 	<key>PROJECT_ID</key>
-	<string>wallet-shadowgate</string>
+	<string>dcstore</string>
 	<key>STORAGE_BUCKET</key>
-	<string>wallet-shadowgate.appspot.com</string>
+	<string>dcstore.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:460694115124:ios:ab0f0aa87f1954aed90b61</string>
+	<string>1:769042790963:ios:d9fba8274dedcf45094146</string>
 </dict>
 </plist>

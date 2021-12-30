@@ -17,7 +17,7 @@ platform :ios, '11.0'
 #   Dir[dir + '*/'].each(&method(:find_and_replace))
 # end
 
-target 'SDGWallet' do
+target 'DrCare' do
   config = use_native_modules!
 
   use_react_native!(

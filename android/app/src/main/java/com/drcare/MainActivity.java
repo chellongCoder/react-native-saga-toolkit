@@ -1,4 +1,4 @@
-package com.hisoft.sdgwallet;
+package com.drcare;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
@@ -16,7 +16,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "SDGWallet";
+    return "DrCare";
   }
 
   @Override
