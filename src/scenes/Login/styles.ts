@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   header_login: {
     width: Platform.deviceWidth,
-    height: Platform.deviceWidth * 256 / 428,
+    height: (Platform.deviceWidth * 256) / 428,
   },
   text_header_login: {
     fontFamily: fonts.fontLight,
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 15,
     borderStyle: 'dashed',
-
   },
   labelLogin: {
     marginLeft: -20,
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     marginTop: Platform.SizeScale(20),
   },
   styTxtFb: {
-    marginHorizontal: Platform.SizeScale(10)
+    marginHorizontal: Platform.SizeScale(10),
   },
   styWrapLogin: {
     width: Platform.SizeScale(125),
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
     marginHorizontal: Platform.SizeScale(6),
   },
   shadow: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
   styWrapTxtRegis: {
     alignSelf: 'center',
     marginVertical: 30,
-  }
+  },
 });
 
 export default styles;

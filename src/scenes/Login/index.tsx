@@ -1,5 +1,5 @@
 import React, { useCallback, FC, memo, useState } from 'react';
-import { View, ScrollView, Image, StatusBar } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
@@ -84,7 +84,9 @@ const LoginScreen: FC = () => {
       <Image source={require('../../assets/images/login/header_login.png')} style={styles.header_login} />
       <Image source={require('../../assets/logo/logo.png')} style={styles.logo} />
       <KeyboardAwareScrollView>
-        <Text fontType={'fontLight'} style={styles.text_header_login}>Đăng nhập băng số điện thoại của bạn</Text>
+        <Text fontType={'fontLight'} style={styles.text_header_login}>
+          Đăng nhập băng số điện thoại của bạn
+        </Text>
         <View style={styles.line_login} />
         <View style={styles.input}>
           <TextField
@@ -112,12 +114,14 @@ const LoginScreen: FC = () => {
         </View>
 
         <View style={[commonStyles.row, styles.styWrapFunc]}>
-          <CheckBox isCheck={isCheck} label='Duy trì đăng nhập' onPress={switchCheckBox} />
-          <Text color={COLORS.AMETHYST} fontType='fontRegular'>Quên mật khẩu</Text>
+          <CheckBox isCheck={isCheck} label="Duy trì đăng nhập" onPress={switchCheckBox} />
+          <Text color={COLORS.AMETHYST} fontType="fontRegular">
+            Quên mật khẩu
+          </Text>
         </View>
 
         <View style={styles.buttonGroup}>
-          <LinearGradient useAngle={true} colors={COLORS.VIOLET_GRADIENT} style={{ borderRadius: 5, }}>
+          <LinearGradient useAngle={true} colors={COLORS.VIOLET_GRADIENT} style={{ borderRadius: 5 }}>
             <Touchable onPress={onLogin} style={styles.button}>
               <Text fontType="fontRegular" color={COLORS.WHITE} fontSize={Platform.SizeScale(18)}>
                 Đăng nhập
@@ -128,28 +132,34 @@ const LoginScreen: FC = () => {
 
         <View style={styles.line_login} />
 
-        <Text fontType='fontLight' fontSize={12} color={COLORS.BLACK} style={styles.styTextOr}>Hoặc đăng nhập bằng</Text>
+        <Text fontType="fontLight" fontSize={12} color={COLORS.BLACK} style={styles.styTextOr}>
+          Hoặc đăng nhập bằng
+        </Text>
 
         <View style={[commonStyles.row, styles.styWrapOptionLogin]}>
           <View style={[commonStyles.row, styles.styWrapLogin, styles.shadow]}>
             <Image source={require('../../assets/images/login/icon_fb.png')} />
-            <Text style={styles.styTxtFb} fontType='fontLight' color={COLORS.BLACK}>Facebook</Text>
+            <Text style={styles.styTxtFb} fontType="fontLight" color={COLORS.BLACK}>
+              Facebook
+            </Text>
           </View>
           <View style={[commonStyles.row, styles.styWrapLogin, styles.shadow]}>
             <Image source={require('../../assets/images/login/icon_gg.png')} />
-            <Text style={styles.styTxtFb} fontType='fontLight' color={COLORS.BLACK}>Google</Text>
+            <Text style={styles.styTxtFb} fontType="fontLight" color={COLORS.BLACK}>
+              Google
+            </Text>
           </View>
         </View>
 
-        <Text
-          fontType='fontLight'
-          style={styles.styWrapTxtRegis}
-        >Bạn chưa có tài khoản?
-          <Text style={styles.styTxtRegis} fontType='fontRegular'> Đăng ký</Text>
+        <Text fontType="fontLight" style={styles.styWrapTxtRegis}>
+          Bạn chưa có tài khoản?
+          <Text style={styles.styTxtRegis} fontType="fontRegular">
+            {' '}
+            Đăng ký
+          </Text>
         </Text>
-
       </KeyboardAwareScrollView>
-    </View >
+    </View>
   );
 };
 
