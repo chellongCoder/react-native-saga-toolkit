@@ -7,34 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BE340A7C772447288BDE439 /* Mulish-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FF99585D6744C4C9D0D70F1 /* Mulish-Italic.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* (null) in Resources */ = {isa = PBXBuildFile; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		22314F377DF44F58B7BF12C4 /* Lexend-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17AC6CE3A079463D99C9F79E /* Lexend-Light.ttf */; };
-		22C0ED508F664C29A722E4AF /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 351AD53139B04D48A492DCC9 /* Lato-Bold.ttf */; };
 		22FC016AEA194FE9A9C98105 /* Lexend-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493A5286037F4531B138D718 /* Lexend-Bold.ttf */; };
-		2909319D33DD472694DDAF1F /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2152AF86EDF4EEDBD2D3F17 /* Lato-Thin.ttf */; };
-		391165B8EE75497793EADEC4 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5490CC35D2D14595A5AF075E /* Lato-Regular.ttf */; };
 		3AC1F780252AF552005548BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1F77F252AF552005548BB /* LaunchScreen.storyboard */; };
-		3AFC7D7205A3428596AB4954 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D2E5A87598B4B46995B7027 /* Lato-BlackItalic.ttf */; };
-		461C6D5F605F4ACDAE4035F7 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06933F48076D471682E306AD /* Lato-LightItalic.ttf */; };
-		4FAAC9AA4B0947AE8117D6B5 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9E578FF46F04016A9FEA731 /* Lato-Italic.ttf */; };
-		509AEA45FDF848A7B294518A /* Mulish-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7087B9155EFC4F54B72BD27B /* Mulish-Regular.ttf */; };
-		55235DBB33004939ADC18CAB /* Mulish-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 469DE27AEC7C4E2FB84B6821 /* Mulish-Medium.ttf */; };
-		5877A91649664A23923E57CE /* Mulish-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8941F128461942DA97A52996 /* Mulish-ExtraLightItalic.ttf */; };
 		6B199754054F46FC8493C066 /* Lexend-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 057A039E2E3549D08049DAFF /* Lexend-Medium.ttf */; };
-		6BE46773C6954CC8B0DEBE0D /* Mulish-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B55E0FDD64884B6690E67FE0 /* Mulish-LightItalic.ttf */; };
 		7231C227D280406BABA506DB /* Lexend-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6287F9D6E2B544409027A2B4 /* Lexend-ExtraLight.ttf */; };
-		77515CAE357844D784B43A66 /* Mulish-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4300ABA5B43480EBE43ECA2 /* Mulish-BlackItalic.ttf */; };
-		825FF1F0BC4B4E6394311636 /* Mulish-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8A52B1A1C64342A6D2C1D0 /* Mulish-Light.ttf */; };
 		8FFDD27FE0E111D8E34219F6 /* libPods-DrCare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C386AADC3F00814E98BF636 /* libPods-DrCare.a */; };
-		90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68E5EF259E8E4558AB107594 /* Lato-Black.ttf */; };
-		93D02A7E25B84B5292BA9F32 /* Mulish-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D65437F5F3FD47368EF5CD50 /* Mulish-Bold.ttf */; };
 		9D4F354DDDF548F9A161407A /* Lexend-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F209F2E65E2C4E308E139059 /* Lexend-Thin.ttf */; };
 		A08D0B15F90844FEB775C3DD /* Lexend-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 087413B260FA4B3781B4C9B3 /* Lexend-Black.ttf */; };
-		A7F752145B1E475697F3683C /* Mulish-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5CA28C980B8485A9B99AE96 /* Mulish-SemiBoldItalic.ttf */; };
 		A824A74626E34EE700A156E6 /* ClickViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A824A74526E34EE700A156E6 /* ClickViewManager.m */; };
 		A824A74926E34EFF00A156E6 /* ClickViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824A74826E34EFF00A156E6 /* ClickViewManager.swift */; };
 		A824A74C26E3524C00A156E6 /* ClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824A74B26E3524C00A156E6 /* ClickView.swift */; };
@@ -42,25 +26,14 @@
 		A8B207C726C79F25008E0F0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B207C526C79F24008E0F0D /* ViewController.swift */; };
 		A8B207C826C79F25008E0F0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B207C626C79F24008E0F0D /* ViewController.m */; };
 		A8B207CE26C7A264008E0F0D /* ViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B207CD26C7A264008E0F0D /* ViewControllerManager.swift */; };
-		A8CD0A6926F337DB0060D148 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8CD0A6826F337DB0060D148 /* AppCenter-Config.plist */; };
 		A8E4CDA826BE6D3E008844C7 /* MyCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDA726BE6D3E008844C7 /* MyCustomView.swift */; };
 		A8E4CDAD26BE6DB8008844C7 /* MyCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDAC26BE6DB8008844C7 /* MyCustomView.m */; };
 		A8E4CDBC26BEA1A2008844C7 /* CounterViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDBB26BEA1A2008844C7 /* CounterViewManager.swift */; };
 		A8E4CDC026BEA26A008844C7 /* CounterViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4CDBF26BEA26A008844C7 /* CounterViewManager.m */; };
 		A8F3A6382674C9DD000637D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8F3A6372674C9DD000637D2 /* GoogleService-Info.plist */; };
-		A99BCDB32CA64BAC958BC3E7 /* Mulish-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12C64F49D82247D08F70F9EF /* Mulish-ExtraBold.ttf */; };
 		B42F7E88778F4D0B9AADEEB8 /* Lexend-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76F577D307724DCEAB256658 /* Lexend-SemiBold.ttf */; };
-		B578F1DEA475499A962E26D9 /* Mulish-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9B58ECE4F734FD59DAA6059 /* Mulish-BoldItalic.ttf */; };
-		B90582B7DBC8497EB6FC39FB /* Mulish-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D115B91A88C24643BE803945 /* Mulish-ExtraBoldItalic.ttf */; };
-		BF5B626091A94AA5B6977CA8 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF69C08483504C9AB6BA50EB /* Lato-ThinItalic.ttf */; };
-		C8342581F70D47B98C3CEDB4 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF4036C513F840B19AF034A2 /* Lato-Light.ttf */; };
-		C8461DC26AC04FB080BABF52 /* Mulish-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01BD47AEBB3647EBA825ADAA /* Mulish-ExtraLight.ttf */; };
 		D34FD2C073C74FD3ADF9E108 /* Lexend-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1604C3D60E3D4EFCBECA633B /* Lexend-Regular.ttf */; };
 		E719C1133F7F44E8AB5116F5 /* Lexend-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902A807F58784979B124DD93 /* Lexend-ExtraBold.ttf */; };
-		F4E144D02D7C4389932D52BA /* Mulish-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C482035660554311BA1C4CF8 /* Mulish-MediumItalic.ttf */; };
-		F654AE4F868F4E32BFE0279B /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17FA652C5328403FBA61B14D /* Mulish-SemiBold.ttf */; };
-		FA8B7193E87645ABA6EEB43E /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DEA598EFC5B4EF2B839E4D6 /* Lato-BoldItalic.ttf */; };
-		FD66CA4B3AB6455C940E2019 /* Mulish-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 246BA58371D2489397C31169 /* Mulish-Black.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -433,35 +406,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* (null) in Resources */,
-				90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */,
-				3AFC7D7205A3428596AB4954 /* Lato-BlackItalic.ttf in Resources */,
-				22C0ED508F664C29A722E4AF /* Lato-Bold.ttf in Resources */,
-				FA8B7193E87645ABA6EEB43E /* Lato-BoldItalic.ttf in Resources */,
-				4FAAC9AA4B0947AE8117D6B5 /* Lato-Italic.ttf in Resources */,
-				C8342581F70D47B98C3CEDB4 /* Lato-Light.ttf in Resources */,
-				461C6D5F605F4ACDAE4035F7 /* Lato-LightItalic.ttf in Resources */,
-				391165B8EE75497793EADEC4 /* Lato-Regular.ttf in Resources */,
-				2909319D33DD472694DDAF1F /* Lato-Thin.ttf in Resources */,
-				BF5B626091A94AA5B6977CA8 /* Lato-ThinItalic.ttf in Resources */,
 				3AC1F780252AF552005548BB /* LaunchScreen.storyboard in Resources */,
 				A8F3A6382674C9DD000637D2 /* GoogleService-Info.plist in Resources */,
-				FD66CA4B3AB6455C940E2019 /* Mulish-Black.ttf in Resources */,
-				A8CD0A6926F337DB0060D148 /* AppCenter-Config.plist in Resources */,
-				77515CAE357844D784B43A66 /* Mulish-BlackItalic.ttf in Resources */,
-				93D02A7E25B84B5292BA9F32 /* Mulish-Bold.ttf in Resources */,
-				B578F1DEA475499A962E26D9 /* Mulish-BoldItalic.ttf in Resources */,
-				A99BCDB32CA64BAC958BC3E7 /* Mulish-ExtraBold.ttf in Resources */,
-				B90582B7DBC8497EB6FC39FB /* Mulish-ExtraBoldItalic.ttf in Resources */,
-				C8461DC26AC04FB080BABF52 /* Mulish-ExtraLight.ttf in Resources */,
-				5877A91649664A23923E57CE /* Mulish-ExtraLightItalic.ttf in Resources */,
-				0BE340A7C772447288BDE439 /* Mulish-Italic.ttf in Resources */,
-				825FF1F0BC4B4E6394311636 /* Mulish-Light.ttf in Resources */,
-				6BE46773C6954CC8B0DEBE0D /* Mulish-LightItalic.ttf in Resources */,
-				55235DBB33004939ADC18CAB /* Mulish-Medium.ttf in Resources */,
-				F4E144D02D7C4389932D52BA /* Mulish-MediumItalic.ttf in Resources */,
-				509AEA45FDF848A7B294518A /* Mulish-Regular.ttf in Resources */,
-				F654AE4F868F4E32BFE0279B /* Mulish-SemiBold.ttf in Resources */,
-				A7F752145B1E475697F3683C /* Mulish-SemiBoldItalic.ttf in Resources */,
 				A08D0B15F90844FEB775C3DD /* Lexend-Black.ttf in Resources */,
 				22FC016AEA194FE9A9C98105 /* Lexend-Bold.ttf in Resources */,
 				E719C1133F7F44E8AB5116F5 /* Lexend-ExtraBold.ttf in Resources */,
