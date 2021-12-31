@@ -1,5 +1,5 @@
 import React, { useCallback, FC, memo, useState } from 'react';
-import { View, ScrollView, Image } from 'react-native';
+import { View, ScrollView, Image, StatusBar } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
