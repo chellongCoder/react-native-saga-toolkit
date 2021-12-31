@@ -36,9 +36,9 @@ import { callSafe } from '@redux/rootSaga';
 function* loginSaga({ payload }: PayloadAction<LogginPayload>): Generator<
   | CallEffect
   | PutEffect<{
-    payload: LoginSuccessPayload;
-    type: string;
-  }>,
+      payload: LoginSuccessPayload;
+      type: string;
+    }>,
   void
 > {
   const { username, password, fcmToken, callback } = payload;
@@ -54,7 +54,7 @@ function* loginSaga({ payload }: PayloadAction<LogginPayload>): Generator<
       yield put(loginRequestFailed(filmsRes) as any);
     }
   } catch (err) {
-    yield put(loginRequestSuccess({a:1}));
+    yield put(loginRequestSuccess({ a: 1 }));
 
     // callback?.(err, 'ERROR');
     // yield put(loginRequestFailed(err) as any);
@@ -64,9 +64,9 @@ function* loginSaga({ payload }: PayloadAction<LogginPayload>): Generator<
 function* getUserSaga({ payload }: PayloadAction<GetUserParams>): Generator<
   | CallEffect
   | PutEffect<{
-    payload: GetUserSuccessPayload;
-    type: string;
-  }>,
+      payload: GetUserSuccessPayload;
+      type: string;
+    }>,
   void
 > {
   const { id, callback } = payload;
@@ -87,9 +87,9 @@ function* getUserSaga({ payload }: PayloadAction<GetUserParams>): Generator<
 function* sendEmailVerifySaga({ payload }: PayloadAction<SendEmailVerifyPayload>): Generator<
   | CallEffect
   | PutEffect<{
-    payload: SendEmailVerifySuccessPayload;
-    type: string;
-  }>,
+      payload: SendEmailVerifySuccessPayload;
+      type: string;
+    }>,
   void
 > {
   const { email, callback } = payload;
@@ -112,9 +112,9 @@ function* sendEmailVerifySaga({ payload }: PayloadAction<SendEmailVerifyPayload>
 function* verifyEmailSaga({ payload }: PayloadAction<EmailVerifyPayload>): Generator<
   | CallEffect
   | PutEffect<{
-    payload: EmailVerifySuccessPayload;
-    type: string;
-  }>,
+      payload: EmailVerifySuccessPayload;
+      type: string;
+    }>,
   void
 > {
   const { email, code, callback } = payload;
@@ -137,9 +137,9 @@ function* verifyEmailSaga({ payload }: PayloadAction<EmailVerifyPayload>): Gener
 function* changePasswordSaga({ payload }: PayloadAction<ChangePasswordPayload>): Generator<
   | CallEffect
   | PutEffect<{
-    payload: ChangePasswordSuccessPayload;
-    type: string;
-  }>,
+      payload: ChangePasswordSuccessPayload;
+      type: string;
+    }>,
   void
 > {
   const { userId, oldPassword, newPassword, callback } = payload;

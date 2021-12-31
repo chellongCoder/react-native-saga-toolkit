@@ -15,7 +15,6 @@ const fontFamily = {
   lexendBold: 'Lexend-Bold',
   lexendLight: 'Lexend-Light',
   lexendThin: 'Lexend-Thin',
-
 };
 
 const fonts = {

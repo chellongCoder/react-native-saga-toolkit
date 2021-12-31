@@ -13,7 +13,11 @@ const COLORS = {
   BELIZE_HOLE: '#2980b9',
   ALIZARIN: '#e74c3c',
   POMEGRANATE: '#c0392b',
+<<<<<<< HEAD
   AMETHYST: '#7F2B81',
+=======
+  AMETHYST: '#9b59b6',
+>>>>>>> develop
   WISTERIA: '#8e44ad',
   WET_ASPHALT: '#34495e',
   MIDNIGHT_BLUE: '#2c3e50',
@@ -26,7 +30,10 @@ const COLORS = {
   TRANSPARENT: '#00000000',
   GREY_SHADOW_7: 'rgba(216,216,216,0.7)',
   GREEN_GRADIENT: ['#0B554F', '#22857C'],
+<<<<<<< HEAD
   VIOLET_GRADIENT: ['#AF4BB1', '#7F2B81'],
+=======
+>>>>>>> develop
   HEADER_GRADIENT: ['#0A2F47', '#058075'],
   PINK_GRADIENT: ['#D1ACFF', '#74F7FF'],
   BUTTON_GRADIENT: ['#13625A', '#67AFA9'],
@@ -38,7 +45,10 @@ const COLORS = {
   MAIN_GREEN: '#13A69A',
   BACKGROUND: '#F4F5F7',
   LIGHT_GREEN: '#75F0E6',
+<<<<<<< HEAD
   GRAY: '#777777',
+=======
+>>>>>>> develop
   TOOL_BACKGROUND: 'rgba(9,62,57,0.8)',
   _8EFFD0: '#8EFFD0',
   _575757_30: 'rgba(87,87,87,0.3)',
@@ -78,9 +88,10 @@ const COLORS = {
   _139B8B: '#139B8B',
   _0EA391: '#0EA391',
   _69C9C1: '#69C9C1',
+  _FDCB44: '#FDCB44',
+  _7F2B81: '#7F2B81',
+  _F1F1F1: '#F1F1F1',
   customOpacity: (color: string, opacity: number) => Color(color, 'hex').alpha(opacity).toString(),
-  _912B93: '#912B93',
-  _E5E5E5: '#E5E5E5',
 };
 
 export { COLORS };

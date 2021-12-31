@@ -7,6 +7,7 @@ import { ScreenRouteT } from '@routes/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
+import { Text } from '@components/text';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -15,7 +16,11 @@ const _HomeScreen = ({}) => {
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
   const styles = useHomeStyle();
 
-  return <View style={styles.container} />;
+  return (
+    <View style={styles.container}>
+      <Text>asd</Text>
+    </View>
+  );
 };
 
 export const HomeScreen = memo(_HomeScreen);
