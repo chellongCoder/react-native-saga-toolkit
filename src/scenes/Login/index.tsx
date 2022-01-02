@@ -1,9 +1,21 @@
-import React, { useCallback, FC, memo, useState } from 'react';
+import React, { useCallback, FC, memo, useState, useEffect } from 'react';
 import { View, ScrollView, Image, StatusBar } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import {
+  AccessToken,
+  LoginManager,
+  GraphRequest,
+  GraphRequestManager,
+} from 'react-native-fbsdk';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import _ from 'lodash';
 import { COLORS } from '@theme/colors';
 import { Images } from '@theme/images';
 import commonStyles from '@theme/commonStyles';
@@ -20,18 +32,22 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { useLoadingGlobal } from '@hook/use-loading-global';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { alertError } from '@utils';
-import { fonts } from '@theme/fonts';
 import CheckBox from './CheckBox';
+import { configGoogle } from '@services/configServices';
 
 const LoginScreen: FC = () => {
   const [t, i18n] = useTranslation();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [lang, setLang] = useState('en');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('admin');
+  const [password, setPassword] = useState('admin');
   const [isCheck, setCheckBox] = useState(false);
   const loading = useLoadingGlobal();
+
+  useEffect(() => {
+    configGoogle();
+  }, []);
 
   const switchLocaleToEn = useCallback(() => {
     i18n.changeLanguage('en');
@@ -77,6 +93,103 @@ const LoginScreen: FC = () => {
 
     // navigate(ROUTES.LoginPassword, {});
   }, [dispatch, loading, password, username]);
+
+  const signInFacebook = useCallback(() => {
+    loading.onShow();
+    LoginManager.logInWithPermissions(['public_profile'])
+      .then((result: any) => {
+        if (result.isCancelled) {
+          loading.onHide();
+          console.log('Login cancelled');
+        } else {
+          console.log(
+            'Login success with permissions: ' +
+            result.grantedPermissions.toString(),
+          );
+          requestGraph();
+        }
+      })
+      .catch(() => {
+        loading.onHide();
+      });
+  }, [loading]);
+
+  const requestGraph = useCallback(() => {
+    AccessToken.getCurrentAccessToken().then(async (token: any) => {
+      if (!_.isEmpty(token)) {
+        const { accessToken, userID } = token;
+        let payload = {
+          socialId: userID,
+          socialToken: accessToken,
+        };
+        console.log("payload", payload);
+        // xử lý đăng nhập tiếp tục tại đây.
+        // signInSocial(payload);
+        onLogin();
+        loading.onHide();
+      }
+    });
+    // Create response callback.
+    // Create a graph request asking for user information with a callback to handle the response.
+    const infoRequest = new GraphRequest(
+      '/me',
+      null,
+      _responseInfoCallback,
+    );
+    // Start the graph request.
+    new GraphRequestManager().addRequest(infoRequest).start();
+  }, [loading]);
+
+  const _responseInfoCallback = (error: any, result: any) => {
+    if (error) {
+      console.log('Error fetching data: ' + error.toString());
+    } else {
+      console.log(result);
+      console.log('Success fetching data: ' + result.toString());
+    }
+  }
+
+  const signInGoogle = useCallback(async () => {
+    try {
+      loading.onShow();
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      if (!_.isEmpty(userInfo)) {
+        console.log(userInfo);
+        const { idToken, user } = userInfo;
+        if (!_.isEmpty(user)) {
+          const { id } = user;
+          const payload = {
+            socialId: id,
+            socialToken: idToken,
+          };
+          console.log("🚀 ~ file: index.tsx ~ line 166 ~ signInGoogle ~ payload", payload)
+          // signInSocial(payload);
+          onLogin();
+          loading.onHide();
+        }
+      }
+    } catch (error: any) {
+      console.log("🚀 ~ file: index.tsx ~ line 171 ~ signInGoogle ~ error", error)
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        loading.onHide();
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        loading.onHide();
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        loading.onHide();
+        // play services not available or outdated
+      } else {
+        // some other error happened
+        loading.onHide();
+        // this.setState({
+        //   isLoging: false,
+        //   errors: 'Đăng nhập thất bại, bạn vui lòng thử lại sau!',
+        // });
+      }
+    }
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF' }}>
@@ -131,14 +244,21 @@ const LoginScreen: FC = () => {
         <Text fontType='fontLight' fontSize={12} color={COLORS.BLACK} style={styles.styTextOr}>Hoặc đăng nhập bằng</Text>
 
         <View style={[commonStyles.row, styles.styWrapOptionLogin]}>
-          <View style={[commonStyles.row, styles.styWrapLogin, styles.shadow]}>
-            <Image source={require('../../assets/images/login/icon_fb.png')} />
-            <Text style={styles.styTxtFb} fontType='fontLight' color={COLORS.BLACK}>Facebook</Text>
-          </View>
-          <View style={[commonStyles.row, styles.styWrapLogin, styles.shadow]}>
-            <Image source={require('../../assets/images/login/icon_gg.png')} />
-            <Text style={styles.styTxtFb} fontType='fontLight' color={COLORS.BLACK}>Google</Text>
-          </View>
+
+          <Touchable onPress={signInFacebook}>
+            <View style={[commonStyles.row, styles.styWrapLogin, styles.shadow]}>
+              <Image source={require('../../assets/images/login/icon_fb.png')} />
+              <Text style={styles.styTxtFb} fontType='fontLight' color={COLORS.BLACK}>Facebook</Text>
+            </View>
+          </Touchable>
+
+          <Touchable onPress={signInGoogle}>
+            <View style={[commonStyles.row, styles.styWrapLogin, styles.shadow]}>
+              <Image source={require('../../assets/images/login/icon_gg.png')} />
+              <Text style={styles.styTxtFb} fontType='fontLight' color={COLORS.BLACK}>Google</Text>
+            </View>
+          </Touchable>
+
         </View>
 
         <Text
