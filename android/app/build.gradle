@@ -146,7 +146,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
-        resValue "string", "build_config_package", "com.drcare"
+        resValue "string", "build_config_package", "com.doctorcare.app"
         missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
     }
     splits {

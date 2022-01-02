@@ -13,7 +13,7 @@ const COLORS = {
   BELIZE_HOLE: '#2980b9',
   ALIZARIN: '#e74c3c',
   POMEGRANATE: '#c0392b',
-  AMETHYST: '#7F2B81',
+  AMETHYST: '#9b59b6',
   WISTERIA: '#8e44ad',
   WET_ASPHALT: '#34495e',
   MIDNIGHT_BLUE: '#2c3e50',
@@ -78,9 +78,10 @@ const COLORS = {
   _139B8B: '#139B8B',
   _0EA391: '#0EA391',
   _69C9C1: '#69C9C1',
+  _FDCB44: '#FDCB44',
+  _7F2B81: '#7F2B81',
+  _F1F1F1: '#F1F1F1',
   customOpacity: (color: string, opacity: number) => Color(color, 'hex').alpha(opacity).toString(),
-  _912B93: '#912B93',
-  _E5E5E5: '#E5E5E5',
 };
 
 export { COLORS };

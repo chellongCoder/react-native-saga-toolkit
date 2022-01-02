@@ -197,7 +197,9 @@ const LoginScreen: FC = () => {
       <Image source={require('../../assets/images/login/header_login.png')} style={styles.header_login} />
       <Image source={require('../../assets/logo/logo.png')} style={styles.logo} />
       <KeyboardAwareScrollView>
-        <Text fontType={'fontLight'} style={styles.text_header_login}>Đăng nhập băng số điện thoại của bạn</Text>
+        <Text fontType={'fontLight'} style={styles.text_header_login}>
+          Đăng nhập băng số điện thoại của bạn
+        </Text>
         <View style={styles.line_login} />
         <View style={styles.input}>
           <TextField
@@ -225,12 +227,14 @@ const LoginScreen: FC = () => {
         </View>
 
         <View style={[commonStyles.row, styles.styWrapFunc]}>
-          <CheckBox isCheck={isCheck} label='Duy trì đăng nhập' onPress={switchCheckBox} />
-          <Text color={COLORS.AMETHYST} fontType='fontRegular'>Quên mật khẩu</Text>
+          <CheckBox isCheck={isCheck} label="Duy trì đăng nhập" onPress={switchCheckBox} />
+          <Text color={COLORS.AMETHYST} fontType="fontRegular">
+            Quên mật khẩu
+          </Text>
         </View>
 
         <View style={styles.buttonGroup}>
-          <LinearGradient useAngle={true} colors={COLORS.VIOLET_GRADIENT} style={{ borderRadius: 5, }}>
+          <LinearGradient useAngle={true} colors={COLORS.VIOLET_GRADIENT} style={{ borderRadius: 5 }}>
             <Touchable onPress={onLogin} style={styles.button}>
               <Text fontType="fontRegular" color={COLORS.WHITE} fontSize={Platform.SizeScale(18)}>
                 Đăng nhập
@@ -241,7 +245,9 @@ const LoginScreen: FC = () => {
 
         <View style={styles.line_login} />
 
-        <Text fontType='fontLight' fontSize={12} color={COLORS.BLACK} style={styles.styTextOr}>Hoặc đăng nhập bằng</Text>
+        <Text fontType="fontLight" fontSize={12} color={COLORS.BLACK} style={styles.styTextOr}>
+          Hoặc đăng nhập bằng
+        </Text>
 
         <View style={[commonStyles.row, styles.styWrapOptionLogin]}>
 
@@ -261,15 +267,15 @@ const LoginScreen: FC = () => {
 
         </View>
 
-        <Text
-          fontType='fontLight'
-          style={styles.styWrapTxtRegis}
-        >Bạn chưa có tài khoản?
-          <Text style={styles.styTxtRegis} fontType='fontRegular'> Đăng ký</Text>
+        <Text fontType="fontLight" style={styles.styWrapTxtRegis}>
+          Bạn chưa có tài khoản?
+          <Text style={styles.styTxtRegis} fontType="fontRegular">
+            {' '}
+            Đăng ký
+          </Text>
         </Text>
-
       </KeyboardAwareScrollView>
-    </View >
+    </View>
   );
 };
 
