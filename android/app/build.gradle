@@ -139,7 +139,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hisoft.shadowgate.wallet"
+        applicationId "com.drcare"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 5
@@ -228,6 +228,8 @@ dependencies {
 
     // For WebP support, without animations
     implementation 'com.facebook.fresco:webpsupport:2.0.0'
+    // for facebook
+    implementation "com.facebook.android:facebook-android-sdk:8.2.0"
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
     implementation 'com.google.firebase:firebase-analytics'
 

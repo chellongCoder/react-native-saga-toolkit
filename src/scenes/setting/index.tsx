@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { LoginManager } from 'react-native-fbsdk';
 import { useSettingStyle } from './styles';
 import { Topbar } from '@components/topbar';
 import commonStyles from '@theme/commonStyles';
@@ -22,7 +23,7 @@ import { showConfirm } from '@utils';
 import { useLoadingGlobal } from '@hook/use-loading-global';
 import { ROUTES } from '@routes/constants';
 
-const _SettingScreen = ({}) => {
+const _SettingScreen = ({ }) => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Buy'>>();
@@ -40,6 +41,7 @@ const _SettingScreen = ({}) => {
       dispatch(changeInitRouteNameAuth(ROUTES.LoginPassword));
       setTimeout(() => {
         dispatch(logoutRequest());
+        LoginManager.logOut();
         loading.onHide();
       }, 500);
     });

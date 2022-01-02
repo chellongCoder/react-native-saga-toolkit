@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* (null) in Resources */ = {isa = PBXBuildFile; };
+		13B07FBD1A68108700A75B9A /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		22314F377DF44F58B7BF12C4 /* Lexend-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17AC6CE3A079463D99C9F79E /* Lexend-Light.ttf */; };
@@ -405,7 +405,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+<<<<<<< HEAD
+				13B07FBD1A68108700A75B9A /* BuildFile in Resources */,
+				90993A44AFA64CEABC683D6D /* Lato-Black.ttf in Resources */,
+				3AFC7D7205A3428596AB4954 /* Lato-BlackItalic.ttf in Resources */,
+				22C0ED508F664C29A722E4AF /* Lato-Bold.ttf in Resources */,
+				FA8B7193E87645ABA6EEB43E /* Lato-BoldItalic.ttf in Resources */,
+				4FAAC9AA4B0947AE8117D6B5 /* Lato-Italic.ttf in Resources */,
+				C8342581F70D47B98C3CEDB4 /* Lato-Light.ttf in Resources */,
+				461C6D5F605F4ACDAE4035F7 /* Lato-LightItalic.ttf in Resources */,
+				391165B8EE75497793EADEC4 /* Lato-Regular.ttf in Resources */,
+				2909319D33DD472694DDAF1F /* Lato-Thin.ttf in Resources */,
+				BF5B626091A94AA5B6977CA8 /* Lato-ThinItalic.ttf in Resources */,
+=======
 				13B07FBD1A68108700A75B9A /* (null) in Resources */,
+>>>>>>> e1d4b4cceaf4e236603627bb241c8764df785251
 				3AC1F780252AF552005548BB /* LaunchScreen.storyboard in Resources */,
 				A8F3A6382674C9DD000637D2 /* GoogleService-Info.plist in Resources */,
 				A08D0B15F90844FEB775C3DD /* Lexend-Black.ttf in Resources */,
