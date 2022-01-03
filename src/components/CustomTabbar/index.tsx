@@ -16,14 +16,14 @@ import { useBottomTabStyle } from './styles';
 const CustomTabar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const styles = useBottomTabStyle();
   const tabFocus = [
-    <Icon size={2} tintColor={COLORS._FDCB44} icon={Icons.ICON_BROSWER} />,
+    <Icon size={2} tintColor={COLORS._FDCB44} icon={Icons.ICON_BROWSER} />,
     <Icon size={2} tintColor={COLORS._FDCB44} icon={Icons.ICON_FAVORITE} />,
     <Icon size={2} tintColor={COLORS._7F2B81} icon={Icons.ICON_HOME} />,
     <Icon size={2} tintColor={COLORS._FDCB44} icon={Icons.ICON_BELL} />,
     <Icon size={2} tintColor={COLORS._FDCB44} icon={Icons.ICON_USER} />,
   ];
   const tabUnFocus = [
-    <Icon size={2} tintColor={COLORS.WHITE} icon={Icons.ICON_BROSWER} />,
+    <Icon size={2} tintColor={COLORS.WHITE} icon={Icons.ICON_BROWSER} />,
     <Icon size={2} tintColor={COLORS.WHITE} icon={Icons.ICON_FAVORITE} />,
     <Icon size={2} tintColor={COLORS._7F2B81} icon={Icons.ICON_HOME} />,
     <Icon size={2} tintColor={COLORS.WHITE} icon={Icons.ICON_BELL} />,

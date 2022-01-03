@@ -81,6 +81,7 @@ const COLORS = {
   _FDCB44: '#FDCB44',
   _7F2B81: '#7F2B81',
   _F1F1F1: '#F1F1F1',
+  _444343: '#444343',
   customOpacity: (color: string, opacity: number) => Color(color, 'hex').alpha(opacity).toString(),
 };
 
