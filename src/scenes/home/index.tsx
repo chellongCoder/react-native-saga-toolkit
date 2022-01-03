@@ -8,6 +8,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import { Text } from '@components/text';
+import { Header } from './component/Header';
+import { Platform } from '@theme/platform';
+import { SliderCarousel } from '@components/slider-carousel';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -18,7 +21,16 @@ const _HomeScreen = ({}) => {
 
   return (
     <View style={styles.container}>
-      <Text>asd</Text>
+      <Header />
+      <ScrollView
+        style={{
+          marginTop: -Platform.SizeScale(110),
+        }}
+      >
+        <View>
+          <SliderCarousel />
+        </View>
+      </ScrollView>
     </View>
   );
 };
