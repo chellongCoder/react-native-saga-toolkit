@@ -42,6 +42,7 @@ import { PrivatekeyScreen } from '@scenes/privatekey';
 import { KeystoreScreen } from '@scenes/keystore';
 import { PublickeyScreen } from '@scenes/publickey';
 import { QrScanScreen } from '@scenes/qr-scan';
+import { ProductDetail } from '@scenes/product-detail';
 
 const RootStack = createStackNavigator<RootStackT>();
 const MainStack = createStackNavigator<MainStackT>();
@@ -269,6 +270,14 @@ export const MainStackScreen: FC = () => {
       <MainStack.Screen
         name={'ChangePassword'}
         component={ChangePasswordScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <MainStack.Screen
+        name={'ProductDetail'}
+        component={ProductDetail}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

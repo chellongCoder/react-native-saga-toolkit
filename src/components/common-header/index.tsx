@@ -1,37 +1,31 @@
 import { Icon } from '@components/common-icon';
-import { CommonMenu } from '@components/common-menu';
+import { Text } from '@components/text';
 import { Touchable } from '@components/touchable';
-import { useBlurView } from '@hook/use-blur-view';
-import { DrawerActionHelpers, DrawerActions, ParamListBase, useNavigation } from '@react-navigation/native';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { RootState } from '@redux/reducers';
+import { COLORS } from '@theme/colors';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
 import { Images } from '@theme/images';
 import { Platform } from '@theme/platform';
+import _ from 'lodash';
 import React, { memo, useCallback } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, ImageBackground, StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useCommonHeaderStyle } from './styles';
 
 export interface ICommonHeader {
   _onPressAvatar?: () => void;
+  title?: string;
+  onCart?: () => void;
 }
-const _CommonHeader = ({ _onPressAvatar }: ICommonHeader) => {
+const _HeaderMain = ({ _onPressAvatar, onCart, title }: ICommonHeader) => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const styles = useCommonHeaderStyle();
-  const blurView = useBlurView();
   const navigation = useNavigation();
 
   const onShowMenu = useCallback(() => {
-    // blurView.onShow(
-    //   <CommonMenu />,
-    //   {
-    //     right: Platform.SizeScale(10),
-    //     top: Platform.SizeScale(50),
-    //   },
-    //   'zoom',
-    // );
     navigation.dispatch(DrawerActions.toggleDrawer());
   }, [navigation]);
 
@@ -39,33 +33,30 @@ const _CommonHeader = ({ _onPressAvatar }: ICommonHeader) => {
     _onPressAvatar?.();
   }, [_onPressAvatar]);
 
+  const onGoBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
   return (
-    <View style={[commonStyles.row, commonStyles.spaceBetween, styles.header]}>
-      <View style={commonStyles.row}>
-        <Touchable onPress={onPressAvatar}>
-          <Icon
-            style={{
-              overflow: 'hidden',
-              borderRadius: Platform.SizeScale(50),
-            }}
-            mr={Platform.SizeScale(10)}
-            resizeMode="cover"
-            icon={{ uri: userInfo?.data.avatar }}
-            size={4}
-          />
-        </Touchable>
-        <View style={styles.logo}>
-          <Image resizeMode="contain" style={commonStyles.image} source={Images.TEXT_LOGO} />
-        </View>
-      </View>
-      <View style={commonStyles.row}>
-        <Icon ml={Platform.SizeScale(10)} icon={Icons.ICON_SEARCH} size={2} />
+    <ImageBackground
+      source={require('../../assets/images/header/header_main.png')}
+      style={[commonStyles.row, commonStyles.spaceBetween, styles.imgBg]}
+      resizeMode='cover'
+    >
+      <StatusBar barStyle={'light-content'} />
+      <Touchable onPress={onGoBack}>
+        <Image source={require('../../assets/images/header/icon_back.png')} />
+      </Touchable>
+      <Text color={COLORS.WHITE} fontSize={16}>{title}</Text>
+      {_.isFunction(onCart) ?
         <Touchable onPress={onShowMenu}>
-          <Icon ml={Platform.SizeScale(20)} icon={Icons.ICON_MENU} size={2} />
+          <Image source={require('../../assets/images/header/icon_cart.png')} />
         </Touchable>
-      </View>
-    </View>
+        :
+        <View />
+      }
+    </ImageBackground >
   );
 };
 
-export const CommonHeader = memo(_CommonHeader);
+export const HeaderMain = memo(_HeaderMain);

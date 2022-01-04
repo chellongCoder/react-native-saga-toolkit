@@ -17,13 +17,6 @@ export const useCommonHeaderStyle = () => {
           paddingTop: Platform.OS === 'android' ? Platform.SizeScale(10) : insets.top,
           paddingBottom: Platform.SizeScale(10),
         },
-        imgBg: {
-          width: Platform.deviceWidth,
-          height: 80,
-          paddingHorizontal: Platform.SizeScale(15),
-          alignItems: 'center',
-          paddingTop: 20,
-        }
       }),
     [insets],
   );

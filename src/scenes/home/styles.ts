@@ -48,6 +48,10 @@ export const useHomeStyle = () => {
           paddingVertical: Platform.SizeScale(10),
           borderBottomColor: COLORS._939393,
         },
+        btnGoToDetail: {
+          textDecorationLine: 'underline',
+          margin: 10,
+        },
       }),
     [],
   );
