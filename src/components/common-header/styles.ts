@@ -22,7 +22,7 @@ export const useCommonHeaderStyle = () => {
           height: 80,
           paddingHorizontal: Platform.SizeScale(15),
           alignItems: 'center',
-          paddingTop: 20,
+          paddingTop: Platform.select({ ios: 20, android: 0 }),
         }
       }),
     [insets],

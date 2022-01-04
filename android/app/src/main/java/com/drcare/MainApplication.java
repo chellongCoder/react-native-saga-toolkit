@@ -2,6 +2,8 @@ package com.drcare;
 
 import android.app.Application;
 import android.content.Context;
+
+import com.doctorcare.app.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
