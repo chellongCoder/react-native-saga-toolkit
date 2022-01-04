@@ -3,6 +3,7 @@ import { ListFullOption } from '@components/list';
 import { ProductListItem } from '@components/product-list-item';
 import { Text } from '@components/text';
 import { View } from '@components/view';
+import { ProductItemT } from '@redux/product/types';
 import { COLORS } from '@theme/colors';
 import commonStyles from '@theme/commonStyles';
 import { Icons } from '@theme/icons';
@@ -16,8 +17,9 @@ import { products } from './__mocks__/data';
 
 type Props = {
   title: string | React.ReactNode;
+  data: ProductItemT[];
 };
-const _ProductContainer = ({ title }: Props) => {
+const _ProductContainer = ({ title, data }: Props) => {
   const styles = useProductContainerStyle();
   const renderItemContent = useCallback(({ item }) => {
     return <ProductListItem {...{ item }} />;
@@ -48,12 +50,7 @@ const _ProductContainer = ({ title }: Props) => {
         <FastImage resizeMode={'cover'} style={commonStyles.image} source={Images.IMG_SLIDE_HOME} />
       </View>
       <View mv={Platform.SizeScale(10)}>
-        <FlatList
-          data={products}
-          renderItem={renderItemContent}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
+        <FlatList data={data} renderItem={renderItemContent} horizontal={true} showsHorizontalScrollIndicator={false} />
       </View>
     </View>
   );

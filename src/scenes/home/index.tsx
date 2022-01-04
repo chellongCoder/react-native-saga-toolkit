@@ -16,6 +16,7 @@ import { COLORS } from '@theme/colors';
 import { CountDown } from './component/CountDown';
 import commonStyles from '@theme/commonStyles';
 import { ProductContainer } from '@components/product-container';
+import { products } from '@components/product-container/__mocks__/data';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -46,8 +47,9 @@ const _HomeScreen = ({}) => {
               <CountDown />
             </View>
           }
+          data={products}
         />
-        <ProductContainer title={'Skin care'} />
+        <ProductContainer title={'Skin care'} data={products} />
         <View
           style={{
             height: Platform.SizeScale(100),
