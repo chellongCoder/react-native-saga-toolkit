@@ -12,7 +12,8 @@ export const useBottomTabStyle = () => {
         container: {
           width: Platform.deviceWidth,
           height: Platform.SizeScale(90),
-          backgroundColor: COLORS._F1F1F1,
+          position: 'absolute',
+          bottom: 0,
         },
         content: {
           flex: 1,

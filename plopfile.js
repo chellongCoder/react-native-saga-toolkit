@@ -125,29 +125,28 @@ module.exports = plop => {
         // Add a new file
         type: 'add',
         // Path for the new file
-        path: 'src/redux/types/{{kebabCase name}}.types.ts',
-        // Handlebars template used to generate content of new file
+        path: 'src/redux/{{kebabCase name}}/types.ts',
         templateFile: 'plop-templates/model/types.js.hbs',
       },
       {
         type: 'add',
-        path: 'src/redux/actions/{{name}}.action.ts',
-        templateFile: 'plop-templates/model/action.js.hbs',
+        path: 'src/redux/{{kebabCase name}}/actions.ts',
+        templateFile: 'plop-templates/model/actions.js.hbs',
       },
       {
         type: 'add',
-        path: 'src/redux/reducers/{{name}}.reducer.ts',
-        templateFile: 'plop-templates/model/reducer.js.hbs',
+        path: 'src/redux/{{kebabCase name}}/reducers.ts',
+        templateFile: 'plop-templates/model/reducers.js.hbs',
       },
       {
         type: 'add',
-        path: 'src/redux/sagas/{{name}}.saga.ts',
-        templateFile: 'plop-templates/model/saga.js.hbs',
+        path: 'src/redux/{{kebabCase name}}/sagas.ts',
+        templateFile: 'plop-templates/model/sagas.js.hbs',
       },
       {
         type: 'add',
-        path: 'src/services/{{name}}-service.ts',
-        templateFile: 'plop-templates/model/service.js.hbs',
+        path: 'src/redux/{{kebabCase name}}/apiCall.ts',
+        templateFile: 'plop-templates/model/apiCall.js.hbs',
       },
     ],
   });

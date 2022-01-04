@@ -11,7 +11,7 @@ export const useHomeStyle = () => {
       StyleSheet.create({
         container: { flex: 1 },
         body: {
-          backgroundColor: COLORS.BACKGROUND,
+          backgroundColor: COLORS._F1F1F1,
           paddingHorizontal: Platform.SizeScale(20),
           borderTopRightRadius: Platform.SizeScale(30),
           borderTopLeftRadius: Platform.SizeScale(30),

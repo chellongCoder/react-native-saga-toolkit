@@ -12,7 +12,10 @@ import { Header } from './component/Header';
 import { Platform } from '@theme/platform';
 import { SliderCarousel } from '@components/slider-carousel';
 import { Categories } from './component/Categories';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import { COLORS } from '@theme/colors';
+import { CountDown } from './component/CountDown';
+import commonStyles from '@theme/commonStyles';
+import { ProductContainer } from '@components/product-container';
 
 const _HomeScreen = ({}) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -35,14 +38,20 @@ const _HomeScreen = ({}) => {
         <View>
           <Categories />
         </View>
-        <CountdownCircleTimer
-          onComplete={() => {
-            // do your stuff here
-            return [true, 1500]; // repeat animation in 1.5 seconds
+
+        <ProductContainer
+          title={
+            <View style={[commonStyles.row]}>
+              <Text>Flashsale</Text>
+              <CountDown />
+            </View>
+          }
+        />
+        <ProductContainer title={'Skin care'} />
+        <View
+          style={{
+            height: Platform.SizeScale(100),
           }}
-          isPlaying
-          duration={10}
-          colors="#A30000"
         />
       </ScrollView>
     </View>
