@@ -1,3 +1,5 @@
+import { Images } from '@theme/images';
+
 export const assets = [
   {
     avatar: '',
@@ -66,5 +68,40 @@ export const sorts = [
   {
     name: 'Custom Sort',
     note: 'Coin Management',
+  },
+];
+
+export const categories = [
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
+  },
+  {
+    image: Images.IMG_CATEGORY,
+    name: 'Skin care',
   },
 ];
