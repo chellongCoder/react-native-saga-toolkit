@@ -12,8 +12,11 @@ import { Header } from './component/Header';
 import { Platform } from '@theme/platform';
 import { SliderCarousel } from '@components/slider-carousel';
 import { Categories } from './component/Categories';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import { Touchable } from '@components/touchable';
+import { COLORS } from '@theme/colors';
+import { CountDown } from './component/CountDown';
+import commonStyles from '@theme/commonStyles';
+import { ProductContainer } from '@components/product-container';
+import { products } from '@components/product-container/__mocks__/data';
 import { useLoadingGlobal } from '@hook/use-loading-global';
 
 const _HomeScreen = ({ }) => {
@@ -42,18 +45,22 @@ const _HomeScreen = ({ }) => {
         <View>
           <Categories />
         </View>
-        {/* <CountdownCircleTimer
-          onComplete={() => {
-            // do your stuff here
-            return [true, 1500]; // repeat animation in 1.5 seconds
+
+        <ProductContainer
+          title={
+            <View style={[commonStyles.row]}>
+              <Text>Flashsale</Text>
+              <CountDown />
+            </View>
+          }
+          data={products}
+        />
+        <ProductContainer title={'Skin care'} data={products} />
+        <View
+          style={{
+            height: Platform.SizeScale(100),
           }}
-          isPlaying
-          duration={10}
-          colors="#A30000"
-        /> */}
-        <Touchable onPress={onPress}>
-          <Text>ProductDetail</Text>
-        </Touchable>
+        />
       </ScrollView>
     </View>
   );

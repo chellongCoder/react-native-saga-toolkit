@@ -22,8 +22,8 @@ const COLORS = {
   SILVER: '#bdc3c7',
   CLOUDS: '#ecf0f1',
   WHITE: '#fff',
-  BLACK: '#000',
-  TRANSPARENT: '#00000000',
+  BLACK: '#000000',
+  TRANSPARENT: 'transparent',
   GREY_SHADOW_7: 'rgba(216,216,216,0.7)',
   GREEN_GRADIENT: ['#0B554F', '#22857C'],
   VIOLET_GRADIENT: ['#AF4BB1', '#7F2B81'],
@@ -83,6 +83,8 @@ const COLORS = {
   _F1F1F1: '#F1F1F1',
   _444343: '#444343',
   _9C9C9C: '#9C9C9C',
+  _E5E5E5: '#E5E5E5',
+  _260001: '#260001',
   customOpacity: (color: string, opacity: number) => Color(color, 'hex').alpha(opacity).toString(),
 };
 
