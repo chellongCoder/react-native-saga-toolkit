@@ -52,6 +52,14 @@ export const useHomeStyle = () => {
           textDecorationLine: 'underline',
           margin: 10,
         },
+        flashsale: {
+          width: Platform.SizeScale(89),
+          height: Platform.SizeScale(24),
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: COLORS._7F2B81,
+          borderRadius: Platform.SizeScale(10),
+        },
       }),
     [],
   );

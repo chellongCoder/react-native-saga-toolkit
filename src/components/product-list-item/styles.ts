@@ -12,7 +12,7 @@ export const useProductListItemStyle = () => {
         container: {
           flexWrap: 'wrap',
           backgroundColor: COLORS.WHITE,
-          width: Platform.SizeScale(186),
+          width: Platform.deviceWidth / 2 - Platform.SizeScale(20),
           borderRadius: Platform.SizeScale(10),
         },
       }),
