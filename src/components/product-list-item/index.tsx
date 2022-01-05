@@ -22,13 +22,13 @@ const _ProductListItem = ({ item }: Props) => {
   const navigation = useNavigation<StackNavigationProp<ScreenRouteT, 'Home'>>();
   const onPress = () => {
     navigation.navigate('ProductDetail');
-  }
+  };
   return (
     <Touchable onPress={onPress}>
-      <View mr={Platform.SizeScale(10)} style={styles.container}>
+      <View mv={Platform.SizeScale(5)} mh={Platform.SizeScale(5)} style={styles.container}>
         <View
           style={{
-            width: Platform.SizeScale(186),
+            width: Platform.deviceWidth / 2 - Platform.SizeScale(20),
             height: Platform.SizeScale(131),
           }}
         >

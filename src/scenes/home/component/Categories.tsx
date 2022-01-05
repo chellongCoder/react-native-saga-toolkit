@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
   list: {
     justifyContent: 'space-between',
     flex: 1,
+    paddingBottom: Platform.SizeScale(10),
   },
 });

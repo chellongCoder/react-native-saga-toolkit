@@ -1,37 +1,44 @@
 import { Platform } from '@theme/platform';
 import React, { memo, useCallback, useRef, useState } from 'react';
 import { useSliderCarouselStyle } from './styles';
-import { slides } from './__mocks__/data';
 import Carousel from 'react-native-snap-carousel';
-import FastImage from 'react-native-fast-image';
 import commonStyles from '@theme/commonStyles';
 import { View } from '@components/view';
 import { Text } from '@components/text';
 import { COLORS } from '@theme/colors';
 
-const _SliderCarousel = ({}) => {
+type Props = {
+  firstItem?: number;
+  itemWidth?: number;
+  activeSlideAlignment?: 'center' | 'end' | 'start';
+  data: any[];
+  renderItemProps<T>(item: T, index: number, activeSlide: number): React.ReactNode;
+  isShowDot?: boolean;
+};
+const _SliderCarousel = ({
+  firstItem = 0,
+  itemWidth = Platform.deviceWidth,
+  activeSlideAlignment = 'start',
+  data,
+  renderItemProps,
+  isShowDot = true,
+}: Props) => {
   const styles = useSliderCarouselStyle();
   const carousel = useRef();
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(firstItem);
 
   const onSnapToItem = useCallback((index: number) => {
     setActiveSlide(index);
   }, []);
 
-  const renderItem = useCallback(({ item }) => {
-    return (
-      <View
-        style={{
-          width: '100%',
-          height: Platform.SizeScale(130),
-        }}
-      >
-        <FastImage resizeMode={'contain'} style={commonStyles.image} source={item.source} />
-      </View>
-    );
-  }, []);
+  const renderItem: any = useCallback(
+    ({ item, index }) => {
+      return renderItemProps(item, index, activeSlide);
+    },
+    [activeSlide, renderItemProps],
+  );
   const renderDot = useCallback(() => {
-    return slides.map((value, index) => {
+    return data.map((value, index) => {
       return (
         <View>
           <Text
@@ -44,23 +51,25 @@ const _SliderCarousel = ({}) => {
         </View>
       );
     });
-  }, [activeSlide]);
+  }, [activeSlide, data]);
   return (
     <View>
       <Carousel
-        data={slides}
-        firstItem={0}
+        data={data}
+        firstItem={firstItem}
         renderItem={renderItem}
         sliderWidth={Platform.deviceWidth}
-        itemWidth={Platform.deviceWidth}
+        itemWidth={itemWidth}
         ref={carousel}
-        loop={true}
+        // loop={true}
         onSnapToItem={onSnapToItem}
-        activeSlideAlignment="start"
+        activeSlideAlignment={activeSlideAlignment}
       />
-      <View mt={-Platform.SizeScale(30)} alignItems="center">
-        <View style={[commonStyles.row]}>{renderDot()}</View>
-      </View>
+      {isShowDot && (
+        <View mt={-Platform.SizeScale(30)} alignItems="center">
+          <View style={[commonStyles.row]}>{renderDot()}</View>
+        </View>
+      )}
     </View>
   );
 };

@@ -18,8 +18,9 @@ import { products } from './__mocks__/data';
 type Props = {
   title: string | React.ReactNode;
   data: ProductItemT[];
+  typeList?: 'ROW' | 'COL';
 };
-const _ProductContainer = ({ title, data }: Props) => {
+const _ProductContainer = ({ title, data, typeList = 'ROW' }: Props) => {
   const styles = useProductContainerStyle();
   const renderItemContent = useCallback(({ item }) => {
     return <ProductListItem {...{ item }} />;
@@ -49,8 +50,16 @@ const _ProductContainer = ({ title, data }: Props) => {
       >
         <FastImage resizeMode={'cover'} style={commonStyles.image} source={Images.IMG_SLIDE_HOME} />
       </View>
-      <View mv={Platform.SizeScale(10)}>
-        <FlatList data={data} renderItem={renderItemContent} horizontal={true} showsHorizontalScrollIndicator={false} />
+      <View alignItems="center" mv={Platform.SizeScale(10)}>
+        {typeList === 'ROW' && (
+          <FlatList
+            data={data}
+            renderItem={renderItemContent}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        )}
+        {typeList === 'COL' && <FlatList data={data} renderItem={renderItemContent} numColumns={2} />}
       </View>
     </View>
   );
