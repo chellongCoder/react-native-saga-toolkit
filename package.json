@@ -72,7 +72,7 @@
     "appcenter": "^4.2.0",
     "appcenter-analytics": "^4.2.0",
     "appcenter-crashes": "^4.2.0",
-    "i18next": "20.3.1",
+    "i18next": "21.6.14",
     "lodash": "^4.17.21",
     "react": "17.0.2",
     "react-countdown-circle-timer": "^2.5.4",
