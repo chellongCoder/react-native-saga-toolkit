@@ -76,7 +76,7 @@
     "lodash": "^4.17.21",
     "react": "17.0.2",
     "react-countdown-circle-timer": "^2.5.4",
-    "react-i18next": "^11.10.0",
+    "react-i18next": "^11.16.1",
     "react-native": "0.64.2",
     "react-native-autoheight-webview": "^1.5.8",
     "react-native-bottomsheet-reanimated": "^0.0.44",
