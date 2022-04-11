@@ -703,10 +703,17 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime@7.14.0", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.14.0", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@7.14.0":
   version "7.14.0"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.14.0.tgz"
   integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.12.1", "@babel/runtime@^7.14.0", "@babel/runtime@^7.17.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+  version "7.17.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
+  integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -5353,12 +5360,12 @@ husky@6.0.0:
   resolved "https://registry.npmjs.org/husky/-/husky-6.0.0.tgz"
   integrity sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==
 
-i18next@20.3.1:
-  version "20.3.1"
-  resolved "https://registry.npmjs.org/i18next/-/i18next-20.3.1.tgz"
-  integrity sha512-WTY07KreR5z2LBSzAIKs05zpR5tgUT98C4fD96e7Risbc/HZePwF6AEnb9VkjdeSeRn9PDqQBay7ZkphuXt0Xw==
+i18next@21.6.15:
+  version "21.6.15"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.6.15.tgz#077e5798dbbd53d3aaa8ad66193758bd19836dbe"
+  integrity sha512-uMFyw5HGK9KSJ7ok/WUJfeNQj53VOR4NoITtErffWen2v2SjJfpCls7tKTLF1nTCdKRePY4lCoZMLKhRSj/1GA==
   dependencies:
-    "@babel/runtime" "^7.12.0"
+    "@babel/runtime" "^7.17.2"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
